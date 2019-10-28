@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+#Seite{
+   width: 100%; min-height: auto;
+   margin: 0 auto;
+}
+
+header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#Suche{
+   position: static; min-width: 0 ;
+   width: 10em;
+   border: 2px solid #999;
+   border-radius: 0.5em;
+   font-size: 1em;
+   transition: width 0.5s ease-in-out;
+   background: url("/img-Kopie/logo.jpg") no-repeat right;
+   margin-bottom: 2em;
+
+}
+#searchform {
+
+  float: right;
+
+}
+#Suche:focus {
+  font-size: 1em;
+  width: 100%;
+}
+
+#inhalt\ {
+  background-color: dodgerblue;
+  margin-bottom: 2em;
+}
+
+#stickyfooter {
+   position: absolute; bottom: 0px;
+   width: 700px;
+   background-color: aqua;
+}

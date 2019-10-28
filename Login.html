@@ -1,0 +1,20 @@
+<?php
+session_start();
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<title>Login abitofadvice</title>
+</head>
+<body>
+<header><h1><strong> Anmelden </strong></h1></header>
+<!-- mit action rufen wir das PHP-File auf, das die ganze Arbeit macht -->
+<form action="inc/login-inc.php" method="post">
+  <input type="text" name="user" placeholder="Benutzername"><br>
+  <input type="password" name="Passwort" placeholder="Passwort"><br>
+  <button type="submit" name="submit">Login</button><br>
+ </form>
+<a href="Link">Passwort vergessen?</a>
+</body>
+</html>
