@@ -2,36 +2,94 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>BIT of Advice/Registration</title>
+    <title>Register</title>
 </head>
 <style>
-  div {border:1px solid; flex: border-box; align-content: center }
+    .modalDialog {
+        position: fixed;
+        font-family: Arial, Helvetica, sans-serif;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(0,0,0,0.2);
+        z-index: 99999;
+        opacity:0;
+        -webkit-transition: opacity 400ms ease-in;
+        -moz-transition: opacity 400ms ease-in;
+        transition: opacity 400ms ease-in;
+        pointer-events: none;
+    }
+    .modalDialog:target {
+        opacity:1;
+        pointer-events: auto;
+    }
+
+    .modalDialog > div {
+        width: 20%;
+        position: relative;
+        margin: 10% auto;
+        padding: 5px 20px 13px 20px;
+        border-radius: 10px;
+        background: #fff;
+        background: -moz-linear-gradient(#fff, #999);
+        background: -webkit-linear-gradient(#fff, #999);
+        background: -o-linear-gradient(#fff, #999);
+    }
+
+    .close {
+        background: #fcfcff;
+        color: #569dff;
+        line-height: 25px;
+        position: absolute;
+        right: -12px;
+        text-align: center;
+        top: -10px;
+        width: 24px;
+        text-decoration: none;
+        font-weight: bold;
+        -webkit-border-radius: 12px;
+        -moz-border-radius: 12px;
+        border-radius: 12px;
+        -moz-box-shadow: 1px 1px 3px #000;
+        -webkit-box-shadow: 1px 1px 3px #000;
+        box-shadow: 1px 1px 3px #000;
+    }
+
+    .close:hover { background: #ff0000; }
 
 </style>
 <body>
-<div type="container">
-<header> <h1><strong>Registration</strong></h1></header>
+<a href="#openModal">Register</a>
+
+<div id="openModal" class="modalDialog">
+    <div>
+        <a href="#close" title="Close" class="close">X</a>
+        <h2>Registration</h2>
+
+        <p>Please choose your User Name</p>
+        <input type="Text" name ="UserName" value="" >
+
+        <p>Please enter your E-Mail Adress</p>
+        <input type="Text" name ="E-mail" value="" >
+
+        <p>Please Enter Password</p>
+        <input type="Password" name ="Password" value="">
+        <p>Please verify Password</p>
+        <input type="Password" name ="Password" value=""  >
 
 
-<p>Please choose your User Name</p>
-<input type="Text" name ="UserName" value="" >
 
-<p>Please enter your E-Mail Adress</p>
-<input type="Text" name ="E-mail" value="" >
+        <input type="button" onhold="Function">Show Password
 
-<p>Please Enter Password</p>
-<input type="Password" name ="Password" value="">
-<p>Please verify Password</p>
-<input type="Password" name ="Password" value=""  >
+        <br>
+        <input type="submit" onclick="Function" >
+        <br>
+        <a href="http:www.BIT of Advice/login">I already have an Account</a>
 
-
-
-<input type="button" onhold="Function">Show Password
-
-
-<input type="submit" onclick="Function" >
-<a href="http:www.BIT of Advice/login">I already have an Account</a>
+    </div>
 </div>
+
 
 </body>
 </html>
