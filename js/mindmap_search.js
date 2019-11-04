@@ -19,7 +19,5 @@ function draw() {
     canv2.moveTo(75, 50);
     canv2.moveTo(900,900);
     canv2.stroke();
-
-
 }
 
