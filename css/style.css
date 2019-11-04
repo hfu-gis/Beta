@@ -1,0 +1,55 @@
+:root{
+    --main-color1: #BF4974;
+    --main-color2: #8C3F63;
+    --main-color3: #8F94A6;
+    --main-color4: #132B40;
+    --main-color5: #D9A566;
+}
+
+@font-face { font-family: 'Title-Font';
+    src: local('PixelSplitter-Bold.tff'),
+        url('../fonts/pixelsplitter/PixelSplitter-Bold.ttf') format('truetype');
+}
+@font-face { font-family: 'Standard-Font';
+    src: local('HWYGCOND.tff'),
+    url('../fonts/highway_gothic/HWYGNRRW.ttf') format('truetype');
+}
+
+body{
+    background: var(--main-color4);
+    font-size: 100px;
+    font-family: "Trebuchet MS";
+}
+
+#divvv{
+    background: var(--main-color1);
+    margin: 200px;
+    padding: 0.5em;
+    border: var(--main-color5) solid 4px;
+    border-radius: 10px;
+}
+
+h1{
+    font-family: Title-Font;
+    font-size: 50px;
+    color: var(--main-color5);
+    text-transform: lowercase;
+}
+
+
+
+
+h2{
+    font-size: 30px;
+    font-family: Standard-Font;
+    color: var(--main-color3);
+}
+h3{
+    color: var(--main-color3);
+}
+h4{
+    color: var(--main-color2);
+}
+h5{
+    color: var(--main-color1);
+}
