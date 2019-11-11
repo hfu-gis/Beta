@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Login from '../views/Login'
 import HelloWorld from "../components/HelloWorld";
 import Profil from "../views/Profil";
-import profilesettings from "../views/profilesettings";
+import Profilesettings from "../views/Profilesettings";
 import postinglist from "../views/postinglist";
 import wordcloud from "../views/wordcloud";
 
@@ -24,7 +24,7 @@ export default new VueRouter({
             component: Profil
         },{
             path: '/profilesettings',
-            component: profilesettings
+            component: Profilesettings
         },{
             path: '/postinglist',
             component: postinglist
