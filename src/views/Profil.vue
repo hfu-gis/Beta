@@ -22,7 +22,7 @@
 <script>
 export default {
   // gebt jeder Page einen eigenen Namen
-  name: 'Profil',
+  name: 'profil',
 
   // benötigte Komponenten
   components: {},
