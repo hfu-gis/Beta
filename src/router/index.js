@@ -5,6 +5,7 @@ import HelloWorld from "../components/HelloWorld";
 import Profil from "../views/Profil";
 import profilesettings from "../views/profilesettings";
 import postinglist from "../views/postinglist";
+import wordcloud from "../views/wordcloud";
 
 Vue.use(VueRouter)
 
@@ -27,5 +28,8 @@ export default new VueRouter({
         },{
             path: '/postinglist',
             component: postinglist
+        },{
+            path: '/wordcloud',
+            component: wordcloud
         }]
 })
