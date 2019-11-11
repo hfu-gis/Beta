@@ -20,13 +20,21 @@
           Login
         </v-btn>
 
-      <v-btn text to="/ProfileSettings">
+      <v-btn text to="/profilesettings">
           Profileinstellungen
         </v-btn>
 
       <v-btn text to="/postinglist">
         (temp) Beitrags-Liste)
       </v-btn>
+
+      <v-btn text to="/Profil" fab="true">
+        <v-avatar>
+          <v-img src="../img/Profilbilder/1.png"></v-img>
+        </v-avatar>
+      </v-btn>
+
+
     </v-app-bar>
 
     <v-content>
