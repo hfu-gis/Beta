@@ -25,7 +25,11 @@
         </v-btn>
 
       <v-btn text to="/postinglist">
-        (temp) Beitrags-Liste)
+        (temp) Beitrags-Liste
+      </v-btn>
+
+      <v-btn text to="/wordcloud">
+        WordCloud
       </v-btn>
     </v-app-bar>
 
