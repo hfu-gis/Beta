@@ -1,20 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../views/Login'
-import HelloWorld from "../components/HelloWorld";
 import Profil from "../views/Profil";
-import Profilesettings from "../views/Profilesettings";
+import profilesettings from "../views/profilesettings";
 import postinglist from "../views/postinglist";
 import wordcloud from "../views/wordcloud";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 export default new VueRouter({
     routes: [
-        {
-            path: '/',
-            component: HelloWorld
-        },
         {
             path: '/login',
             component: Login
@@ -22,13 +17,16 @@ export default new VueRouter({
         {
             path: '/Profil',
             component: Profil
-        },{
+        },
+        {
             path: '/profilesettings',
-            component: Profilesettings
-        },{
+            component: profilesettings
+        },
+        {
             path: '/postinglist',
             component: postinglist
-        },{
+        },
+        {
             path: '/wordcloud',
             component: wordcloud
         }]
