@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Login from '../views/Login'
 import HelloWorld from "../components/HelloWorld";
 import Profil from "../views/Profil";
+import profilesettings from "../views/profilesettings";
 
 Vue.use(VueRouter)
 
@@ -17,17 +18,10 @@ export default new VueRouter({
             component: Login
         },
         {
-            path: '/profil',
-            component: profil
+            path: '/Profil',
+            component: Profil
         },{
             path: '/profilesettings',
             component: profilesettings
-        },{
-            path: '/anmelden',
-            component: 
-        },{
-            path: '/registration',
-            component: registration
-        },
-    ]
+        }]
 })
