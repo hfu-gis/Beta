@@ -1,7 +1,6 @@
 <template>
-  <div class="body-1">
+  <!--<div class="body-1">
     <a href="#" onclick="profileinstellungen()">Profileinstellungen</a>
-    <!-- Modals -->
     <div class="pE-Modal">
       <div class="pE-Modal-Inhalt">
         <div class="pE-schliessen" onclick="closeModalPE()">+</div>
@@ -22,7 +21,14 @@
       </div>
     </div>
   </div>
+  -->
+
+  <v-dialog>
+    Hello
+    <v-btn>Klick</v-btn>
+  </v-dialog>
 </template>
+
 
 <script>
 export default {
@@ -53,4 +59,86 @@ export default {
 
 <style scoped>
 /* CSS für diese Seite hier einfügen */
+
+/* CSS des Modal zu den Profileinstellungen */
+
+/* Allgemeine Tags */
+button:focus {
+  outline: none;
+}
+
+.button {
+  background-color: dodgerblue;
+  padding: 4px;
+  border: none;
+  border-radius: 30%;
+  text-decoration: none;
+  color: white;
+}
+
+
+/* Profileinstellungen-Fenster */
+.pE-Modal {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.pE-Modal-Inhalt {
+  width: 500px;
+  height: 650px;
+  background-color: white;
+  border-radius: 6px;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+}
+
+.pE-schliessen {
+  position: absolute;
+  top: 0;
+  right: 14px;
+  font-size: 42px;
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+
+
+
+/* Profilbild */
+#PresentProfilePicture {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  border-color: black;
+  position: relative;
+}
+
+#ProfilePictureAendern {
+  width: 150px;
+  height: 150px;
+  padding: 0;
+  margin: 15px;
+  background-color: white;
+  display: inline-block;
+  border-width: 4px;
+  border-color: black;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+
+
+/* Formular Input */
+input {
+  width: 50%;
+  display: block;
+  margin: 15px auto;
+}
 </style>
