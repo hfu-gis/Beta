@@ -30,6 +30,10 @@
           Login
         </v-btn>
 
+      <v-btn text to="/ProfileSettings">
+          Profileinstellungen
+        </v-btn>
+
       <v-btn
         href="https://github.com/vuetifyjs/vuetify/releases/latest"
         target="_blank"
