@@ -4,6 +4,7 @@ import Login from '../views/Login'
 import HelloWorld from "../components/HelloWorld";
 import Profil from "../views/Profil";
 import profilesettings from "../views/profilesettings";
+import postinglist from "../views/postinglist";
 
 Vue.use(VueRouter)
 
@@ -23,5 +24,8 @@ export default new VueRouter({
         },{
             path: '/profilesettings',
             component: profilesettings
+        },{
+            path: '/postinglist',
+            component: postinglist
         }]
 })
