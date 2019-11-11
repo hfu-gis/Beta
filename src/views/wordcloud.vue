@@ -1,71 +1,99 @@
 <template>
   <div class="body-1" id="cloud">
-    <wordcloud v-bind:texts="defaultWords"></wordcloud>
+    <wordcloud
+            :data="defaultWords"
+            nameKey="name"
+            valueKey="value"
+            :color="myColors"
+            :showTooltip="true"
+            :wordClick="wordClickHandler">
+    </wordcloud>
+    <!--<wordcloud
+      :data="defaultWords"
+      nameKey="name"
+      valueKey="value"
+      color="Accent">
+      </wordcloud>-->
   </div>
 </template>
 
 <script>
-  import VueWordCloud from 'vuewordcloud';
-  // import Wordcloud from "./wordCloud.js";
-  // console.log(Wordcloud);
+  import wordcloud from 'vue-wordcloud'
   export default {
-    name: "cloud",
-    // components: {
-    //   Wordcloud
-    [VueWordCloud.name]: VueWordCloud,
-    // },
+    name: 'cloud',
+    components: {
+      wordcloud
+    },
+    methods: {
+      wordClickHandler(name, value, vm) {
+        console.log('wordClickHandler', name, value, vm);
+      }
+    },
     data() {
       return {
-        defaultWords: [
+        rotate: {from: 0, to: 0, numOfOrientation: 0},
+        spiral: 'rectangular',
+        showTooltip: false,
+        myColors: ['#1f77b4', '#629fc9', '#94bedb', '#c9e0ef'],
+        defaultWords: [{
+          "name": "Cat",
+          "value": 26
+        },
           {
-            text: "Cat",
-            size: 26
+            "name": "fish",
+            "value": 19
           },
           {
-            text: "fish",
-            size: 19
+            "name": "things",
+            "value": 18
           },
           {
-            text: "things",
-            size: 18
+            "name": "look",
+            "value": 16
           },
           {
-            text: "look",
-            size: 16
+            "name": "two",
+            "value": 15
           },
           {
-            text: "two",
-            size: 15
+            "name": "fun",
+            "value": 9
           },
           {
-            text: "fun",
-            size: 9
+            "name": "know",
+            "value": 9
           },
           {
-            text: "know",
-            size: 12
+            "name": "good",
+            "value": 9
           },
           {
-            text: "good",
-            size: 9
+            "name": "good",
+            "value": 9
           },
           {
-            text: "play",
-            size: 17
+            "name": "good",
+            "value": 34
+          },
+          {
+            "name": "good",
+            "value": 22
+          },
+          {
+            "name": "good",
+            "value": 14
+          },
+          {
+            "name": "play",
+            "value": 33
           }
         ]
-      };
+      }
     }
-  };
+  }
 </script>
 
 <style scoped>
-  #cloud {
-    font-family: "Avenir", Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
+  div.tooltip{
   }
 </style>
