@@ -37,13 +37,19 @@
           <v-img src="../img/Profilbilder/1.png"></v-img>
         </v-avatar>
       </v-btn>
-
-
     </v-app-bar>
 
     <v-content>
       <router-view />
     </v-content>
+
+    <v-footer fixed
+              class="grey darken-1 lighten-1 py-1 white--text"
+    >
+      <v-col class="py-1 text-center" >
+        <strong>Impressum</strong> — {{ new Date().getFullYear() }} — <strong>Datenschutz</strong>
+      </v-col>
+    </v-footer>
   </v-app>
 </template>
 
@@ -65,3 +71,6 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+</style>
