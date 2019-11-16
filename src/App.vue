@@ -27,6 +27,9 @@
       <v-btn text to="/postinglist">
         (temp) Beitrags-Liste
       </v-btn>
+      <v-btn text to="/registration">
+         registration
+      </v-btn>
 
       <v-btn text to="/wordcloud">
         WordCloud
