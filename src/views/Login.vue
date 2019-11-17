@@ -1,5 +1,5 @@
 <template>
-    <v-app id="inspire">
+<!-- <v-app id="inspire">
         <v-content>
             <v-container
                     class="fill-height"
@@ -80,7 +80,43 @@
                 </v-row>
             </v-container>
         </v-content>
-    </v-app>
+    </v-app> -->
+    <html>
+    <video-background class="mdi-file-video" sources="/video/Tunnel.mp4" width="200" height="200"></video-background>
+
+<head>Login
+    <meta charset="UTF-8">
+<title> Transparent Login Form </title>
+</head>
+
+<body>
+<v-container>
+    <v-layout>
+        <v-flex xs12  xs3 offset-md3)>
+            <v-card-text>
+                <v-form class="px-3">
+                    <div id="login">
+
+
+                                <header><h1><strong> Login </strong></h1></header>
+                                 <v-text-field label="user name" v-model="username" id="loginbox"></v-text-field>
+                                 <v-text-field label="password" v-model="password" type="password"></v-text-field>
+                                 <v-btn>Sign up</v-btn>
+                    </div>
+                </v-form>
+                                 <a href="Link">Passwort vergessen?</a><br>
+                                <a href="#openModal">Register</a>
+                                <div id="openModal" class="modalDialog">
+                                </div>
+
+            </v-card-text>
+        </v-flex>
+    </v-layout>
+</v-container>
+</body>
+</html>
+
+
 </template>
 
 <script>
@@ -90,3 +126,40 @@
         }
     }
 </script>
+
+<style scoped>
+
+    body {
+        margin: 0 auto;
+        background-image: url("/img/Background/blauerHimmel.jpg");
+        background-size: cover;
+    }
+    #loginbox{
+
+        width: 100em;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    a {
+        color:#fff;
+        font-weight: bolder;
+    }
+    a:visited {
+        color:#fff;
+    }
+
+       input[type="text"], input[type="password"] {
+        width: 300px;
+        height: 50px;
+        font-size: 18px;
+        margin-bottom: 20px;
+        padding-left:5px;
+
+    }
+
+
+
+
+</style>

@@ -34,6 +34,9 @@
       <v-btn text to="/wordcloud">
         WordCloud
       </v-btn>
+      <v-btn text to="/homepage">
+        homepage
+      </v-btn>
 
       <v-btn text to="/Profil" fab="true">
         <v-avatar>

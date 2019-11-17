@@ -6,6 +6,7 @@ import profilesettings from "../views/profilesettings";
 import postinglist from "../views/postinglist";
 import wordcloud from "../views/wordcloud";
 import registration from "../views/registration";
+import homepage from "../views/homepage";
 
 Vue.use(VueRouter);
 
@@ -34,5 +35,10 @@ export default new VueRouter({
         {
             path: '/registration',
             component: registration
-        }]
+        },
+        {
+            path: '/homepage',
+            component: homepage
+        }
+        ]
 })
