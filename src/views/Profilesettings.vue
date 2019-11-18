@@ -22,13 +22,18 @@
     </div>
   </div>
   -->
+
+  <v-dialog>
+    Hello
+    <v-btn>Klick</v-btn>
+  </v-dialog>
 </template>
 
 
 <script>
 export default {
   // gebt jeder Page einen eigenen Namen
-  name: 'profilesettings',
+  name: 'Profilesettings',
 
   // benötigte Komponenten
   components: {},
@@ -53,6 +58,8 @@ export default {
 </script>
 
 <style scoped>
+/* CSS für diese Seite hier einfügen */
+
 /* CSS des Modal zu den Profileinstellungen */
 
 /* Allgemeine Tags */

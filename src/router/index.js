@@ -8,6 +8,7 @@ import registration from "../views/registration";
 import homepage from "../views/homepage";
 import App from "../App";
 import Profilesettings from "../views/Profilesettings";
+import wordcloud2 from "../views/wordcloud2";
 
 Vue.use(VueRouter);
 
@@ -19,6 +20,10 @@ export default new VueRouter({
             component: App
         },
         {
+            path: '/wordcloud2',
+            component: wordcloud2
+        },
+        {
             path: '/login',
             component: Login
         },
@@ -27,7 +32,7 @@ export default new VueRouter({
             component: Profil
         },
         {
-            path: '/profilesettings',
+            path: '/Profilesettings',
             component: Profilesettings
         },
         {
