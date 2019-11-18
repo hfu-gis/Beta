@@ -6,10 +6,10 @@
                     fluid
             >
                 <v-row
-                        align="center"
                         justify="center"
                 >
-                    <v-col
+                          align="center"
+                  <v-col
                             cols="12"
                             sm="8"
                             md="4"
@@ -82,8 +82,7 @@
         </v-content>
     </v-app> -->
     <html>
-    <video-background class="mdi-file-video" sources="/video/Tunnel.mp4" width="200" height="200"></video-background>
-
+    <video-background class="mdi-file-video" sources="../video/bg01.mp4" width="200" height="200"></video-background>
 <head>Login
     <meta charset="UTF-8">
 <title> Transparent Login Form </title>
@@ -92,7 +91,8 @@
 <body>
 <v-container>
     <v-layout>
-        <v-flex xs12  xs3 offset-md3)>
+        <v-row justify="center" align="center">
+            <v-flex xs12  xs5 offset-md12)>
             <v-card-text>
                 <v-form class="px-3">
                     <div id="login">
@@ -101,7 +101,8 @@
                                 <header><h1><strong> Login </strong></h1></header>
                                  <v-text-field label="user name" v-model="username" id="loginbox"></v-text-field>
                                  <v-text-field label="password" v-model="password" type="password"></v-text-field>
-                                 <v-btn>Sign up</v-btn>
+                                 <v-btn class="grey darken-3 no white--text">Sign up</v-btn>
+
                     </div>
                 </v-form>
                                  <a href="Link">Passwort vergessen?</a><br>
@@ -109,9 +110,10 @@
                                 <div id="openModal" class="modalDialog">
                                 </div>
 
-            </v-card-text>
-        </v-flex>
-    </v-layout>
+                 </v-card-text>
+              </v-flex>
+           </v-row>
+        </v-layout>
 </v-container>
 </body>
 </html>
@@ -129,9 +131,10 @@
 
 <style scoped>
 
+
     body {
         margin: 0 auto;
-        background-image: url("/img/Background/blauerHimmel.jpg");
+        background-video: url("/src/assets/Videos/Tunnel - 26475.mp4");
         background-size: cover;
     }
     #loginbox{
