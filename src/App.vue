@@ -1,79 +1,111 @@
 <template>
-  <v-app>
-    <v-app-bar
-      app
-      color="third"
-      dark
-    >
+    <v-app id="inspire">
+        <v-navigation-drawer
+                v-model="drawer"
+                app
+                right
+        >
+            <v-list dense>
+                <v-list-item link>
+                    <v-list-item-action>
+                        <v-icon>mdi-home</v-icon>
+                    </v-list-item-action>
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="../img/Logos/BitOfAdvice_logo_2.png"
-          width="100"
-        />
+                    <v-list-item-content>
+                        <v-list-item-title>Home</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
 
-      <v-spacer/>
-        <v-btn text to="/login">
-          Login
-        </v-btn>
+                <v-list-item link>
+                    <v-list-item-action>
+                        <v-icon>mdi-contact-mail</v-icon>
+                    </v-list-item-action>
 
-      <v-btn text to="/profilesettings">
-          Profileinstellungen
-        </v-btn>
+                    <v-list-item-content>
+                        <v-list-item-title>Contact</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+            </v-list>
+        </v-navigation-drawer>
 
-      <v-btn text to="/postinglist">
-        (temp) Beitrags-Liste
-      </v-btn>
-      <v-btn text to="/registration">
-         registration
-      </v-btn>
+        <v-app-bar
+                app
+                color="cyan"
+                dark
+        >
+            <v-spacer />
 
-      <v-btn text to="/wordcloud">
-        WordCloud
-      </v-btn>
+            <v-toolbar-title>Application</v-toolbar-title>
 
-      <v-btn text to="/Profil" fab="true">
-        <v-avatar>
-          <v-img src="../img/Profilbilder/1.png"></v-img>
-        </v-avatar>
-      </v-btn>
-    </v-app-bar>
+            <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+        </v-app-bar>
 
-    <v-content>
-      <router-view />
-    </v-content>
+        <v-content>
+            <v-container
+                    class="fill-height"
+                    fluid
+            >
+                <v-row
+                        align="center"
+                        justify="center"
+                >
+                    <v-col class="text-center">
+                        <v-tooltip left>
+                            <template v-slot:activator="{ on }">
+                                <v-btn
+                                        :href="source"
+                                        icon
+                                        large
+                                        target="_blank"
+                                        v-on="on"
+                                >
+                                    <v-icon large>mdi-code-tags</v-icon>
+                                </v-btn>
+                            </template>
 
-    <v-footer fixed
-              class="grey darken-1 lighten-1 py-1 white--text"
-    >
-      <v-col class="py-1 text-center" >
-        <strong>Impressum</strong> — {{ new Date().getFullYear() }} — <strong>Datenschutz</strong>
-      </v-col>
-    </v-footer>
-  </v-app>
+                            <span>Source</span>
+                        </v-tooltip>
+
+                        <v-tooltip right>
+                            <template v-slot:activator="{ on }">
+                                <v-btn
+                                        icon
+                                        large
+                                        href="https://codepen.io/johnjleider/pen/WVbPgz"
+                                        target="_blank"
+                                        v-on="on"
+                                >
+                                    <v-icon large>mdi-codepen</v-icon>
+                                </v-btn>
+                            </template>
+
+                            <span>Codepen</span>
+                        </v-tooltip>
+                    </v-col>
+                </v-row>
+            </v-container>
+        </v-content>
+
+        <v-footer
+                color="cyan"
+                app
+        >
+            <v-spacer />
+
+            <span class="white--text">&copy; 2019</span>
+        </v-footer>
+    </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+    export default {
+        name: 'LayoutsDemosBaselineFlipped',
 
-export default {
-  name: 'App',
-
-  components: {
-    HelloWorld,
-  },
-
-  data: () => ({
-    //
-  }),
-  created() {
-    this.$router.push({path: '/home'})
-  }
-};
+        props: {
+            source: String,
+        },
+        data: () => ({
+            drawer: null,
+        }),
+    }
 </script>
-
-<style scoped>
-</style>

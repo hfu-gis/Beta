@@ -33,7 +33,7 @@
 <script>
 export default {
   // gebt jeder Page einen eigenen Namen
-  name: 'profilesettings',
+  name: 'Profilesettings',
 
   // benötigte Komponenten
   components: {},
