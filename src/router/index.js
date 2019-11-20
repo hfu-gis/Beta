@@ -7,8 +7,8 @@ import wordcloud from "../views/wordcloud";
 import registration from "../views/registration";
 import homepage from "../views/homepage";
 import App from "../App";
-import Profilesettings from "../views/Profilesettings";
 import wordcloud2 from "../views/wordcloud2";
+import Profilesettings from "../views/Profilesettings";
 
 Vue.use(VueRouter);
 

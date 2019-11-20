@@ -15,7 +15,8 @@
     "vue-videobg": "^2.0.0",
     "vue-wordcloud": "^1.1.1",
     "vuetify": "^2.1.0",
-    "vuewordcloud": "^18.7.11"
+    "vuewordcloud": "^18.7.11",
+    "wordcloud": "^1.1.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.0.0",
