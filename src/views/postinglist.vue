@@ -46,7 +46,7 @@
 
 <script>
 export default {
-  name: 'template',
+  name: 'postinglist',
 
   // benötigte Komponenten
   components: {},
