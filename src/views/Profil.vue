@@ -47,5 +47,38 @@ export default {
 </script>
 
 <style scoped>
+
+  .button{background-color: lightblue; /* Green */
+    border: solid;
+    color: white;
+    width: 22%;
+    high: 10%;
+    padding: 50px;
+    border-radius: 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom: 10px;
+    margin-right: 5px;}
+
+  .button:hover{
+    background-color: mediumblue;
+    color: white;
+    box-shadow: 5px 5px #666;
+  }
+  .button:active{
+    background-color: mediumblue;
+    box-shadow: 5px 5px #666;
+    transform: translate3d(5px,5px,2px);
+  }
+  .h1{
+    margin-left: 40%;
+    margin-right: auto;
+  }
+  .picture{
+    margin-left: 40%;
+  }
+
 /* CSS für diese Seite hier einfügen */
 </style>

@@ -1,7 +1,7 @@
 <template>
-  <!--<v-flex>
+  <v-flex>
     <Profilesettingspopup></Profilesettingspopup>
-  </v-flex>-->
+  </v-flex>
 </template>
 
 
