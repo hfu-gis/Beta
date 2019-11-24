@@ -122,7 +122,17 @@
                             <v-list-item-content>
                                 <v-list-item-title>profilesettings</v-list-item-title>
                             </v-list-item-content>
+
+                            <v-list-item link :to="{ path: '/views/popup2'}">
+
+
+                                <v-list-item-content>
+                                    <v-list-item-title>Registration</v-list-item-title>
+                                </v-list-item-content>
+                            </v-list-item>
                         </v-list-item>
+
+
                     </v-list>
                 </v-navigation-drawer>
 
@@ -136,8 +146,11 @@
         </template>
 
         <script>
+
             import Template from "./views/Template";
             export default {
+
+
                 name: 'LayoutsDemosBaselineFlipped',
                 components: {Template},
                 props: {

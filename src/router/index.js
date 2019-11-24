@@ -9,7 +9,7 @@ import homepage from "../views/homepage";
 import App from "../App";
 import wordcloud2 from "../views/wordcloud2";
 import Profilesettings from "../views/Profilesettings";
-
+import popup2 from "../views/Popup2";
 Vue.use(VueRouter);
 
 export default new VueRouter({
@@ -50,6 +50,9 @@ export default new VueRouter({
         {
             path: '/homepage',
             component: homepage
+        },{
+            path: '/popup2',
+            component: popup2
         }
         ]
 })
