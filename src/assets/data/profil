@@ -1,0 +1,35 @@
+{
+  "foreName": "Sebastian",
+  "familyName": "Pfeiffer",
+  "birthdate": "1996-05-10",
+  "userId": "1",
+  "userName": "SebiP",
+  "password": "sebi.p00",
+  "produkts": [
+    {
+      "id": 1,
+      "description": "beitrag1"
+    },
+    {
+      "id": 2,
+      "description": "beitrag2"
+
+}
+
+  ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
