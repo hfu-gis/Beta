@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../views/Login'
-import Profil from "../views/Profil";
+import profil from "../views/profil";
 import postinglist from "../views/postinglist";
 import wordcloud from "../views/wordcloud";
 import registration from "../views/registration";
@@ -28,8 +28,8 @@ export default new VueRouter({
             component: Login
         },
         {
-            path: '/Profil',
-            component: Profil
+            path: '/profil',
+            component: profil
         },
         {
             path: '/Profilesettings',

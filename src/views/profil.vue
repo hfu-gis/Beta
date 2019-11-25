@@ -7,15 +7,18 @@
     <header> <h1 class="h1"><strong>Profile Name</strong><button type="Button" onclick="Changeevent"><img src="img/Bleistift.png"
                                                                                                           height="20" width="20"/>
       <!--Change name--></Button></h1></header>
-
-    <button class="button">Profile</Button>
-    <button class="button">My Posts</Button>
-    <button class="button">Statistics</Button>
-    <button class="button">Abo`s/Friends</Button>
-    <button class="button">Notification</Button>
-    <button class="button">Submit an Idea</Button>
-    <button class="button">My Reports</Button>
-    <button class="button">Logout</Button><!-- HTML-Code aus dem Body-Tag hier einfügen -->
+<v-row>
+    <v-btn width="20%" min-height="100px"  class="button md5">Profile</v-btn>
+    <v-btn width="20%" min-height="100px" class="button">My Posts</v-btn>
+      <v-btn width="20%" min-height="100px" class="button">Statistics</v-btn>
+      <v-btn width="20%" min-height="100px" class="button">Abo`s/Friends</v-btn>
+</v-row>
+    <v-row>
+      <v-btn width="20%" min-height="100px" class="button">Notification</v-btn>
+      <v-btn width="20%" min-height="100px" class="button">Submit an Idea</v-btn>
+      <v-btn width="20%" min-height="100px" class="button">My Reports</v-btn>
+      <v-btn width="20%" min-height="100px" class="button">Logout</v-btn><!-- HTML-Code aus dem Body-Tag hier einfügen -->
+    </v-row>
   </div>
 </template>
 
@@ -48,37 +51,6 @@ export default {
 
 <style scoped>
 
-  .button{background-color: lightblue; /* Green */
-    border: solid;
-    color: white;
-    width: 22%;
-    high: 10%;
-    padding: 50px;
-    border-radius: 30px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin-bottom: 10px;
-    margin-right: 5px;}
-
-  .button:hover{
-    background-color: mediumblue;
-    color: white;
-    box-shadow: 5px 5px #666;
-  }
-  .button:active{
-    background-color: mediumblue;
-    box-shadow: 5px 5px #666;
-    transform: translate3d(5px,5px,2px);
-  }
-  .h1{
-    margin-left: 40%;
-    margin-right: auto;
-  }
-  .picture{
-    margin-left: 40%;
-  }
 
 /* CSS für diese Seite hier einfügen */
 </style>

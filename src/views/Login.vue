@@ -109,6 +109,11 @@
                                 <a href="#openModal">Register</a>
                                 <div id="openModal" class="modalDialog">
                                 </div>
+                <v-list-item @click.stop="dialog2 = true" link :to="{path:'/app.vue'}">
+                    <v-list-item-content>
+                        <v-list-item-title>Not registered yet?</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
 
                  </v-card-text>
               </v-flex>
@@ -122,6 +127,7 @@
 </template>
 
 <script>
+    import App from "../App";
     export default {
         props: {
             source: String,
