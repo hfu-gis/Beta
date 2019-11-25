@@ -1,7 +1,9 @@
 <template>
   <div class="body-1" id="cloud">
 
-
+      <br>
+      <br>
+      <br>
 
     <<wordcloud
             :data="defaultWords"

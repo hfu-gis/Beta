@@ -72,12 +72,25 @@
                         </v-list-item-content>
                     </v-list-item>
 
-                    <!-- wenn nicht angemeldet-->
-                    <v-list-item @click.stop="dialog2 = true">
-                        <v-list-item-content>
-                            <v-list-item-title>Not registered yet?</v-list-item-title>
-                        </v-list-item-content>
-                    </v-list-item>
+
+                    <v-row>
+                    <v-col>
+                        <!-- wenn nicht angemeldet-->
+                        <v-list-item @click.stop="dialog2 = true">
+                            <v-list-item-content>
+                                <v-list-item-title>Sign up</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </v-col>
+                    <v-col>
+                        <!-- wenn nicht angemeldet-->
+                        <v-list-item @click.stop="dialog3 = true">
+                            <v-list-item-content>
+                                <v-list-item-title>Sign in</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                        </v-col>
+                    </v-row>
 
                     <v-divider></v-divider>
 
@@ -164,7 +177,6 @@
                     </v-list>
                 </v-navigation-drawer>
 
-                <template>
                     <div id = "app">
 
                         <!-- Dialog wenn angemeldet-->
@@ -194,7 +206,7 @@
                         </v-dialog>
 
                         <!-- Dialog wenn nicht angemeldet-->
-                            <v-dialog v-model="dialog2" persistent max-width="600px">
+                        <v-dialog v-model="dialog2" persistent max-width="600px">
                                 <v-card>
                                     <v-card-title>
                                         <span class="headline">User Profile</span>
@@ -248,13 +260,49 @@
                                 </v-card>
                             </v-dialog>
 
+                        <!-- Dialog wenn nicht angemeldet-->
+                        <v-dialog
+                                v-model="dialog3"
+                                max-width="400"
+                        >
+                            <v-card class="elevation-12">
+                                <v-toolbar
+                                        color="primary"
+                                        dark
+                                        flat
+                                >
+                                    <v-toolbar-title>Login form</v-toolbar-title>
+
+                                </v-toolbar>
+                                <v-card-text>
+                                    <v-form>
+                                        <v-text-field
+                                                label="Login"
+                                                name="login"
+                                                prepend-icon="mdi-face"
+                                                type="text"
+                                        />
+
+                                        <v-text-field
+                                                id="password"
+                                                label="Password"
+                                                name="password"
+                                                prepend-icon="mdi-lock"
+                                                type="password"
+                                        />
+                                    </v-form>
+                                </v-card-text>
+                                <v-card-actions>
+                                    <v-spacer />
+                                    <v-btn color="primary" @click.stop="dialog3 = false">Login</v-btn>
+                                </v-card-actions>
+                            </v-card>
+                        </v-dialog>
+
 
 
                         <router-view/>
-
-
                     </div>
-                </template>
 
             </v-app>
         </template>
@@ -274,6 +322,7 @@
                     drawer: null,
                     dialog: false,
                     dialog2: false,
+                    dialog3 : false,
                 }),
             }
         </script>
