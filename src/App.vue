@@ -206,35 +206,41 @@
                         </v-dialog>
 
                         <!-- Dialog wenn nicht angemeldet-->
-                        <v-dialog v-model="dialog2" persistent max-width="600px">
-                                <v-card>
+                        <v-dialog v-model="dialog2" persistent max-width="400px" @keydown.esc="dialog2 = false">
+                                <v-card class="elevation-12">
                                     <v-card-title>
-                                        <span class="headline">User Profile</span>
+                                        <v-toolbar
+                                                color="primary"
+                                                dark
+                                                flat
+                                        >
+                                            <v-toolbar-title>Register</v-toolbar-title>
+
+                                        </v-toolbar>
                                     </v-card-title>
                                     <v-card-text>
-                                        <v-container>
+
                                             <v-row>
-                                                <v-col cols="12" sm="6" md="4">
-                                                    <v-text-field label="Legal first name*" required></v-text-field>
+                                                <v-col cols="16" sm="8" md="6">
+                                                    <v-text-field label="First name*" required solo></v-text-field>
                                                 </v-col>
-                                                <v-col cols="12" sm="6" md="4">
-                                                    <v-text-field label="Legal middle name" hint="example of helper text only on focus"></v-text-field>
-                                                </v-col>
-                                                <v-col cols="12" sm="6" md="4">
+
+                                                <v-col cols="16" sm="8" md="6">
                                                     <v-text-field
-                                                            label="Legal last name*"
+                                                            label="Last name*"
                                                             hint="example of persistent helper text"
                                                             persistent-hint
                                                             required
+                                                            solo
                                                     ></v-text-field>
                                                 </v-col>
                                                 <v-col cols="12">
-                                                    <v-text-field label="Email*" required></v-text-field>
+                                                    <v-text-field label="Email*" required solo></v-text-field>
                                                 </v-col>
                                                 <v-col cols="12">
-                                                    <v-text-field label="Password*" type="password" required></v-text-field>
+                                                    <v-text-field label="Password*" type="password" required solo></v-text-field>
                                                 </v-col>
-                                                <v-col cols="12" sm="6">
+                                                <!--v-col cols="12" sm="6">
                                                     <v-select
                                                             :items="['0-17', '18-29', '30-54', '54+']"
                                                             label="Age*"
@@ -247,21 +253,33 @@
                                                             label="Interests"
                                                             multiple
                                                     ></v-autocomplete>
-                                                </v-col>
+                                                </v-col-->
                                             </v-row>
-                                        </v-container>
+
                                         <small>*indicates required field</small>
                                     </v-card-text>
                                     <v-card-actions>
                                         <v-spacer></v-spacer>
+                                        <v-col>
+                                            <!-- wenn nicht angemeldet-->
+                                            <v-list-item color="blue darken-1" text @click.stop="dialog3 = true" >
+                                                <v-list-item-content>
+                                                    <v-list-item-title>Sign in</v-list-item-title>
+                                                </v-list-item-content>
+                                            </v-list-item>
+                                        </v-col>
+                                        <v-spacer></v-spacer> <v-spacer></v-spacer> <v-spacer></v-spacer> <v-spacer></v-spacer> <v-spacer></v-spacer> <v-spacer></v-spacer> <v-spacer></v-spacer>
+
+
                                         <v-btn color="blue darken-1" text @click="dialog2 = false">Close</v-btn>
                                         <v-btn color="blue darken-1" text @click="dialog2 = false">Save</v-btn>
+
                                     </v-card-actions>
                                 </v-card>
                             </v-dialog>
 
                         <!-- Dialog wenn nicht angemeldet-->
-                        <v-dialog
+                        <v-dialog @keydown.esc="dialog3 = false"
                                 v-model="dialog3"
                                 max-width="400"
                         >
@@ -271,16 +289,18 @@
                                         dark
                                         flat
                                 >
-                                    <v-toolbar-title>Login form</v-toolbar-title>
+                                    <v-toolbar-title>Login</v-toolbar-title>
 
                                 </v-toolbar>
                                 <v-card-text>
                                     <v-form>
+                                        <br>
                                         <v-text-field
                                                 label="Login"
                                                 name="login"
                                                 prepend-icon="mdi-face"
                                                 type="text"
+                                                solo
                                         />
 
                                         <v-text-field
@@ -289,12 +309,23 @@
                                                 name="password"
                                                 prepend-icon="mdi-lock"
                                                 type="password"
+                                                solo
                                         />
                                     </v-form>
                                 </v-card-text>
                                 <v-card-actions>
                                     <v-spacer />
-                                    <v-btn color="primary" @click.stop="dialog3 = false">Login</v-btn>
+                                    <v-col>
+                                        <!-- wenn nicht angemeldet-->
+                                        <v-list-item @click.stop="dialog2 = true">
+                                            <v-list-item-content>
+                                                <v-list-item-title>Sign up</v-list-item-title>
+                                            </v-list-item-content>
+                                        </v-list-item>
+                                    </v-col>
+                                    <v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer>
+                                    <v-btn color="blue darken-1"text  @click.stop="dialog3 = false">Login</v-btn>
+
                                 </v-card-actions>
                             </v-card>
                         </v-dialog>

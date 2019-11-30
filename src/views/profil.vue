@@ -5,7 +5,7 @@
       <br>
       <br>
     <a href="www.BITofAdvice.de"><img src="../../img/Logos/BitOfAdvice_logo.png" height="85,6" width="198,4"/></a>
-    <br>
+
       <div class="text-center">
       <img src="../../img/Profilbilder/Platzhalter_Profilbild.png" height="290" width="250" align="center"/>
       <v-btn fab x-small dark><v-icon>mdi-pencil</v-icon></v-btn>
