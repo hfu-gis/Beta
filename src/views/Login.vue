@@ -88,7 +88,7 @@
 </head>
 
 <body>
-<v-parallax src="../../img/Background/water-blue-ocean-5412.jpg" height="1280" width="1920">
+<v-parallax src="../../img/Background/test.png" height="1280" width="1920">
 
     <v-container>
     <v-layout>
