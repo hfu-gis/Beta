@@ -179,7 +179,7 @@
 
                     <div id = "app">
 
-                        <!-- Dialog wenn angemeldet-->
+                        <!--PROFILE-->
                         <v-dialog
                                 v-model="dialog"
                                 max-width="400"
@@ -205,80 +205,63 @@
                             </v-card>
                         </v-dialog>
 
-                        <!-- Dialog wenn nicht angemeldet-->
-                        <v-dialog v-model="dialog2" persistent max-width="400px" @keydown.esc="dialog2 = false">
-                                <v-card class="elevation-12">
-                                    <v-card-title>
-                                        <v-toolbar
-                                                color="primary"
-                                                dark
-                                                flat
-                                        >
-                                            <v-toolbar-title>Register</v-toolbar-title>
+                        <!--SIGN UP-->
+                        <v-dialog @keydown.esc="dialog2 = false"
+                                  v-model="dialog2"
+                                  max-width="400"
+                        >
+                            <v-card class="elevation-12">
+                                <v-toolbar
+                                        color="primary"
+                                        dark
+                                        flat
+                                >
+                                    <v-toolbar-title>Register</v-toolbar-title>
 
-                                        </v-toolbar>
-                                    </v-card-title>
-                                    <v-card-text>
-
-                                            <v-row>
-                                                <v-col cols="16" sm="8" md="6">
-                                                    <v-text-field label="First name*" required solo></v-text-field>
-                                                </v-col>
-
-                                                <v-col cols="16" sm="8" md="6">
-                                                    <v-text-field
-                                                            label="Last name*"
-                                                            hint="example of persistent helper text"
-                                                            persistent-hint
-                                                            required
-                                                            solo
-                                                    ></v-text-field>
-                                                </v-col>
-                                                <v-col cols="12">
-                                                    <v-text-field label="Email*" required solo></v-text-field>
-                                                </v-col>
-                                                <v-col cols="12">
-                                                    <v-text-field label="Password*" type="password" required solo></v-text-field>
-                                                </v-col>
-                                                <!--v-col cols="12" sm="6">
-                                                    <v-select
-                                                            :items="['0-17', '18-29', '30-54', '54+']"
-                                                            label="Age*"
-                                                            required
-                                                    ></v-select>
-                                                </v-col>
-                                                <v-col cols="12" sm="6">
-                                                    <v-autocomplete
-                                                            :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
-                                                            label="Interests"
-                                                            multiple
-                                                    ></v-autocomplete>
-                                                </v-col-->
-                                            </v-row>
-
-                                        <small>*indicates required field</small>
-                                    </v-card-text>
-                                    <v-card-actions>
-                                        <v-spacer></v-spacer>
-                                        <v-col>
-                                            <!-- wenn nicht angemeldet-->
-                                            <v-list-item color="blue darken-1" text @click.stop="dialog3 = true" >
-                                                <v-list-item-content>
-                                                    <v-list-item-title>Sign in</v-list-item-title>
-                                                </v-list-item-content>
-                                            </v-list-item>
+                                </v-toolbar>
+                                <v-card-text>
+                                    <v-row>
+                                        <v-col cols="16" sm="8" md="6">
+                                            <v-text-field label="First name*" required solo></v-text-field>
                                         </v-col>
-                                        <v-spacer></v-spacer> <v-spacer></v-spacer> <v-spacer></v-spacer> <v-spacer></v-spacer> <v-spacer></v-spacer> <v-spacer></v-spacer> <v-spacer></v-spacer>
 
+                                        <v-col cols="16" sm="8" md="6">
+                                            <v-text-field
+                                                    label="Last name*"
+                                                    hint="example of persistent helper text"
+                                                    persistent-hint
+                                                    required
+                                                    solo
+                                            ></v-text-field>
+                                        </v-col>
+                                        <v-col cols="12">
+                                            <v-text-field label="Email*" required solo></v-text-field>
+                                        </v-col>
+                                        <v-col cols="12">
+                                            <v-text-field label="Password*" type="password" required solo></v-text-field>
+                                        </v-col>
+                                    </v-row>
 
-                                        <v-btn color="blue darken-1" text @click="dialog2 = false">Close</v-btn>
-                                        <v-btn color="blue darken-1" text @click="dialog2 = false">Save</v-btn>
+                                    <small>*indicates required field</small>
+                                </v-card-text>
+                                <v-card-actions>
+                                    <v-spacer />
+                                    <v-col>
+                                        <!-- wenn nicht angemeldet-->
+                                        <v-list-item @click.stop="dialog3 = true, dialog2 = false">
+                                            <v-list-item-content>
+                                                <v-list-item-title>Sign in</v-list-item-title>
+                                            </v-list-item-content>
+                                        </v-list-item>
+                                    </v-col>
+                                    <v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer>
+                                    <v-btn color="blue darken-1"text  @click.stop="dialog2 = false">Login</v-btn>
 
-                                    </v-card-actions>
-                                </v-card>
-                            </v-dialog>
+                                </v-card-actions>
+                            </v-card>
+                        </v-dialog>
 
-                        <!-- Dialog wenn nicht angemeldet-->
+                        <!--SIGN IN-->
                         <v-dialog @keydown.esc="dialog3 = false"
                                 v-model="dialog3"
                                 max-width="400"
@@ -317,7 +300,7 @@
                                     <v-spacer />
                                     <v-col>
                                         <!-- wenn nicht angemeldet-->
-                                        <v-list-item @click.stop="dialog2 = true">
+                                        <v-list-item @click.stop="dialog2 = true, dialog3 = false">
                                             <v-list-item-content>
                                                 <v-list-item-title>Sign up</v-list-item-title>
                                             </v-list-item-content>
