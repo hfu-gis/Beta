@@ -280,7 +280,7 @@
                         <router-view/>
                     </div>
 
-            </v-app-bar>
+            </v-app>
         </template>
 
         <script>
