@@ -141,7 +141,7 @@
                                 <v-list-item-title>Registration</v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>
-                        <v-list-item link :to="{ path: '/profil'}">
+                        <v-list-item link :to="{ path: '/profile.json'}">
                             <v-list-item-action>
                                 <v-icon>mdi-mail</v-icon>
                             </v-list-item-action>
@@ -155,7 +155,6 @@
                     </v-list>
                 </v-navigation-drawer>
 
-                <template>
                     <div id = "app">
 
                         <!-- Dialog wenn angemeldet-->
@@ -245,7 +244,6 @@
 
 
                     </div>
-                </template>
 
             </v-app>
         </template>

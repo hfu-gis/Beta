@@ -1,0 +1,11 @@
+{
+  "firstname": ''
+  "middlename": ''
+  "lastname": ''
+  "age": [
+    "0-17": false
+    "18-29": false
+    "30-54": false
+    "54+": false
+  ]
+}

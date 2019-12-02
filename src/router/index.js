@@ -28,7 +28,7 @@ export default new VueRouter({
             component: Login
         },
         {
-            path: '/profil',
+            path: '/profile.json',
             component: profil
         },
         {
