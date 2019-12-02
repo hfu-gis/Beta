@@ -1,51 +1,13 @@
 <template>
     <v-app id="inspire">
-        <!--
-              <v-navigation-drawer
-                      v-model="drawer"
-                      app
-                      absolute
-                      right
-              >
-                   <v-list dense>
-                      <v-list-item link :to="{ name: 'root'}">
-                          <v-list-item-action>
-                              <v-icon>mdi-home</v-icon>
-                          </v-list-item-action>
-
-                          <v-list-item-content>
-                              <v-list-item-title>Home</v-list-item-title>
-                          </v-list-item-content>
-                      </v-list-item>
-
-                      <v-list-item link :to="{ name: 'registration'}">
-                          <v-list-item-action>
-                              <v-icon>mdi-contact-mail</v-icon>
-                          </v-list-item-action>
-
-                          <v-list-item-content>
-                              <v-list-item-title>Contact</v-list-item-title>
-                          </v-list-item-content>
-                      </v-list-item>
-
-                      <v-list-item link :to="{ name: 'wordcloud'}">
-                          <v-list-item-action>
-                              <v-icon>mdi-sort</v-icon>
-                          </v-list-item-action>
-
-                          <v-list-item-content>
-                              <v-list-item-title>WordCloud</v-list-item-title>
-                          </v-list-item-content>
-                      </v-list-item>
-
-                  </v-list>
-              </v-navigation-drawer> -->
 
         <v-app-bar
                 app
                 color="blue"
                 dark
         >
+            <v-img src="../img/Logos/BitOfAdvice_logo_2.png" width="40" height="40" contain/>
+
             <v-spacer/>
 
             <v-toolbar-title>Bit Of Advice</v-toolbar-title>
@@ -318,7 +280,7 @@
                         <router-view/>
                     </div>
 
-            </v-app>
+            </v-app-bar>
         </template>
 
         <script>
