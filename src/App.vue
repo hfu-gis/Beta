@@ -126,13 +126,14 @@
                 color="blue"
                 dark
         >
-            <v-img src="../img/Logos/BitOfAdvice_logo_2.png"  width="40" height="40" contain/>
+            <v-img src="../img/Logos/BitOfAdvice_logo_2.png"  width="40" height="40" contain />
 
             <v-spacer/>
 
             <v-toolbar-title>Bit Of Advice</v-toolbar-title>
 
             <v-app-bar-nav-icon @click.stop="drawer = !drawer"/>
+
         </v-app-bar>
         <v-content>
             <div id = "app">
