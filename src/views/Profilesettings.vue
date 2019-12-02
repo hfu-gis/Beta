@@ -40,10 +40,7 @@ export default {
       settings: {
         firstname: '',
         middlename: '',
-        lastname: '',
-        age: [
-
-        ]
+        lastname: ''
       }
     }
   },
