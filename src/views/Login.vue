@@ -82,14 +82,15 @@
         </v-content>
     </v-app> -->
     <html>
-    <video-background class="mdi-file-video" sources="../video/bg01.mp4" width="200" height="200"></video-background>
-<head>Login
+ <head>Login
     <meta charset="UTF-8">
 <title> Transparent Login Form </title>
 </head>
 
 <body>
-<v-container>
+<v-parallax src="../../img/Background/test.png" height="1280" width="1920">
+
+    <v-container>
     <v-layout>
         <v-row justify="center" align="center">
             <v-flex xs12  xs5 offset-md12)>
@@ -98,13 +99,13 @@
                     <div id="login">
 
 
-                                <header><h1><strong> Login </strong></h1></header>
+                        <header><h1><strong> Login </strong></h1></header><br>
                                  <v-text-field label="user name" v-model="username" id="loginbox"></v-text-field>
                                  <v-text-field label="password" v-model="password" type="password"></v-text-field>
                                  <v-btn class="grey darken-3 no white--text">Sign up</v-btn>
 
                     </div>
-                </v-form>
+                </v-form><br>
                                  <a href="Link">Passwort vergessen?</a><br>
                                 <a href="#openModal">Register</a>
                                 <div id="openModal" class="modalDialog">
@@ -120,13 +121,15 @@
            </v-row>
         </v-layout>
 </v-container>
-</body>
+</v-parallax></body>
 </html>
 
 
 </template>
 
+
 <script>
+
     import App from "../App";
     export default {
         props: {
@@ -137,10 +140,18 @@
 
 <style scoped>
 
+    @font-face { font-family: 'Standard-Font';
+        src: local('HWYGCOND.tff'),
+        url('../../fonts/highway_gothic/HWYGNRRW.TTF') format('truetype');
+    }
+
+    h1{
+        font-family: Standard-Font;
+        font-size: 3em;
+    }
 
     body {
         margin: 0 auto;
-        background-video: url("/src/assets/Videos/Tunnel - 26475.mp4");
         background-size: cover;
     }
     #loginbox{

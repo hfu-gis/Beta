@@ -1,16 +1,19 @@
 <template>
   <div class="body-1">
+      <br>
+      <br>
+      <br>
+    test1
 
-    xxx
-
-    <vue-word-cloud
+    <!--<vue-word-cloud
             :words="[['romance', 19], ['horror', 3], ['fantasy', 7], ['adventure', 3]]"
             :color="([, weight]) => weight > 10 ? 'DeepPink' : weight > 5 ? 'RoyalBlue' : 'Indigo'"
             font-family="Roboto"
-    />
+    />-->
 
-    yyy
 
+
+    test2
 
 
   </div>
@@ -18,7 +21,8 @@
 
 <script>
   import VueWordCloud from 'vuewordcloud';
-
+  /*src="https://unpkg.com/vue";
+  src="https://unpkg.com/vuewordcloud";*/
 
 export default {
   // gebt jeder Page einen eigenen Namen

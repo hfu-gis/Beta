@@ -1,16 +1,18 @@
 <template>
   <div class="body-1" id="cloud">
 
+      <br>
+      <br>
+      <br>
 
-
-    <!--<wordcloud
+    <<wordcloud
             :data="defaultWords"
             nameKey="name"
             valueKey="value"
             :color="myColors"
             :showTooltip="true"
             :wordClick="wordClickHandler">
-    </wordcloud>-->
+    </wordcloud>
     <!--<wordcloud
       :data="defaultWords"
       nameKey="name"
