@@ -3,7 +3,7 @@
     <v-dialog max-width="600px">
       <template v-slot:activator="{on}">
         <v-btn text class="success" v-on="on">
-          Profil
+          Einstellungen
         </v-btn>
       </template>
       <v-card>
