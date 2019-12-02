@@ -16,17 +16,6 @@
           <v-text-field label="firstname" v-model="settings.firstname"></v-text-field>
           <v-text-field label="middlename" v-model="settings.middlename"></v-text-field>
           <v-text-field label="lastname" v-model="settings.lastname"></v-text-field>
-          <v-select
-                  :items="['0-17', '18-29', '30-54', '54+']"
-                  label="Age*"
-                  v-model="settings.age"
-                  required
-          ></v-select>
-          <v-autocomplete
-                  :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
-                  label="Interests"
-                  multiple
-          ></v-autocomplete>
         </v-form>
       </v-card-text>
     </v-dialog>
