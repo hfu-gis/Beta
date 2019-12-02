@@ -1,11 +1,11 @@
 <template>
   <v-flex>
+    <template v-slot:activator="{on}">
+      <v-btn text class="success" v-on="on">
+        Einstellungen
+      </v-btn>
+    </template>
     <v-dialog max-width="600px">
-      <template v-slot:activator="{on}">
-        <v-btn text class="success" v-on="on">
-          Einstellungen
-        </v-btn>
-      </template>
       <v-card>
         <v-card-title>
           <h2>Profilesettings</h2>
