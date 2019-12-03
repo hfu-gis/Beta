@@ -71,14 +71,14 @@
                     </v-list-item-content>
                 </v-list-item>
 
-                <!--<v-list-item link :to="{ path: '/views/Profilesettings'}">
+                <v-list-item link :to="{ path: '/views/Profilesettings'}">
                     <v-list-item-action>
                         <v-icon>mdi-sort</v-icon>
                     </v-list-item-action>
                     <v-list-item-content>
                         <v-list-item-title>Profilesettings</v-list-item-title>
                     </v-list-item-content>
-                </v-list-item>-->
+                </v-list-item>
 
                 <v-list-item link :to="{ path: '/views/popup2'}">
                     <v-list-item-action>
