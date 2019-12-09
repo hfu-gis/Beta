@@ -2,45 +2,56 @@
     <v-app id="inspire">
         <v-navigation-drawer v-model="drawer" right temporary fixed>
 
-            <!-- wenn angemeldet-->
-            <v-list-item @click.stop="dialog = true">
-                <v-list-item-avatar>
-                    <v-img src="https://randomuser.me/api/portraits/men/39.jpg"/>
-                </v-list-item-avatar>
-                <v-list-item-content>
-                    <v-list-item-title>Peter Olaf Droschbart</v-list-item-title>
-                </v-list-item-content>
-            </v-list-item>
 
+            <!--wenn angemeldet -->
+         <v-list-item @click.stop="dialog = true">
+             <v-list-item-avatar>
+                 <v-img src="https://randomuser.me/api/portraits/men/39.jpg"/>
+             </v-list-item-avatar>
+             <v-list-item-content>
+                 <v-list-item-title>Peter Olaf Droschbart</v-list-item-title>
+             </v-list-item-content>
+         </v-list-item>
 
-            <v-row>
-                <v-col>
-                    <!-- wenn nicht angemeldet-->
-                    <v-list-item @click.stop="dialog2 = true">
-                        <v-list-item-content>
-                            <v-list-item-title>Sign up</v-list-item-title>
-                        </v-list-item-content>
-                    </v-list-item>
-                </v-col>
-                <v-col>
-                    <!-- wenn nicht angemeldet-->
-                    <v-list-item @click.stop="dialog3 = true">
-                        <v-list-item-content>
-                            <v-list-item-title>Sign in</v-list-item-title>
-                        </v-list-item-content>
-                    </v-list-item>
-                </v-col>
-            </v-row>
+         <!--
+                  <v-row>
+                      <v-col>
+                          wenn nicht angemeldet
+                          <v-list-item @click.stop="dialog2 = true">
+                              <v-list-item-content>
+                                  <v-list-item-title>Sign up</v-list-item-title>
+                              </v-list-item-content>
+                          </v-list-item>
+                      </v-col>
+                      <v-col>
+                          wenn nicht angemeldet
+                          <v-list-item @click.stop="dialog3 = true">
+                              <v-list-item-content>
+                                  <v-list-item-title>Sign in</v-list-item-title>
+                              </v-list-item-content>
+                          </v-list-item>
+                      </v-col>
+                  </v-row>-->
 
             <v-divider/>
 
             <v-list dense>
-                <v-list-item link :to="{ path: '/'}">
+
+                <v-list-item link :to="{ path: '/homepage'}">
                     <v-list-item-action>
                         <v-icon>mdi-home</v-icon>
                     </v-list-item-action>
                     <v-list-item-content>
                         <v-list-item-title>Home</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+
+                <v-list-item link :to="{ path: '/login'}">
+                    <v-list-item-action>
+                        <v-icon>mdi-home</v-icon>
+                    </v-list-item-action>
+                    <v-list-item-content>
+                        <v-list-item-title>Login</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
 
@@ -53,16 +64,7 @@
                     </v-list-item-content>
                 </v-list-item>
 
-                <v-list-item link :to="{ path: '/wordcloud'}">
-                    <v-list-item-action>
-                        <v-icon>mdi-sort</v-icon>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <v-list-item-title>WordCloud</v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
-
-                <v-list-item link :to="{ path: '/postinglist'}">
+                     <v-list-item link :to="{ path: '/postinglist'}">
                     <v-list-item-action>
                         <v-icon>mdi-sort</v-icon>
                     </v-list-item-action>
@@ -98,18 +100,10 @@
                     </v-list-item-content>
                 </v-list-item>
 
-                <v-list-item link :to="{ path: '/wordcloud2'}">
-                    <v-list-item-action>
-                        <v-icon>mdi-book</v-icon>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <v-list-item-title>wordcloud2</v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
-
 
             </v-list>
         </v-navigation-drawer>
+
         <v-app-bar
                 app
                 color="blue"
@@ -124,6 +118,7 @@
             <v-app-bar-nav-icon @click.stop="drawer = !drawer"/>
 
         </v-app-bar>
+
         <v-content>
             <div id = "app">
 
@@ -162,14 +157,16 @@
 
                         </v-toolbar>
                         <v-card-text>
+                            <v-form ref="form" v-model="valid">
                             <v-row>
                                 <v-col cols="16" sm="8" md="6">
-                                    <v-text-field label="First name*" required solo/>
+                                    <v-text-field label="First name" v-model="userdata.firstname" required solo/>
                                 </v-col>
 
                                 <v-col cols="16" sm="8" md="6">
                                     <v-text-field
                                             label="Last name*"
+                                            v-model="userdata.lastname"
                                             hint="example of persistent helper text"
                                             persistent-hint
                                             required
@@ -185,9 +182,11 @@
                             </v-row>
 
                             <small>*indicates required field</small>
+                            </v-form>
                         </v-card-text>
                         <v-card-actions>
                             <v-spacer />
+
                             <v-col>
                                 <!-- wenn nicht angemeldet-->
                                 <v-list-item @click.stop="threeToTwo">
@@ -197,7 +196,7 @@
                                 </v-list-item>
                             </v-col>
                             <v-spacer/>
-                            <v-btn color="blue darken-1" text  @click.stop="dialog2 = false">Login</v-btn>
+                            <v-btn color="blue darken-1" text  @click.stop="validate">Register & Login</v-btn>
 
                         </v-card-actions>
                     </v-card>
@@ -215,7 +214,7 @@
 
                         </v-toolbar>
                         <v-card-text>
-                            <v-form>
+                            <v-form ref="form2">
                                 <br>
                                 <v-text-field
                                         label="Login"
@@ -255,10 +254,13 @@
                 <router-view/>
             </div>
         </v-content>
+
     </v-app>
 </template>
 
 <script>
+
+    import db from './db'
 
     import Template from "./views/Template";
 
@@ -276,10 +278,15 @@
 
         // Variablen-Speicher
         data: () => ({
+            valid: true,
             drawer: null,
             dialog: false,
             dialog2: false,
-            dialog3 : false,
+            dialog3: false,
+            userdata: {
+                firstname: '',
+                lastname: ''
+            }
         }),
 
         // reagieren auf prop-Veränderung
@@ -287,7 +294,22 @@
 
         // interne Methoden
         methods: {
-            twoToThree: function() {
+            validate: () => {
+                if (this.$refs.form.validate()) {
+                    this.register()
+
+                }
+            },
+
+            register: () => {
+
+                let docRef = db.collection('Users').doc(this.userdata.firstname)
+                docRef.set(this.userdata)
+                    .catch(error => console.debug('Error', error))
+
+            },
+
+            twoToThree: function () {
                 this.dialog2 = true;
                 this.dialog3 = false;
             },
@@ -299,6 +321,8 @@
         },
 
         // Initialisierung
-        created() {}
+        created() {
+            this.$router.push({name: 'homepage'})
+        }
     }
 </script>
