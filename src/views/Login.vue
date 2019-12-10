@@ -101,8 +101,8 @@
 
                         <header><h1><strong> Login </strong></h1></header><br>
                         <v-form ref="form" v-model="valid">
-                                 <v-text-field label="username" v-model="Users.username"  id="loginbox"></v-text-field>
-                                 <v-text-field label="password"  v-model="Users.password" type="password"></v-text-field>
+                                 <v-text-field label="email" id="txtemail"></v-text-field>
+                                 <v-text-field label="password" id="txtpassword"></v-text-field>
                                  <v-btn class="grey darken-3 no white--text" @click="validate" >Sign up</v-btn>
                         </v-form>
                     </div>
@@ -129,7 +129,9 @@
 
     import db from '../db'
 
-        export default {
+
+
+    export default {
         name: 'login',
         props: {},
 
@@ -137,32 +139,15 @@
 
             valid: true,
             success: false,
-            Users: {
-               username: '',
-                password: ''
-            }
+
+
         }),
 
 
-        methods: {
 
-            validate: () => {
-                if (this.$refs.form.validate()) {
-                    console.debug('Validation success')
-                    this.register()
-
-                }
-            },
-
-            register: () => {
-
-                let docRef = db.collection('Users').doc(this.Users.username)
-                docRef.set(this.Users)
-                    .catch(error => console.debug('Error', error))
-                    .then(() => this.success =true)
+    methods: {
 
 
-            },
 
         },
           created() {

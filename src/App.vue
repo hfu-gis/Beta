@@ -13,116 +13,98 @@
              </v-list-item-content>
          </v-list-item>
 
-         <!--
                   <v-row>
-                      <v-col>
-                          wenn nicht angemeldet
-                          <v-list-item @click.stop="dialog2 = true">
+                        <v-col>
+                            <!--wenn nicht angemeldet-->
+                          <v-list-item link :to="{ path: '/registration'}">
                               <v-list-item-content>
                                   <v-list-item-title>Sign up</v-list-item-title>
                               </v-list-item-content>
                           </v-list-item>
                       </v-col>
                       <v-col>
-                          wenn nicht angemeldet
-                          <v-list-item @click.stop="dialog3 = true">
-                              <v-list-item-content>
-                                  <v-list-item-title>Sign in</v-list-item-title>
-                              </v-list-item-content>
-                          </v-list-item>
-                      </v-col>
-                  </v-row>-->
+                          <!--wenn angemeldet-->
+                        <v-list-item link :to="{ path: '/login'}">
+                            <v-list-item-content>
+                                <v-list-item-title>Sign in</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </v-col>
+                </v-row>
 
-            <v-divider/>
+          <v-divider/>
 
-            <v-list dense>
+          <v-list dense>
 
-                <v-list-item link :to="{ path: '/homepage'}">
-                    <v-list-item-action>
-                        <v-icon>mdi-home</v-icon>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <v-list-item-title>Home</v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
+              <v-list-item link :to="{ path: '/homepage'}">
+                  <v-list-item-action>
+                      <v-icon>mdi-home</v-icon>
+                  </v-list-item-action>
+                  <v-list-item-content>
+                      <v-list-item-title>Home</v-list-item-title>
+                  </v-list-item-content>
+              </v-list-item>
 
-                <v-list-item link :to="{ path: '/login'}">
-                    <v-list-item-action>
-                        <v-icon>mdi-home</v-icon>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <v-list-item-title>Login</v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
+                   <v-list-item link :to="{ path: '/postinglist'}">
+                  <v-list-item-action>
+                      <v-icon>mdi-sort</v-icon>
+                  </v-list-item-action>
+                  <v-list-item-content>
+                      <v-list-item-title>PostingList</v-list-item-title>
+                  </v-list-item-content>
+              </v-list-item>
 
-                <v-list-item link :to="{ path: '/registration'}">
-                    <v-list-item-action>
-                        <v-icon>mdi-contact-mail</v-icon>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <v-list-item-title>Registrierung</v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
+              <v-list-item link :to="{ path: '/views/Profilesettings'}">
+                  <v-list-item-action>
+                      <v-icon>mdi-sort</v-icon>
+                  </v-list-item-action>
+                  <v-list-item-content>
+                      <v-list-item-title>Profilesettings</v-list-item-title>
+                  </v-list-item-content>
+              </v-list-item>
 
-                     <v-list-item link :to="{ path: '/postinglist'}">
-                    <v-list-item-action>
-                        <v-icon>mdi-sort</v-icon>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <v-list-item-title>PostingList</v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
+              <!--
+              <v-list-item link :to="{ path: '/views/popup2'}">
+                  <v-list-item-action>
+                      <v-icon>mdi-mail</v-icon>
+                  </v-list-item-action>
+                  <v-list-item-content>
+                      <v-list-item-title>Registration</v-list-item-title>
+                  </v-list-item-content>
+              </v-list-item> -->
 
-                <v-list-item link :to="{ path: '/views/Profilesettings'}">
-                    <v-list-item-action>
-                        <v-icon>mdi-sort</v-icon>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <v-list-item-title>Profilesettings</v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
-
-                <v-list-item link :to="{ path: '/views/popup2'}">
-                    <v-list-item-action>
-                        <v-icon>mdi-mail</v-icon>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <v-list-item-title>Registration</v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
-
-                <v-list-item link :to="{ path: '/profile.json'}">
-                    <v-list-item-action>
-                        <v-icon>mdi-mail</v-icon>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <v-list-item-title>Profile</v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
+              <v-list-item link :to="{ path: '/profile.json'}">
+                  <v-list-item-action>
+                      <v-icon>mdi-mail</v-icon>
+                  </v-list-item-action>
+                  <v-list-item-content>
+                      <v-list-item-title>Profile</v-list-item-title>
+                  </v-list-item-content>
+              </v-list-item>
 
 
-            </v-list>
-        </v-navigation-drawer>
+          </v-list>
+      </v-navigation-drawer>
 
-        <v-app-bar
-                app
-                color="blue"
-                dark
-        >
-            <v-img src="../img/Logos/BitOfAdvice_logo_2.png"  width="40" height="40" contain />
+      <v-app-bar app color="blue" dark>
 
-            <v-spacer/>
+          <v-btn icon>
+              <v-icon id="gavel">mdi-gavel</v-icon>
+          </v-btn>
+          <img src="../img/Logos/BitOfAdvice_logo_2.png" height="536" width="1242" class="BitofadviceBar"/> <v-spacer/>
+         <div id="searchbox"> <v-text-field filled rounded dense label="search" id="txtsearch"> </v-text-field>
+         </div>
 
-            <v-toolbar-title>Bit Of Advice</v-toolbar-title>
+          <v-toolbar-title>Bit Of Advice</v-toolbar-title>
 
-            <v-app-bar-nav-icon @click.stop="drawer = !drawer"/>
+          <v-app-bar-nav-icon @click.stop="drawer = !drawer"/>
 
-        </v-app-bar>
+      </v-app-bar>
 
-        <v-content>
-            <div id = "app">
+      <v-content>
+          <div id = "app">
 
-                <!--PROFILE-->
+              <!--PROFILE-->
                 <v-dialog v-model="dialog" max-width="400">
                     <v-card>
                         <v-card
@@ -297,6 +279,9 @@
             validate: () => {
                 if (this.$refs.form.validate()) {
                     this.register()
+                        .then((data) => {
+                            alert(data)
+                        })
 
                 }
             },
@@ -326,3 +311,41 @@
         }
     }
 </script>
+
+<style>
+    .BitofadviceBar{
+        position: absolute;
+        top: 0;
+        left: 1em;
+        width: auto;
+        height: 100%;
+
+    }
+
+    #searchbox{
+
+        position: absolute;
+        right: 13em;
+        top: 0%;
+        width: 15em;
+        height: 100%;
+        margin: 0;
+        padding: 0.7em 0.1em 0.1em 0.5em;
+
+    }
+    #txtsearch{
+        top: 0%;
+        left: 0;
+        padding: 0;
+    }
+    #searchBtn{
+        background-color: #8C3F63;
+    }
+    #gavel{
+
+        position: absolute;
+     left: 70.7em;
+
+    }
+
+</style>
