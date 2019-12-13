@@ -86,20 +86,22 @@
           </v-list>
       </v-navigation-drawer>
 
-      <v-app-bar app color="blue" dark>
+      <v-app-bar app color="blue" right dark>
 
-          <v-btn icon>
-              <v-icon id="gavel">mdi-gavel</v-icon>
-          </v-btn>
-          <img src="../img/Logos/BitOfAdvice_logo_2.png" height="536" width="1242" class="BitofadviceBar"/> <v-spacer/>
-         <div id="searchbox"> <v-text-field filled rounded dense label="search" id="txtsearch"> </v-text-field>
+         <img src="../img/Logos/BitOfAdvice_logo_2.png" height="536" width="1242" class="BitofadviceBar"/> <v-spacer/>
+         <div id="searchbox">
+             <v-text-field filled rounded dense label="search" id="txtsearch"> </v-text-field>
          </div>
+          <v-btn icon link :to="{ path: '/postinglist'}">
+              <v-icon >mdi-magnify</v-icon>
+          </v-btn>
 
           <v-toolbar-title>Bit Of Advice</v-toolbar-title>
 
           <v-app-bar-nav-icon @click.stop="drawer = !drawer"/>
 
       </v-app-bar>
+
 
       <v-content>
           <div id = "app">
@@ -127,7 +129,8 @@
                     </v-card>
                 </v-dialog>
 
-                <!--SIGN UP-->
+              <!--
+                SIGN UP
                 <v-dialog @keydown.esc="dialog2 = false" v-model="dialog2" max-width="400">
                     <v-card class="elevation-12">
                         <v-toolbar
@@ -170,7 +173,7 @@
                             <v-spacer />
 
                             <v-col>
-                                <!-- wenn nicht angemeldet-->
+                              wenn nicht angemeldet
                                 <v-list-item @click.stop="threeToTwo">
                                     <v-list-item-content>
                                         <v-list-item-title>Sign in</v-list-item-title>
@@ -184,7 +187,7 @@
                     </v-card>
                 </v-dialog>
 
-                <!--SIGN IN-->
+               SIGN IN
                 <v-dialog @keydown.esc="dialog3 = false" v-model="dialog3" max-width="400">
                     <v-card class="elevation-12">
                         <v-toolbar
@@ -219,7 +222,7 @@
                         <v-card-actions>
                             <v-spacer />
                             <v-col>
-                                <!-- wenn nicht angemeldet-->
+                                wenn nicht angemeldet
                                 <v-list-item @click.stop="twoToThree()">
                                     <v-list-item-content>
                                         <v-list-item-title>Sign up</v-list-item-title>
@@ -231,11 +234,12 @@
 
                         </v-card-actions>
                     </v-card>
-                </v-dialog>
+                </v-dialog>-->
 
                 <router-view/>
             </div>
         </v-content>
+
 
     </v-app>
 </template>
@@ -338,13 +342,16 @@
         left: 0;
         padding: 0;
     }
-    #searchBtn{
-        background-color: #8C3F63;
-    }
-    #gavel{
 
+    #gavel{
         position: absolute;
-     left: 70.7em;
+        right:  7.5%;
+        width: 5em;
+        top: 10%;
+        height: 100%;
+        margin: 0;
+        padding: 0.2em 0.5em 0.5em 0.5em;
+
 
     }
 

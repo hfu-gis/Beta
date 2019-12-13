@@ -2,57 +2,105 @@
     <section>
     <div class="body-1" id="cloud">
         <br>
-        <br>
-        <br>
         <wordcloud :data="defaultWords" nameKey="name" valueKey="value" :color="myColors" :showTooltip="true" :wordClick="wordClickHandler">
         </wordcloud>
     </div>
 
-        <v-container class="my-5">
+        <div>
+            <v-app>
+                <v-card class="mx-auto"   width="80%">
 
-            <v-layout row wrap>
-                <v-flex x12 sm6 md4 lg3 v-for="keyword in cards" :key="keyword.name">
-                    <v-card class="mx-auto ma-3"  max-width="344">
-                        <v-responsive class="pt-4">
-                        <v-img src="../../img/Postlists/Kamera.jpg"  height="200px"></v-img>
-                        </v-responsive>
-                        <v-card-title>{{keyword.name}}</v-card-title>
-                        <v-card-subtitle>1,000 miles of wonder</v-card-subtitle>
-                        <v-card-actions><v-btn text>Share</v-btn>
-                            <v-btn color="purple" text>Explore</v-btn>
-                            <v-spacer></v-spacer>
-                            </v-card-actions>
-                      </v-card>
-                </v-flex>
-            </v-layout>
+                    <v-system-bar color="indigo darken-2" dark>
+                        <v-spacer></v-spacer>
 
-        </v-container>
+                        <v-icon>mdi-window-minimize</v-icon>
 
-        <!--
-        <v-card class="mx-auto"  max-width="344">
-            <v-img src="../../img/Postlists/Kamera.jpg"  height="200px"></v-img>
+                        <v-icon>mdi-window-maximize</v-icon>
 
-            <v-card-title>Kamera</v-card-title>
-            <v-card-subtitle>1,000 miles of wonder</v-card-subtitle>
-            <v-card-actions><v-btn text>Share</v-btn>
-                <v-btn color="purple" text>Explore</v-btn>
-                <v-spacer></v-spacer>
-                <v-btn icon  @click="show = !show"><v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon></v-btn>
-            </v-card-actions>
-            <v-expand-transition><div v-show="show"><v-divider></v-divider>
-                    <v-card-text>
-                        I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
-                    </v-card-text>
-                </div>
-            </v-expand-transition>
-        </v-card>-->
+                        <v-icon>mdi-close</v-icon>
+                    </v-system-bar>
+                    <v-spacer></v-spacer>
 
+                    <v-toolbar color="indigo" dark>
+                        <v-app-bar-nav-icon></v-app-bar-nav-icon>
+
+                        <v-toolbar-title>latest posts</v-toolbar-title>
+
+                        <v-spacer></v-spacer>
+
+                        <v-btn icon link :to="{ path: '/postinglist'}">
+                            <v-icon>mdi-magnify</v-icon>
+                        </v-btn>
+                    </v-toolbar>
+
+                    <v-container fluid>
+                        <v-row dense>
+                            <v-col v-for="title in posts" :key="title.title" :cols="title.flex">
+                                <v-card class="mx-auto" max-width="95%">
+                                    <v-card-text>
+                                        <p class="display-1 text--primary" v-text="title.title"></p>
+                                        <p v-text="title.hashtag">adjective</p>
+                                        <div class="text--primary" v-text="title.text">
+                                        </div>
+                                    </v-card-text>
+                                    <v-card-actions>
+                                        <v-btn text color="deep-purple accent-4">
+                                            Learn More
+                                        </v-btn>
+                                    </v-card-actions>
+                                </v-card>
+                            </v-col>
+                        </v-row>
+                    </v-container>
+                </v-card>
+            </v-app>
+        </div>
+
+            <br>
+            <br>
+        <div>
+            <v-app id="inspire">
+                <v-card class="mx-auto"  max-width="80%">
+                        <v-spacer></v-spacer>
+                    <v-container fluid>
+                        <v-row dense>
+                            <v-col v-for="card in cards" :key="card.title" :cols="card.flex">
+                                <v-card>
+                                    <v-img
+                                            :src="card.src"
+                                            class="white--text align-end"
+                                            gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                                            height="200px"
+                                    >
+                                        <v-card-title v-text="card.title"></v-card-title>
+                                    </v-img>
+
+                                    <v-card-actions>
+                                        <v-spacer></v-spacer>
+
+                                        <v-btn icon>
+                                            <v-icon>mdi-heart</v-icon>
+                                        </v-btn>
+
+                                        <v-btn icon>
+                                            <v-icon>mdi-bookmark</v-icon>
+                                        </v-btn>
+
+                                        <v-btn icon>
+                                            <v-icon>mdi-share-variant</v-icon>
+                                        </v-btn>
+                                    </v-card-actions>
+                                </v-card>
+                            </v-col>
+                        </v-row>
+                    </v-container>
+                </v-card>
+            </v-app>
+        </div>
+        <v-footer >
+            @2019 HFU Beta
+        </v-footer>
     </section>
-
-
-
-
-
 
 </template>
 
@@ -76,11 +124,21 @@
         data() {
             return {
                 cards:[
-                    { name: 'Kamera' },
-                    { name: 'Videotechnik' },
-                    { name: 'Java' },
-                    { name: 'CSharp' },
+                    { title: 'Pre-fab homes', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', flex: 3},
+                    { title: 'Favorite road trips', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', flex: 3},
+                    { title: 'Best airlines', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', flex: 3 },
+                    { title: 'Best airlines', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', flex: 3 },
+                    { title: 'Best airlines', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', flex: 3 },
+                    { title: 'Best airlines', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', flex: 3 },
+                    { title: 'Best airlines', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', flex: 3 },
+                    { title: 'Pre-fab homes', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', flex: 3},
+                ],
 
+               posts:[
+                   { title: 'camera', hashtag: '#camera', text: 'text1', flex: 12},
+                    { title: 'best movie',  hashtag: '#movietime', text: 'text2', flex: 12},
+                    { title: 'simulation in Java', hashtag: '#Java', text: 'text3',flex: 12},
+                    { title: 'fusee',  hashtag: '#CSharp', text: 'text4', flex: 12 },
 
                 ],
                 rotate: {from: 0, to: 0, numOfOrientation: 0},
