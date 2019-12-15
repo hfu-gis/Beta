@@ -4,7 +4,7 @@
   <v-parallax src="../../img/Background/ocean.jpg" class="oceanbackground" width="width" height="100%">
 
       <div class="text-center">
-      <img src="../../img/Profilbilder/Platzhalter_Profilbild.png" height="290" width="250" align="center"/>
+      <img class="img-circle" src="https://randomuser.me/api/portraits/men/39.jpg" height="150" width="150" align="center"/>
       <v-btn fab x-small dark><v-icon>mdi-pencil</v-icon></v-btn>
 
       <header> <h1 class="h1" ><strong>Profile Name</strong><v-btn fab x-small dark><v-icon>mdi-pencil</v-icon></v-btn>
@@ -90,7 +90,8 @@ export default {
         position: absolute;
 
     }
-
-
+    .img-circle{
+        border-radius: 50%;
+    }
 /* CSS für diese Seite hier einfügen */
 </style>

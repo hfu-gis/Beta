@@ -1,18 +1,22 @@
 <template>
     <v-app id="inspire">
-        <v-navigation-drawer v-model="drawer" right temporary fixed src="../img/Background/ocean.jpg">
+        <v-navigation-drawer v-model="drawer" right temporary fixed color="#D9A566">
+        <!--<v-navigation-drawer v-model="drawer" right temporary fixed src="../img/Background/ocean.jpg">-->
 
 
             <!--wenn angemeldet -->
          <v-list-item @click.stop="dialog = true">
              <v-list-item-avatar>
-                 <v-img src="../img/Profilbilder/Platzhalter_Profilbild.png" height="50" width="250"/>
+                 <v-img src="https://randomuser.me/api/portraits/men/39.jpg" height="40" width="50"/>
              </v-list-item-avatar>
              <v-list-item-content>
                  <v-list-item-title>Peter Olaf Droschbart</v-list-item-title>
              </v-list-item-content>
          </v-list-item>
-                   <registration/>
+            <v-divider/>
+            <br>
+
+            <registration/>
 
                   <v-row>
 
@@ -83,11 +87,11 @@
           </v-list>
       </v-navigation-drawer>
 
-      <v-app-bar app color="blue" right dark>
+      <v-app-bar app color="#132B40" right dark>
 
          <a><img src="../img/Logos/BitOfAdvice_logo_2.png" height="536" width="1242" class="BitofadviceBar" /> </a>
-         <div id="searchbox">
-             <v-text-field filled rounded dense label="search" id="txtsearch"> </v-text-field>
+         <div id="searchbox" class="d-flex d-inline-flex">
+             <v-text-field outlined rounded dense label="search" id="txtsearch"> </v-text-field>
          </div>
           <v-btn link :to="{ path: '/homepage'}" x-large text height="60" width="150">
 
@@ -109,6 +113,7 @@
                         <v-card
                                 class="mx-auto"
                                 max-width="400"
+                                color="#D9A566"
                         >
                             <v-img
                                     src="https://randomuser.me/api/portraits/men/39.jpg"
