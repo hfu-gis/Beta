@@ -1,12 +1,11 @@
 <template>
     <section>
-    <div class="body-1" id="cloud">
+        <div class="body-1" id="cloud">
         <br>
         <wordcloud :data="defaultWords" nameKey="name" valueKey="value" :color="myColors" :showTooltip="true" :wordClick="wordClickHandler">
         </wordcloud>
     </div>
-
-        <div>
+          <div>
             <v-app>
                 <v-card class="mx-auto"   width="80%">
 
@@ -98,7 +97,7 @@
             </v-app>
         </div>
         <v-footer >
-            @2019 HFU Beta <v-spacer/><v-spacer/><v-spacer/><v-spacer/><v-spacer/><v-spacer/><v-spacer/><v-spacer/><registration/>
+            @2019 HFU Beta <v-spacer/><v-spacer/><v-spacer/><v-spacer/><v-spacer/><v-spacer/><v-spacer/><v-spacer/>
         </v-footer>
     </section>
 
@@ -126,14 +125,14 @@
         data() {
             return {
                 cards:[
-                    { title: 'Pre-fab homes', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', flex: 3},
-                    { title: 'Favorite road trips', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', flex: 3},
-                    { title: 'Best airlines', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', flex: 3 },
-                    { title: 'Best airlines', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', flex: 3 },
-                    { title: 'Best airlines', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', flex: 3 },
-                    { title: 'Best airlines', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', flex: 3 },
-                    { title: 'Best airlines', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', flex: 3 },
-                    { title: 'Pre-fab homes', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', flex: 3},
+                    { title: 'Camera', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', flex: 3},
+                    { title: 'Video', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', flex: 3},
+                    { title: 'Java', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', flex: 3 },
+                    { title: 'C#', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', flex: 3 },
+                    { title: 'Blender', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', flex: 3 },
+                    { title: 'Simulation', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', flex: 3 },
+                    { title: 'Latex', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', flex: 3 },
+                    { title: 'MS office', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', flex: 3},
                 ],
 
                posts:[
@@ -207,4 +206,5 @@
 
 
 <style scoped>
+
 </style>

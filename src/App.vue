@@ -87,6 +87,20 @@
           </v-list>
       </v-navigation-drawer>
 
+      <v-app-bar app color="blue" right dark>
+          <a><img src="../img/Logos/BitOfAdvice_logo_2.png" height="536" width="1242" class="BitofadviceBar" /> </a>
+          <v-spacer />
+          <div id="searchbox">
+              <v-text-field filled rounded dense label="search" id="txtsearch"> </v-text-field>
+          </div>
+          <v-btn icon >
+          <v-icon>mdi-magnify</v-icon>
+          </v-btn>
+          <v-app-bar-nav-icon @click.stop="drawer = !drawer"/>
+         <!--
+         <div id="searchbox">
+          <v-text-field filled rounded dense label="search" id="txtsearch"> </v-text-field>
+      </div>
       <v-app-bar app color="#132B40" right dark>
 
          <a><img src="../img/Logos/BitOfAdvice_logo_2.png" height="536" width="1242" class="BitofadviceBar" /> </a>
@@ -94,13 +108,10 @@
              <v-text-field outlined rounded dense label="search" id="txtsearch"> </v-text-field>
          </div>
           <v-btn link :to="{ path: '/homepage'}" x-large text height="60" width="150">
-
           </v-btn>
-
-
             <v-spacer></v-spacer>
-          <v-app-bar-nav-icon @click.stop="drawer = !drawer"/>
 
+                -->
       </v-app-bar>
 
 
@@ -113,7 +124,6 @@
                         <v-card
                                 class="mx-auto"
                                 max-width="400"
-                                color="#D9A566"
                         >
                             <v-img
                                     src="https://randomuser.me/api/portraits/men/39.jpg"
@@ -337,7 +347,7 @@
     #searchbox{
 
         position: absolute;
-        right: 13em;
+        right: 5%;
         top: 0%;
         width: 15em;
         height: 100%;
