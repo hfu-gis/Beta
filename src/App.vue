@@ -87,13 +87,13 @@
           </v-list>
       </v-navigation-drawer>
 
-      <v-app-bar app color="blue" right dark>
-          <a><img src="../img/Logos/BitOfAdvice_logo_2.png" height="536" width="1242" class="BitofadviceBar" /> </a>
+      <v-app-bar app color="#132B40" right dark>
+          <a :to="{ path: '/homepage'}"><img contain src="../img/Logos/BitOfAdvice_logo_2.png" height="50"/> </a>
           <v-spacer />
           <div id="searchbox">
-              <v-text-field filled rounded dense label="search" id="txtsearch"> </v-text-field>
+              <v-text-field outlined rounded dense label="search" id="txtsearch"> </v-text-field>
           </div>
-          <v-btn icon >
+          <v-btn icon class="mx-10">
           <v-icon>mdi-magnify</v-icon>
           </v-btn>
           <v-app-bar-nav-icon @click.stop="drawer = !drawer"/>
