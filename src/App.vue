@@ -12,13 +12,18 @@
                  <v-list-item-title>Peter Olaf Droschbart</v-list-item-title>
              </v-list-item-content>
          </v-list-item>
-<registration/>
+                   <registration/>
+
                   <v-row>
 
 
                       <v-col>
                           <!--wenn angemeldet-->
                         <v-list-item link :to="{ path: '/login'}">
+                            <v-list-item-action>
+                                <v-icon>mdi-arrow-right</v-icon>
+
+                            </v-list-item-action>
                             <v-list-item-content>
                                 <v-list-item-title>Sign in</v-list-item-title>
                             </v-list-item-content>
@@ -59,7 +64,7 @@
 
               <v-list-item link :to="{ path: '/profile.json'}">
                   <v-list-item-action>
-                      <v-icon>mdi-mail</v-icon>
+                      <v-icon>mdi-account</v-icon>
                   </v-list-item-action>
                   <v-list-item-content>
                       <v-list-item-title>Profile</v-list-item-title>
@@ -80,12 +85,12 @@
 
       <v-app-bar app color="blue" right dark>
 
-         <a link :to="{ path: '/homepage'}"><img src="../img/Logos/BitOfAdvice_logo_2.png" height="536" width="1242" class="BitofadviceBar" link :to="{ path: '/Home'}"/> </a>
+         <a><img src="../img/Logos/BitOfAdvice_logo_2.png" height="536" width="1242" class="BitofadviceBar" /> </a>
          <div id="searchbox">
              <v-text-field filled rounded dense label="search" id="txtsearch"> </v-text-field>
          </div>
           <v-btn link :to="{ path: '/homepage'}" x-large text height="60" width="150">
-              <img src="../img/Logos/BitOfAdvice_logo_2.png" height="536" width="1242" class="BitofadviceBar" link :to="{ path: '/homepage'}"/>
+
           </v-btn>
 
 

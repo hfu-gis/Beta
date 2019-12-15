@@ -21,8 +21,8 @@
                         <v-form ref="form" v-model="valid">
                                  <v-text-field label="E-mail" id="txtemail"></v-text-field>
                                  <v-text-field label="Password" id="txtpassword"></v-text-field>
-                            <v-row>
-                                 <v-btn class="grey darken-3 no white--text" @click="validate" >Sign up</v-btn><registration/>
+                            <v-row no-gutters>
+                                 <v-btn class="grey darken-3 no white--text" @click="validate">Sign up</v-btn><registration/><v-spacer/>
                             </v-row>
                         </v-form>
                     </div>
