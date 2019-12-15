@@ -19,9 +19,9 @@
                         <header><h1><strong> Login </strong></h1></header><br>
                         <v-form ref="form" v-model="valid">
                                  <v-text-field label="E-mail" id="txtemail"></v-text-field>
-                                 <v-text-field label="Password" id="txtpassword"></v-text-field>
+                                 <v-text-field label="Password" id="txtpassword" type="password"></v-text-field>
                             <v-row no-gutters>
-                                 <v-btn class="grey darken-3 no white--text" @click="validate">Sign up</v-btn><registration/><v-spacer/>
+                                 <v-btn color="#D9A566" @click="validate">Sign up</v-btn><registration/><v-spacer/>
                             </v-row>
                         </v-form>
                     </div>
@@ -64,8 +64,6 @@
 
 
     methods: {
-
-
 
         },
           created() {

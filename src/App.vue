@@ -18,26 +18,9 @@
 
                 <v-row no-gutters >
                     <v-col><registration/></v-col>
-                    <v-col><v-btn depressed>Sign In</v-btn></v-col>
+                    <v-col><v-btn depressed color="#D9A566"  link :to="{ path: '/login'}" >Sign In</v-btn></v-col>
                 </v-row>
-
-                  <v-row>
-
-
-                      <v-col>
-                          <!--wenn angemeldet-->
-                        <v-list-item link :to="{ path: '/login'}">
-                            <v-list-item-action>
-                                <v-icon>mdi-arrow-right</v-icon>
-
-                            </v-list-item-action>
-                            <v-list-item-content>
-                                <v-list-item-title>Sign in</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </v-col>
-                </v-row>
-
+                <br>
           <v-divider/>
 
           <v-list dense>
@@ -125,6 +108,7 @@
                 <v-dialog v-model="dialog" max-width="400">
                     <v-card>
                         <v-card
+
                                 class="mx-auto"
                                 max-width="400"
                         >
@@ -289,10 +273,7 @@
             dialog: false,
             dialog2: false,
             dialog3: false,
-            userdata: {
-                firstname: '',
-                lastname: ''
-            }
+
         }),
 
         // reagieren auf prop-Veränderung
@@ -338,14 +319,6 @@
 
 <style>
 
-    .BitofadviceBar{
-        position: absolute;
-        top: 0;
-        left: 1em;
-        width: auto;
-        height: 100%;
-
-    }
 
     #searchbox{
 
@@ -364,16 +337,5 @@
         padding: 0;
     }
 
-    #gavel{
-        position: absolute;
-        right:  7.5%;
-        width: 5em;
-        top: 10%;
-        height: 100%;
-        margin: 0;
-        padding: 0.2em 0.5em 0.5em 0.5em;
-
-
-    }
 
 </style>

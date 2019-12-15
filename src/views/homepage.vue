@@ -7,9 +7,9 @@
     </div>
           <div>
             <v-app>
-                <v-card class="mx-auto"   width="80%">
+                <v-card  color="#8F94A6" class="mx-auto"   width="80%">
 
-                    <v-system-bar color="indigo darken-2" dark>
+                    <v-system-bar color="#D9A566" dark>
                         <v-spacer></v-spacer>
 
                         <v-icon>mdi-window-minimize</v-icon>
@@ -20,7 +20,7 @@
                     </v-system-bar>
                     <v-spacer></v-spacer>
 
-                    <v-toolbar color="indigo" dark>
+                    <v-toolbar color="#132B40" dark>
                         <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
                         <v-toolbar-title>latest posts</v-toolbar-title>
@@ -37,13 +37,13 @@
                             <v-col v-for="title in posts" :key="title.title" :cols="title.flex">
                                 <v-card class="mx-auto" max-width="95%">
                                     <v-card-text>
-                                        <p class="display-1 text--primary" v-text="title.title"></p>
+                                        <p class="display-1 text--primary" v-text="title.title" ></p>
                                         <p v-text="title.hashtag">adjective</p>
                                         <div class="text--primary" v-text="title.text">
                                         </div>
                                     </v-card-text>
                                     <v-card-actions>
-                                        <v-btn text color="deep-purple accent-4">
+                                        <v-btn text color="#BF4974">
                                             Learn More
                                         </v-btn>
                                     </v-card-actions>
@@ -59,12 +59,12 @@
             <br>
         <div>
             <v-app id="inspire">
-                <v-card class="mx-auto"  max-width="80%">
+                <v-card color="#8F94A6" class="mx-auto"  max-width="80%">
                         <v-spacer></v-spacer>
                     <v-container fluid>
                         <v-row dense>
                             <v-col v-for="card in cards" :key="card.title" :cols="card.flex">
-                                <v-card>
+                                <v-card color="#D9A566">
                                     <v-img
                                             :src="card.src"
                                             class="white--text align-end"
