@@ -1,6 +1,6 @@
 <template>
     <v-app id="inspire">
-        <v-navigation-drawer v-model="drawer" right temporary fixed color="#D9A566">
+        <v-navigation-drawer v-model="drawer" right temporary fixed color="#8F94A6">
         <!--<v-navigation-drawer v-model="drawer" right temporary fixed src="../img/Background/ocean.jpg">-->
 
 
@@ -16,7 +16,10 @@
             <v-divider/>
             <br>
 
-            <registration/>
+                <v-row no-gutters >
+                    <v-col><registration/></v-col>
+                    <v-col><v-btn depressed>Sign In</v-btn></v-col>
+                </v-row>
 
                   <v-row>
 

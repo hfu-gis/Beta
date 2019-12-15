@@ -3,7 +3,7 @@
     <v-row justify="center">
         <v-dialog v-model="registration" persistent max-width="600px" @keydown.esc="registration = false" @keydown.enter="registration = false" >
             <template v-slot:activator="{ on }" >
-                <v-btn solo outlined flat  v-on="on">Register</v-btn>
+                <v-btn solo depressed flat  v-on="on" color="#D9A566">Register</v-btn>
             </template>
             <v-card>
                 <v-form ref="form" v-model="valid" @submit.prevent="onSignup">
