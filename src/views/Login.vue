@@ -19,25 +19,29 @@
 
                         <header><h1><strong> Login </strong></h1></header><br>
                         <v-form ref="form" v-model="valid">
-                                 <v-text-field label="email" id="txtemail"></v-text-field>
-                                 <v-text-field label="password" id="txtpassword"></v-text-field>
-                                 <v-btn class="grey darken-3 no white--text" @click="validate" >Sign up</v-btn>
+                                 <v-text-field label="E-mail" id="txtemail"></v-text-field>
+                                 <v-text-field label="Password" id="txtpassword"></v-text-field>
+                            <v-row>
+                                 <v-btn class="grey darken-3 no white--text" @click="validate" >Sign up</v-btn><registration/>
+                            </v-row>
                         </v-form>
                     </div>
                 </v-form><br>
-                                 <a href="Link">Passwort vergessen?</a><br>
-                                 <div id="openModal" class="modalDialog">
-                                </div>
-                    <v-list-item @click.stop="dialog2 = true" link :to="{path:'/app.vue'}">
-                    <v-list-item-content><v-list-item-title>Not registered yet?</v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
+
+
+
+
+
+
                  </v-card-text>
               </v-flex>
            </v-row>
         </v-layout>
+
 </v-container>
+
 </v-parallax>
+
 </body>
 </html>
 </template>
@@ -45,12 +49,15 @@
 
 <script>
 
+
+    import registration from "./registration";
     import db from '../db'
 
 
 
     export default {
         name: 'login',
+        components: {registration},
         props: {},
 
         data: () => ({

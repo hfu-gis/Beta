@@ -1,72 +1,54 @@
 <template>
-  <div class="body-1">
-    <!-- HTML-Code aus dem Body-Tag hier einfügen -->
+    <v-row justify="center">
+        <v-dialog v-model="registration" persistent max-width="600px" @keydown.esc="registration = false" @keydown.enter="registration = false" >
+            <template v-slot:activator="{ on }">
+                <v-btn class="grey darken-3 no white--text" dark v-on="on">Register</v-btn>
+            </template>
+            <v-card>
+                <v-card-title>
+                    <span class="headline">User Profile</span>
+                </v-card-title>
+                <v-card-text>
+                    <v-container>
+                        <v-row>
+                            <v-col cols="12" sm="6" md="4">
+                                <v-text-field solo label="First Name*" required></v-text-field>
+                            </v-col>
+                            <v-col cols="12" sm="6" md="4">
+                                <v-text-field solo label="Last Name*" required
+                                ></v-text-field>
 
-
-    <div id="openModal" class="modalDialog">
-      <div>
-
-        <h2>Registration</h2>
-
-        <v-subheader>Please choose your User Name</v-subheader>
-
-        <v-col cols="12" sm="6" md="3">
-          <v-text-field
-                  label="Solo"
-                  placeholder="Username"
-                  solo
-          ></v-text-field>
-        </v-col>
-        <v-subheader>Please enter your E-Mail Adress</v-subheader>
-        <v-col cols="12" sm="6" md="3">
-          <v-text-field
-                  label="Solo"
-                  placeholder="E-Mail"
-                  solo
-          ></v-text-field>
-        </v-col>
-
-        <v-subheader>Please Enter Password</v-subheader>
-
-        <v-col cols="12" sm="6" md="3">
-          <v-text-field
-                  label="Solo"
-                  placeholder="Password"
-                  solo
-          ></v-text-field>
-        </v-col>
-        <v-subheader>Please verify Password</v-subheader>
-
-        <v-row>
-        <v-col cols="12" sm="6" md="3">
-          <v-text-field
-                  label="Solo"
-                  placeholder="Password"
-                  solo
-          ></v-text-field>
-
-        </v-col>
-
-
-
-        <v-btn line-position="center"><v-icon class="ma-1"color="indigo"> mdi-eye</v-icon></v-btn>
-        </v-row>
-
-        <br>
-        <v-btn outlined color="indigo">Submit</v-btn>
-        <br>
-        <a href="http:www.BIT of Advice/login">I already have an Account</a>
-
-      </div>
-    </div>
-
-
-  </div>
+                            </v-col>
+                            <v-col cols="12" sm="6" md="4">
+                                <v-text-field solo label="User Name*" required></v-text-field>
+                            </v-col>
+                            <v-col cols="12">
+                                <v-text-field solo label="Email*" required></v-text-field>
+                            </v-col>
+                            <v-col cols="12">
+                                <v-text-field solo label="Password*" type="password" required></v-text-field>
+                            </v-col>
+                        </v-row>
+                    </v-container>
+                    <small>*indicates required field</small>
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="blue darken-1" text @click="registration = false">Close</v-btn>
+                    <v-btn color="blue darken-1" text @click="registration = false">Save</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
+    </v-row>
 </template>
 
 <script>
 export default {
-  // gebt jeder Page einen eigenen Namen
+    data: () => ({
+        registration: false,
+    }),
+
+    // gebt jeder Page einen eigenen Namen
   name: 'registration',
 
   // benötigte Komponenten
@@ -76,9 +58,7 @@ export default {
   props: {},
 
   // Variablen-Speicher
-  data() {
-    return {}
-  },
+
 
   // reagieren auf prop-Veränderung
   watch: {},

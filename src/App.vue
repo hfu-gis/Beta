@@ -1,27 +1,21 @@
 <template>
     <v-app id="inspire">
-        <v-navigation-drawer v-model="drawer" right temporary fixed>
+        <v-navigation-drawer v-model="drawer" right temporary fixed src="../img/Background/ocean.jpg">
 
 
             <!--wenn angemeldet -->
          <v-list-item @click.stop="dialog = true">
              <v-list-item-avatar>
-                 <v-img src="https://randomuser.me/api/portraits/men/39.jpg"/>
+                 <v-img src="../img/Profilbilder/Platzhalter_Profilbild.png" height="50" width="250"/>
              </v-list-item-avatar>
              <v-list-item-content>
                  <v-list-item-title>Peter Olaf Droschbart</v-list-item-title>
              </v-list-item-content>
          </v-list-item>
-
+<registration/>
                   <v-row>
-                        <v-col>
-                            <!--wenn nicht angemeldet-->
-                          <v-list-item link :to="{ path: '/registration'}">
-                              <v-list-item-content>
-                                  <v-list-item-title>Sign up</v-list-item-title>
-                              </v-list-item-content>
-                          </v-list-item>
-                      </v-col>
+
+
                       <v-col>
                           <!--wenn angemeldet-->
                         <v-list-item link :to="{ path: '/login'}">
@@ -63,22 +57,20 @@
                   </v-list-item-content>
               </v-list-item>
 
-              <!--
-              <v-list-item link :to="{ path: '/views/popup2'}">
-                  <v-list-item-action>
-                      <v-icon>mdi-mail</v-icon>
-                  </v-list-item-action>
-                  <v-list-item-content>
-                      <v-list-item-title>Registration</v-list-item-title>
-                  </v-list-item-content>
-              </v-list-item> -->
-
               <v-list-item link :to="{ path: '/profile.json'}">
                   <v-list-item-action>
                       <v-icon>mdi-mail</v-icon>
                   </v-list-item-action>
                   <v-list-item-content>
                       <v-list-item-title>Profile</v-list-item-title>
+                  </v-list-item-content>
+              </v-list-item>
+              <v-list-item v-slot:activator="{ on }" color="primary" dark v-on="on">Open Dialog>
+                  <v-list-item-action>
+                      <v-icon mdi-eye></v-icon>
+                  </v-list-item-action>
+                  <v-list-item-content>
+                      <v-list-item-title>Register</v-list-item-title>
                   </v-list-item-content>
               </v-list-item>
 
@@ -88,16 +80,16 @@
 
       <v-app-bar app color="blue" right dark>
 
-         <img src="../img/Logos/BitOfAdvice_logo_2.png" height="536" width="1242" class="BitofadviceBar"/> <v-spacer/>
+         <a link :to="{ path: '/homepage'}"><img src="../img/Logos/BitOfAdvice_logo_2.png" height="536" width="1242" class="BitofadviceBar" link :to="{ path: '/Home'}"/> </a>
          <div id="searchbox">
              <v-text-field filled rounded dense label="search" id="txtsearch"> </v-text-field>
          </div>
-          <v-btn icon link :to="{ path: '/postinglist'}">
-              <v-icon >mdi-magnify</v-icon>
+          <v-btn link :to="{ path: '/homepage'}" x-large text height="60" width="150">
+              <img src="../img/Logos/BitOfAdvice_logo_2.png" height="536" width="1242" class="BitofadviceBar" link :to="{ path: '/homepage'}"/>
           </v-btn>
 
-          <v-toolbar-title>Bit Of Advice</v-toolbar-title>
 
+            <v-spacer></v-spacer>
           <v-app-bar-nav-icon @click.stop="drawer = !drawer"/>
 
       </v-app-bar>
@@ -128,6 +120,7 @@
                         </v-card>
                     </v-card>
                 </v-dialog>
+
 
               <!--
                 SIGN UP
@@ -246,16 +239,20 @@
 
 <script>
 
+
+
     import db from './db'
 
     import Template from "./views/Template";
+    import registration from "./views/registration";
 
     export default {
+
         // gebt jeder Page einen eigenen Namen
         name: 'LayoutsDemosBaselineFlipped',
-
+        components: {registration},
         // benötigte Komponenten
-        components: {Template},
+
 
         // entspricht den HTML-Attributen
         props: {
@@ -317,6 +314,7 @@
 </script>
 
 <style>
+
     .BitofadviceBar{
         position: absolute;
         top: 0;

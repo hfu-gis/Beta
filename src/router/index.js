@@ -7,7 +7,7 @@ import registration from "../views/registration";
 import homepage from "../views/homepage";
 import App from "../App";
 import profilesettings from "../views/profilesettings";
-import popup2 from "../views/popup2";
+
 Vue.use(VueRouter);
 
 export default new VueRouter({
@@ -40,9 +40,6 @@ export default new VueRouter({
         {
             path: '/homepage',
             component: homepage
-        },{
-            path: '/popup2',
-            component: popup2
         }
         ]
 })

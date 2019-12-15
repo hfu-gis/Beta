@@ -98,7 +98,7 @@
             </v-app>
         </div>
         <v-footer >
-            @2019 HFU Beta
+            @2019 HFU Beta <v-spacer/><v-spacer/><v-spacer/><v-spacer/><v-spacer/><v-spacer/><v-spacer/><v-spacer/><registration/>
         </v-footer>
     </section>
 
@@ -107,10 +107,12 @@
 <script>
 
     import wordcloud from 'vue-wordcloud'
+    import Registration from "./registration";
 
     export default {
         name: "homepage",
         components: {
+            Registration,
             wordcloud
         },
         methods: {

@@ -1,10 +1,7 @@
 <template>
 
-  <div class="body-1">
-      <br>
-      <br>
-      <br>
-    <a href="www.BITofAdvice.de"><img src="../../img/Logos/BitOfAdvice_logo.png" height="85,6" width="198,4"/></a>
+  <body>
+
 
       <div class="text-center">
       <img src="../../img/Profilbilder/Platzhalter_Profilbild.png" height="290" width="250" align="center"/>
@@ -52,7 +49,7 @@
                     </div>
             </v-col>
     </v-row>
-  </div>
+  </body>
 </template>
 
 <script>
