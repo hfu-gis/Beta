@@ -84,19 +84,24 @@
       </v-navigation-drawer>
 
       <v-app-bar app color="blue" right dark>
-
-         <a><img src="../img/Logos/BitOfAdvice_logo_2.png" height="536" width="1242" class="BitofadviceBar" /> </a>
-         <div id="searchbox">
-             <v-text-field filled rounded dense label="search" id="txtsearch"> </v-text-field>
-         </div>
-          <v-btn link :to="{ path: '/homepage'}" x-large text height="60" width="150">
-
+          <a><img src="../img/Logos/BitOfAdvice_logo_2.png" height="536" width="1242" class="BitofadviceBar" /> </a>
+          <v-spacer />
+          <div id="searchbox">
+              <v-text-field filled rounded dense label="search" id="txtsearch"> </v-text-field>
+          </div>
+          <v-btn icon >
+          <v-icon>mdi-magnify</v-icon>
           </v-btn>
-
-
-            <v-spacer></v-spacer>
           <v-app-bar-nav-icon @click.stop="drawer = !drawer"/>
+         <!--
+         <div id="searchbox">
+          <v-text-field filled rounded dense label="search" id="txtsearch"> </v-text-field>
+      </div>
+          <v-btn link :to="{ path: '/homepage'}" x-large text height="60" width="150">
+          </v-btn>
+            <v-spacer></v-spacer>
 
+                -->
       </v-app-bar>
 
 
@@ -332,7 +337,7 @@
     #searchbox{
 
         position: absolute;
-        right: 13em;
+        right: 5%;
         top: 0%;
         width: 15em;
         height: 100%;

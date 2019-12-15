@@ -16,7 +16,6 @@
                 <v-form class="px-3">
                     <div id="login">
 
-
                         <header><h1><strong> Login </strong></h1></header><br>
                         <v-form ref="form" v-model="valid">
                                  <v-text-field label="E-mail" id="txtemail"></v-text-field>
@@ -27,12 +26,6 @@
                         </v-form>
                     </div>
                 </v-form><br>
-
-
-
-
-
-
                  </v-card-text>
               </v-flex>
            </v-row>
@@ -76,14 +69,7 @@
 
         },
           created() {
-              let docRef = db.collection('Users')
-              docRef.get().then(docs => {
-                  docs.forEach(doc => this.username.push(doc.data()))
-              })
-              docRef = db.collection('Users').doc( 'Fokus')
-              docRef.get().then(doc => this.userdata = doc.data())
-
-          }
+                      }
     }
 
 
@@ -113,14 +99,7 @@
         margin: 0;
 
     }
-    #loginbox{
 
-        width: 100em;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
     a {
         color:#fff;
         font-weight: bolder;

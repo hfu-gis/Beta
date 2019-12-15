@@ -1,12 +1,11 @@
 <template>
     <section>
-    <div class="body-1" id="cloud">
+        <div class="body-1" id="cloud">
         <br>
         <wordcloud :data="defaultWords" nameKey="name" valueKey="value" :color="myColors" :showTooltip="true" :wordClick="wordClickHandler">
         </wordcloud>
     </div>
-
-        <div>
+          <div>
             <v-app>
                 <v-card class="mx-auto"   width="80%">
 
@@ -207,4 +206,5 @@
 
 
 <style scoped>
+
 </style>
