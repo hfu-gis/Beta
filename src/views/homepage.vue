@@ -105,6 +105,7 @@
 
 <script>
 
+    import db from '../db';
     import wordcloud from 'vue-wordcloud'
     import Registration from "./registration";
 
@@ -120,10 +121,9 @@
             }
         },
 
-
-
         data() {
             return {
+
                 cards:[
                     { title: 'Camera', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', flex: 3},
                     { title: 'Video', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', flex: 3},

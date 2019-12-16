@@ -15,13 +15,12 @@
             <v-card-text>
                 <v-form class="px-3">
                     <div id="login">
-
                         <header><h1><strong> Login </strong></h1></header><br>
                         <v-form ref="form" v-model="valid">
-                                 <v-text-field label="E-mail" id="txtemail"></v-text-field>
-                                 <v-text-field label="Password" id="txtpassword" type="password"></v-text-field>
+                                 <v-text-field label="E-mail" v-model="userdata.txtemail" required></v-text-field>
+                                 <v-text-field label="Password"  type="password"  v-model="userdata.txtpassword"></v-text-field>
                             <v-row no-gutters>
-                                 <v-btn color="#D9A566" @click="validate">Sign up</v-btn><registration/><v-spacer/>
+                                 <v-btn color="#D9A566" @click="auth">Sign up</v-btn><registration/><v-spacer/>
                             </v-row>
                         </v-form>
                     </div>
@@ -57,6 +56,12 @@
 
             valid: true,
             success: false,
+            userdata:{
+                txtemail:'testpersonFuwa@gmail.com',
+                txtpassword:'furtwangen'
+
+            }
+
 
 
         }),
@@ -64,6 +69,15 @@
 
 
     methods: {
+
+            auth() {
+                db
+                .auth().signInWithEmailAndPassword(this.userdata.txtemail,this.userdata.txtpassword).then( () => {
+
+                    //bei erfolg
+                    this.$router.push('/postinglist')
+                } )
+                }
 
         },
           created() {
