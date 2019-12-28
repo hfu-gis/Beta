@@ -5,12 +5,12 @@
 
 
             <!--wenn angemeldet -->
-         <v-list-item @click.stop="dialog = true">
+         <v-list-item @click.stop="dialog = true" >
              <v-list-item-avatar>
                  <v-img src="https://randomuser.me/api/portraits/men/39.jpg" height="40" width="50"/>
              </v-list-item-avatar>
-             <v-list-item-content>
-                 <v-list-item-title>Peter Olaf Droschbart</v-list-item-title>
+             <v-list-item-content >
+                 <v-list-item-title >Peter Olaf Droschbart</v-list-item-title>
              </v-list-item-content>
          </v-list-item>
             <v-divider/>
@@ -27,37 +27,37 @@
 
               <v-list-item link :to="{ path: '/homepage'}">
                   <v-list-item-action>
-                      <v-icon>mdi-home</v-icon>
+                      <v-icon color="#D9A566">mdi-home</v-icon>
                   </v-list-item-action>
                   <v-list-item-content>
-                      <v-list-item-title>Home</v-list-item-title>
+                      <v-list-item-title class="accent--text">Home</v-list-item-title>
                   </v-list-item-content>
               </v-list-item>
 
                    <v-list-item link :to="{ path: '/postinglist'}">
                   <v-list-item-action>
-                      <v-icon>mdi-sort</v-icon>
+                      <v-icon color="#D9A566">mdi-sort</v-icon>
                   </v-list-item-action>
                   <v-list-item-content>
-                      <v-list-item-title>PostingList</v-list-item-title>
+                      <v-list-item-title class="accent--text">PostingList</v-list-item-title>
                   </v-list-item-content>
               </v-list-item>
 
               <v-list-item link :to="{ path: '/views/Profilesettings'}">
                   <v-list-item-action>
-                      <v-icon>mdi-sort</v-icon>
+                      <v-icon color="#D9A566">mdi-sort</v-icon>
                   </v-list-item-action>
                   <v-list-item-content>
-                      <v-list-item-title>Profilesettings</v-list-item-title>
+                      <v-list-item-title class="accent--text">Profilesettings</v-list-item-title>
                   </v-list-item-content>
               </v-list-item>
 
               <v-list-item link :to="{ path: '/profile.json'}">
                   <v-list-item-action>
-                      <v-icon>mdi-account</v-icon>
+                      <v-icon color="#D9A566">mdi-account</v-icon>
                   </v-list-item-action>
                   <v-list-item-content>
-                      <v-list-item-title>Profile</v-list-item-title>
+                      <v-list-item-title class="accent--text">Profile</v-list-item-title>
                   </v-list-item-content>
               </v-list-item>
               <v-list-item v-slot:activator="{ on }" color="primary" dark v-on="on">Open Dialog>
@@ -74,15 +74,22 @@
       </v-navigation-drawer>
 
       <v-app-bar app color="#132B40" right dark>
-          <a :to="{ path: '/homepage'}"><img contain src="../img/Logos/BitOfAdvice_logo_2.png" height="50"/> </a>
+
+          <a :to="{ path: '/homepage'}">
+              <v-btn  link :to="{ path: '/homepage'}" x-large text height="60" width="150"> <img contain src="../img/Logos/BitOfAdvice_logo_2.png" height="50"/>
+              </v-btn>
+
+               </a>
+
           <v-spacer />
-          <div id="searchbox">
-              <v-text-field outlined rounded dense label="search" id="txtsearch"> </v-text-field>
+          <div id="searchbox" >
+              <v-text-field outlined rounded dense color="#D9A566" label="search" id="txtsearch"> </v-text-field>
           </div>
-          <v-btn icon class="mx-10">
-          <v-icon>mdi-magnify</v-icon>
+          <v-btn icon class="mx-10" color="#D9A566">
+          <v-icon >mdi-magnify</v-icon>
           </v-btn>
-          <v-app-bar-nav-icon @click.stop="drawer = !drawer"/>
+          <v-app-bar-nav-icon color="#D9A566" @click.stop="drawer = !drawer"/>
+
          <!--
          <div id="searchbox">
           <v-text-field filled rounded dense label="search" id="txtsearch"> </v-text-field>
@@ -102,6 +109,7 @@
 
 
       <v-content>
+
           <div id = "app">
 
               <!--PROFILE-->
@@ -111,6 +119,7 @@
 
                                 class="mx-auto"
                                 max-width="400"
+                                color="#8F94A6"
                         >
                             <v-img
                                     src="https://randomuser.me/api/portraits/men/39.jpg"
@@ -128,7 +137,68 @@
                     </v-card>
                 </v-dialog>
 
+              <div class="text-center">
+                  <v-dialog
+                          v-model="dialogprivacy"
+                          width="500"
+                          persistent
+                  >
 
+
+                      <v-card>
+                          <v-card-title
+                                  class="headline grey lighten-2"
+                                  primary-title
+
+                          >
+                              Privacy Policy
+                          </v-card-title>
+
+                          <v-card-text>
+                              This privacy notice discloses the privacy practices for BitofAdvice. This privacy notice applies solely to information collected by this website. It will notify you of the following:
+
+                              What personally identifiable information is collected from you through the website, how it is used and with whom it may be shared.
+                              What choices are available to you regarding the use of your data.
+                              The security procedures in place to protect the misuse of your information.
+                              How you can correct any inaccuracies in the information.
+                              Information Collection, Use, and Sharing
+                              We are the sole owners of the information collected on this site. We only have access to/collect information that you voluntarily give us via email or other direct contact from you. We will not sell or rent this information to anyone.
+
+                              We will use your information to respond to you, regarding the reason you contacted us. We will not share your information with any third party outside of our organization, other than as necessary to fulfill your request, e.g. to ship an order.
+
+                              Unless you ask us not to, we may contact you via email in the future to tell you about specials, new products or services, or changes to this privacy policy.
+
+                              Your Access to and Control Over Information
+                              You may opt out of any future contacts from us at any time. You can do the following at any time by contacting us via the email address or phone number given on our website:
+
+                              See what data we have about you, if any.
+                              Change/correct any data we have about you.
+                              Have us delete any data we have about you.
+                              Express any concern you have about our use of your data.
+                              Security
+                              We take precautions to protect your information. When you submit sensitive information via the website, your information is protected both online and offline.
+
+                              Wherever we collect sensitive information (such as credit card data), that information is encrypted and transmitted to us in a secure way. You can verify this by looking for a lock icon in the address bar and looking for "https" at the beginning of the address of the Web page.
+
+                              While we use encryption to protect sensitive information transmitted online, we also protect your information offline. Only employees who need the information to perform a specific job (for example, billing or customer service) are granted access to personally identifiable information. The computers/servers in which we store personally identifiable information are kept in a secure environment.
+                          </v-card-text>
+
+                          <v-divider></v-divider>
+
+                          <v-card-actions>
+                              <v-spacer></v-spacer>
+                              <v-btn
+                                      color="primary"
+                                      text
+                                      @click="dialogprivacy = false"
+
+                              >
+                                  I accept
+                              </v-btn>
+                          </v-card-actions>
+                      </v-card>
+                  </v-dialog>
+              </div>
               <!--
                 SIGN UP
                 <v-dialog @keydown.esc="dialog2 = false" v-model="dialog2" max-width="400">
@@ -253,7 +323,13 @@
     import Template from "./views/Template";
     import registration from "./views/registration";
 
+
     export default {
+
+
+
+
+
 
         // gebt jeder Page einen eigenen Namen
         name: 'LayoutsDemosBaselineFlipped',
@@ -273,6 +349,7 @@
             dialog: false,
             dialog2: false,
             dialog3: false,
+            dialogprivacy: true,
 
         }),
 
@@ -318,6 +395,18 @@
 </script>
 
 <style>
+    {
+        primary: '#1976D2';
+        secondary: '#424242';
+        accent: '#D9A566';
+        error: '#FF5252';
+        info: '#2196F3';
+        success: '#4CAF50';
+        warning: '#FFC107';
+    }
+
+
+
 
 
     #searchbox{
