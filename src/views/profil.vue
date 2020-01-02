@@ -1,52 +1,77 @@
-<template >
+<template>
 
-  <body>
-  <v-parallax src="../../img/Background/ocean.jpg" class="oceanbackground" width="width" height="100%">
+    <body>
+    <div style="margin-top: 150px; width: 90%; height: 90%; margin-left: auto; margin-right: auto; margin-bottom: 70px;">
+        <div class="text-center">
+            <img class="img-circle" src="https://randomuser.me/api/portraits/men/39.jpg" height="150" width="150"
+                 align="center"/>
+            <v-btn fab x-small dark>
+                <v-icon color="#D9A566">mdi-pencil</v-icon>
+            </v-btn>
 
-      <div class="text-center">
-      <img class="img-circle" src="https://randomuser.me/api/portraits/men/39.jpg" height="150" width="150" align="center"/>
-      <v-btn fab x-small dark ><v-icon color="#D9A566">mdi-pencil</v-icon></v-btn>
-
-      <header> <h1 class="h1" ><strong class="accent--text">Profile Name</strong><v-btn fab x-small dark><v-icon color="#D9A566">mdi-pencil</v-icon></v-btn>
-      <!--Change name--></h1></header></div>
-<v-row align="center">
-
-    <v-col class="text-center" cols="12" sm="3">
-        <div class="my-2">
-
-            <v-btn width="100em" height="8em" class="button md5"  outlined @click.stop="dialogProfile = true">Profile</v-btn>
+            <header>
+                <h1 class="h1"><strong class="accent--text">Profile Name</strong>
+                    <v-btn fab x-small dark>
+                        <v-icon color="#D9A566">mdi-pencil</v-icon>
+                    </v-btn>
+                    <!--Change name--></h1>
+            </header>
         </div>
-        <br>
-    <div class="my-2">
-        <v-btn width="100em" height="8em" class="button" outlined @click.stop="dialogNotifications = true">Notification</v-btn>
+        <v-row align="center">
 
-    </div>
-</v-col>
-    <v-col class="text-center" sm="3">
-        <div class="my-2">
-        <v-btn width="100em" min-height="8em" class="button" outlined  @click.stop="dialogPosts = true">My Posts</v-btn>
-        </div>
-        <br>
-            <div class="my-2">
-        <v-btn width="100em" min-height="8em" class="button" outlined @click.stop="dialogIdea = true">Submit an Idea</v-btn>
-            </div>
-    </v-col>
-        <v-col class="text-center" sm="3">
-            <div class="my-2">
-            <v-btn width="100em" min-height="8em" class="button" outlined @click.stop="dialogStats = true">Statistics</v-btn>
-            </div>
-            <br>
+            <v-col class="text-center" cols="12" sm="3">
                 <div class="my-2">
-            <v-btn width="100em" min-height="8em" class="button" outlined @click.stop="dialogReports = true">My Reports</v-btn>
-                </div>
-        </v-col>
-            <v-col class="text-center" sm="3">
-                <div class="my-2">
-                <v-btn width="100em" min-height="8em" class="button" outlined @click.stop="dialogAbo = true">Abo`s/Friends</v-btn>
+
+                    <v-btn width="100em" height="8em" class="button md5" outlined @click.stop="dialogProfile = true">
+                        Profile
+                    </v-btn>
                 </div>
                 <br>
                 <div class="my-2">
-                    <v-btn width="100em" min-height="8em" class="button" outlined @click.stop="dialoglogout = true">Logout</v-btn>
+                    <v-btn width="100em" height="8em" class="button" outlined @click.stop="dialogNotifications = true">
+                        Notification
+                    </v-btn>
+
+                </div>
+            </v-col>
+            <v-col class="text-center" sm="3">
+                <div class="my-2">
+                    <v-btn width="100em" min-height="8em" class="button" outlined @click.stop="dialogPosts = true">My
+                        Posts
+                    </v-btn>
+                </div>
+                <br>
+                <div class="my-2">
+                    <v-btn width="100em" min-height="8em" class="button" outlined @click.stop="dialogIdea = true">Submit
+                        an
+                        Idea
+                    </v-btn>
+                </div>
+            </v-col>
+            <v-col class="text-center" sm="3">
+                <div class="my-2">
+                    <v-btn width="100em" min-height="8em" class="button" outlined @click.stop="dialogStats = true">
+                        Statistics
+                    </v-btn>
+                </div>
+                <br>
+                <div class="my-2">
+                    <v-btn width="100em" min-height="8em" class="button" outlined @click.stop="dialogReports = true">My
+                        Reports
+                    </v-btn>
+                </div>
+            </v-col>
+            <v-col class="text-center" sm="3">
+                <div class="my-2">
+                    <v-btn width="100em" min-height="8em" class="button" outlined @click.stop="dialogAbo = true">
+                        Abo`s/Friends
+                    </v-btn>
+                </div>
+                <br>
+                <div class="my-2">
+                    <v-btn width="100em" min-height="8em" class="button" outlined @click.stop="dialoglogout = true">
+                        Logout
+                    </v-btn>
                 </div>
 
                 <v-dialog v-model="dialogProfile" max-width="400">
@@ -67,7 +92,7 @@
                             </v-card-title>
 
                             <v-card-subtitle>
-                               Amateur - 0 erstellte Beiträge
+                                Amateur - 0 erstellte Beiträge
                             </v-card-subtitle>
                         </v-card>
                     </v-card>
@@ -93,23 +118,23 @@
                     </v-card>
                 </v-dialog>
                 <v-dialog v-model="dialogAbo" max-width="260">
-                <v-card>
-                    <v-card
+                    <v-card>
+                        <v-card
 
-                            class="mx-auto"
-                            max-width="260"
-                            color="#8F94A6"
-                    >
-
-
-                        <v-card-title>
-                            You currently have no Abo/Friends
-                        </v-card-title>
+                                class="mx-auto"
+                                max-width="260"
+                                color="#8F94A6"
+                        >
 
 
+                            <v-card-title>
+                                You currently have no Abo/Friends
+                            </v-card-title>
+
+
+                        </v-card>
                     </v-card>
-                </v-card>
-            </v-dialog>
+                </v-dialog>
                 <v-dialog v-model="dialogNotifications" max-width="400">
                     <v-card>
                         <v-card
@@ -148,10 +173,7 @@
                 </v-dialog>
 
 
-
-
-
-                <v-dialog v-model="dialogIdea" max-width="500" >
+                <v-dialog v-model="dialogIdea" max-width="500">
                     <v-card color="#8F94A6">
                         <v-card
 
@@ -166,14 +188,15 @@
                                 Submit your Idea
                             </v-card-title>
 
-                            <v-col cols="12" >
-                            <v-text-field solo flat filled   label="Titel"   required ></v-text-field>
+                            <v-col cols="12">
+                                <v-text-field solo flat filled label="Titel" required></v-text-field>
                             </v-col>
-                            <v-col cols="12" >
-                            <v-textarea solo flat filled   color="#D9A566" label="type here"  > type here</v-textarea>
+                            <v-col cols="12">
+                                <v-textarea solo flat filled color="#D9A566" label="type here"> type here</v-textarea>
                             </v-col>
-                            <v-col cols="12" >
-                            <v-btn solo depressed flat @click="dialogIdea=false"  type="submit" color="#D9A566">Send </v-btn>
+                            <v-col cols="12">
+                                <v-btn solo depressed flat @click="dialogIdea=false" type="submit" color="#D9A566">Send
+                                </v-btn>
                             </v-col>
 
                         </v-card>
@@ -181,11 +204,7 @@
                 </v-dialog>
 
 
-
-
-
-
-                <v-dialog v-model="dialogReports" max-width="260" >
+                <v-dialog v-model="dialogReports" max-width="260">
                     <v-card>
                         <v-card
 
@@ -235,87 +254,86 @@
                             >
                                 mdi-clock
                             </v-icon>
-                            <span class="caption-black" >last registered like 2 Days ago</span>
+                            <span class="caption-black">last registered like 2 Days ago</span>
                         </v-card-text>
                     </v-card>
                 </v-dialog>
 
-    </v-col>
+            </v-col>
 
-    </v-row>
-  </v-parallax>
-  </body>
+        </v-row>
+    </div>
+    </body>
 </template>
 
 <script>
-export default {
-  // gebt jeder Page einen eigenen Namen
-  name: 'profil',
+    export default {
+        // gebt jeder Page einen eigenen Namen
+        name: 'profil',
 
-  // benötigte Komponenten
-  components: {},
+        // benötigte Komponenten
+        components: {},
 
-  // entspricht den HTML-Attributen
-  props: {},
-
-
-
-  // Variablen-Speicher
-    data: () => ({
-        dialoglogout: false,
-        dialogAbo: false,
-        dialogReports: false,
-        dialogStats: false,
-        dialogIdea: false,
-        dialogNotifications: false,
-        dialogPosts: false,
-        dialogProfile: false,
-        labels: [
-            '1.5',
-            '1.6',
-            '1.7',
-            '1.8',
-            '1.9',
-            '1.10',
-            '1.11',
-            '1.12',
-        ],
-        value: [
-            200,
-            250,
-            260,
-            300,
-            310,
-            315,
-            360,
-            400,
-        ],
-    }),
+        // entspricht den HTML-Attributen
+        props: {},
 
 
-  // reagieren auf prop-Veränderung
-  watch: {},
+        // Variablen-Speicher
+        data: () => ({
+            dialoglogout: false,
+            dialogAbo: false,
+            dialogReports: false,
+            dialogStats: false,
+            dialogIdea: false,
+            dialogNotifications: false,
+            dialogPosts: false,
+            dialogProfile: false,
+            labels: [
+                '1.5',
+                '1.6',
+                '1.7',
+                '1.8',
+                '1.9',
+                '1.10',
+                '1.11',
+                '1.12',
+            ],
+            value: [
+                200,
+                250,
+                260,
+                300,
+                310,
+                315,
+                360,
+                400,
+            ],
+        }),
 
-  // interne Methoden
-  methods: [],
+
+        // reagieren auf prop-Veränderung
+        watch: {},
+
+        // interne Methoden
+        methods: [],
 
 
-
-
-
-  // Initialisierung
-  created() {}
-}
+        // Initialisierung
+        created() {
+        }
+    }
 </script>
 
 <style scoped>
-    .oceanbackground{
+    .oceanbackground {
         width: 100%;
         height: 100%;
         position: absolute;
     }
-    .img-circle{
+
+    .img-circle {
         border-radius: 50%;
     }
-/* CSS für diese Seite hier einfügen */
+
+    /* CSS für diese Seite hier einfügen */
 </style>

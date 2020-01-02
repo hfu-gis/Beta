@@ -41,5 +41,5 @@ export default new VueRouter({
             path: '/homepage',
             component: homepage
         }
-        ]
+    ]
 })
