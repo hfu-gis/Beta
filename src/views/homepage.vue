@@ -1,10 +1,10 @@
 <template>
     <div>
-    <div class="body-1" id="cloud">
-        <br>
-        <wordcloud :data="defaultWords" nameKey="name" valueKey="value" :color="myColors" :showTooltip="true" :wordClick="wordClickHandler">
-        </wordcloud>
-    </div>
+        <!--<div class="body-1" id="cloud">
+            <wordcloud :data="defaultWords" nameKey="name" valueKey="value" :color="myColors" :showTooltip="true" :wordClick="wordClickHandler">
+            </wordcloud>
+            https://www.npmjs.com/package/vue-wordcloud
+        </div>-->
         <!--Liste-->
         <!--
          <div>
@@ -56,8 +56,8 @@
                </v-card>
            </v-app>
        </div>-->
-            <br>
-            <br>
+        <br>
+        <br>
         <!--V-Cards-->
         <!-- <div>
             <v-app id="inspire">
@@ -98,26 +98,53 @@
                 </v-card>
             </v-app>
         </div>-->
+
+        <div style="height: 100%; width: 100%;">
+            <vue-word-cloud
+                    style="position:fixed; width: 80%; height: 70%; margin-left: 10%; margin-top: 2%;"
+                    :words="words"
+                    :rotation="0"
+                    :color="([, weight]) => weight > 17 ? '#132B40' : weight > 8 ? '#D9A566' : 'Indigo'"
+                    font-family="Bebas Neue"
+                    :font-size-ratio="6"
+                    animation-easing="ease"
+                    :spacing="0.3"
+            >
+                <template slot-scope="{text, weight, word}">
+                    <div :title="weight" style="cursor: pointer;" @click="onWordClick(word)">
+                        {{ text }}
+                    </div>
+                </template>
+            </vue-word-cloud>
+        </div>
+
+
     </div>
 </template>
 
 <script>
 
-    import wordcloud from 'vue-wordcloud'
+    //import wordcloud from 'vue-wordcloud'
     import Registration from "./registration";
+    import VueWordCloud from 'vuewordcloud';
 
     export default {
         name: "homepage",
         components: {
             Registration,
-            wordcloud
+            //wordcloud,
+            [VueWordCloud.name]: VueWordCloud,
         },
         methods: {
-            wordClickHandler(name, value, vm) {
+            /*wordClickHandler(name, value, vm) {
                 console.log('wordClickHandler', name, value, vm);
                 //location = 'https://google.com';
                 path = '/postinglist';
-            }
+            },*/
+            onWordClick: function (word) {
+                this.snackbarVisible = true;
+                this.snackbarText = word[0];
+            },
         },
 
         data() {
@@ -141,7 +168,12 @@
                     { title: 'fusee',  hashtag: '#CSharp', text: 'text4', flex: 12 },
 
                 ],*/
+                words: [['romance', 2], ['fantasy', 8], ['romance', 2], ['fantasy', 8], ['Camera', 13], ['fantasy', 28], ['adventure', 3], ['horror', 13], ['horror', 13], ['fantasy', 18], ['adventure', 6], ['Spotify', 13], ['Witcher', 12], ['Minecraft', 8], ['fantasy', 8], ['horror', 23], ['adventure', 13], ['fantasy', 4], ['adventure', 3], ['adventure', 3], ['C#', 2], ['Java', 12], ['Eclipse', 13]],
+                snackbarText: '',
+                snackbarVisible: false,
 
+                //Alte WordCloud
+                /*
                 rotate: {from: 0, to: 0, numOfOrientation: 0},
                 spiral: 'rectangular',
                 showTooltip: false,
@@ -167,725 +199,8 @@
                         "name": "two",
                         "value": 15
                     },
-                    {
-                        "name": "fun",
-                        "value": 9
-                    },
-                    {
-                        "name": "know",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 34
-                    },
-                    {
-                        "name": "good",
-                        "value": 22
-                    },
-                    {
-                        "name": "good",
-                        "value": 14
-                    },
-                    {
-                        "name": "play",
-                        "value": 33
-                    },
-                    {
-                        "name": "fish",
-                        "value": 19
-                    },
-                    {
-                        "name": "things",
-                        "value": 18,
-
-                    },
-                    {
-                        "name": "look",
-                        "value": 16
-                    },
-                    {
-                        "name": "two",
-                        "value": 15
-                    },
-                    {
-                        "name": "fun",
-                        "value": 9
-                    },
-                    {
-                        "name": "know",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 34
-                    },
-                    {
-                        "name": "good",
-                        "value": 22
-                    },
-                    {
-                        "name": "good",
-                        "value": 14
-                    },
-                    {
-                        "name": "play",
-                        "value": 33
-                    },
-                    {
-                        "name": "fish",
-                        "value": 19
-                    },
-                    {
-                        "name": "things",
-                        "value": 18,
-
-                    },
-                    {
-                        "name": "look",
-                        "value": 16
-                    },
-                    {
-                        "name": "two",
-                        "value": 15
-                    },
-                    {
-                        "name": "fun",
-                        "value": 9
-                    },
-                    {
-                        "name": "know",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 34
-                    },
-                    {
-                        "name": "good",
-                        "value": 22
-                    },
-                    {
-                        "name": "good",
-                        "value": 14
-                    },
-                    {
-                        "name": "play",
-                        "value": 33
-                    },
-                    {
-                        "name": "fish",
-                        "value": 19
-                    },
-                    {
-                        "name": "things",
-                        "value": 18,
-
-                    },
-                    {
-                        "name": "look",
-                        "value": 16
-                    },
-                    {
-                        "name": "two",
-                        "value": 15
-                    },
-                    {
-                        "name": "fun",
-                        "value": 9
-                    },
-                    {
-                        "name": "know",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 34
-                    },
-                    {
-                        "name": "good",
-                        "value": 22
-                    },
-                    {
-                        "name": "good",
-                        "value": 14
-                    },
-                    {
-                        "name": "play",
-                        "value": 33
-                    },
-                    {
-                        "name": "fish",
-                        "value": 19
-                    },
-                    {
-                        "name": "things",
-                        "value": 18,
-
-                    },
-                    {
-                        "name": "look",
-                        "value": 16
-                    },
-                    {
-                        "name": "two",
-                        "value": 15
-                    },
-                    {
-                        "name": "fun",
-                        "value": 9
-                    },
-                    {
-                        "name": "know",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 34
-                    },
-                    {
-                        "name": "good",
-                        "value": 22
-                    },
-                    {
-                        "name": "good",
-                        "value": 14
-                    },
-                    {
-                        "name": "play",
-                        "value": 33
-                    },
-                    {
-                        "name": "fish",
-                        "value": 19
-                    },
-                    {
-                        "name": "things",
-                        "value": 18,
-
-                    },
-                    {
-                        "name": "look",
-                        "value": 16
-                    },
-                    {
-                        "name": "two",
-                        "value": 15
-                    },
-                    {
-                        "name": "fun",
-                        "value": 9
-                    },
-                    {
-                        "name": "know",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 34
-                    },
-                    {
-                        "name": "good",
-                        "value": 22
-                    },
-                    {
-                        "name": "good",
-                        "value": 14
-                    },
-                    {
-                        "name": "play",
-                        "value": 33
-                    },
-                    {
-                        "name": "fish",
-                        "value": 19
-                    },
-                    {
-                        "name": "things",
-                        "value": 18,
-
-                    },
-                    {
-                        "name": "look",
-                        "value": 16
-                    },
-                    {
-                        "name": "two",
-                        "value": 15
-                    },
-                    {
-                        "name": "fun",
-                        "value": 9
-                    },
-                    {
-                        "name": "know",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 34
-                    },
-                    {
-                        "name": "good",
-                        "value": 22
-                    },
-                    {
-                        "name": "good",
-                        "value": 14
-                    },
-                    {
-                        "name": "play",
-                        "value": 33
-                    },
-                    {
-                        "name": "fish",
-                        "value": 19
-                    },
-                    {
-                        "name": "things",
-                        "value": 18,
-
-                    },
-                    {
-                        "name": "look",
-                        "value": 16
-                    },
-                    {
-                        "name": "two",
-                        "value": 15
-                    },
-                    {
-                        "name": "fun",
-                        "value": 9
-                    },
-                    {
-                        "name": "know",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 34
-                    },
-                    {
-                        "name": "good",
-                        "value": 22
-                    },
-                    {
-                        "name": "good",
-                        "value": 14
-                    },
-                    {
-                        "name": "play",
-                        "value": 33
-                    },
-                    {
-                        "name": "fish",
-                        "value": 19
-                    },
-                    {
-                        "name": "things",
-                        "value": 18,
-
-                    },
-                    {
-                        "name": "look",
-                        "value": 16
-                    },
-                    {
-                        "name": "two",
-                        "value": 15
-                    },
-                    {
-                        "name": "fun",
-                        "value": 9
-                    },
-                    {
-                        "name": "know",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 34
-                    },
-                    {
-                        "name": "good",
-                        "value": 22
-                    },
-                    {
-                        "name": "good",
-                        "value": 14
-                    },
-                    {
-                        "name": "play",
-                        "value": 33
-                    },
-                    {
-                        "name": "fish",
-                        "value": 19
-                    },
-                    {
-                        "name": "things",
-                        "value": 18,
-
-                    },
-                    {
-                        "name": "look",
-                        "value": 16
-                    },
-                    {
-                        "name": "two",
-                        "value": 15
-                    },
-                    {
-                        "name": "fun",
-                        "value": 9
-                    },
-                    {
-                        "name": "know",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 34
-                    },
-                    {
-                        "name": "good",
-                        "value": 22
-                    },
-                    {
-                        "name": "good",
-                        "value": 14
-                    },
-                    {
-                        "name": "play",
-                        "value": 33
-                    },
-                    {
-                        "name": "fish",
-                        "value": 19
-                    },
-                    {
-                        "name": "things",
-                        "value": 18,
-
-                    },
-                    {
-                        "name": "look",
-                        "value": 16
-                    },
-                    {
-                        "name": "two",
-                        "value": 15
-                    },
-                    {
-                        "name": "fun",
-                        "value": 9
-                    },
-                    {
-                        "name": "know",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 34
-                    },
-                    {
-                        "name": "good",
-                        "value": 22
-                    },
-                    {
-                        "name": "good",
-                        "value": 14
-                    },
-                    {
-                        "name": "play",
-                        "value": 33
-                    },
-                    {
-                        "name": "fish",
-                        "value": 19
-                    },
-                    {
-                        "name": "things",
-                        "value": 18,
-
-                    },
-                    {
-                        "name": "look",
-                        "value": 16
-                    },
-                    {
-                        "name": "two",
-                        "value": 15
-                    },
-                    {
-                        "name": "fun",
-                        "value": 9
-                    },
-                    {
-                        "name": "know",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 34
-                    },
-                    {
-                        "name": "good",
-                        "value": 22
-                    },
-                    {
-                        "name": "good",
-                        "value": 14
-                    },
-                    {
-                        "name": "play",
-                        "value": 33
-                    },
-                    {
-                        "name": "fish",
-                        "value": 19
-                    },
-                    {
-                        "name": "things",
-                        "value": 18,
-
-                    },
-                    {
-                        "name": "look",
-                        "value": 16
-                    },
-                    {
-                        "name": "two",
-                        "value": 15
-                    },
-                    {
-                        "name": "fun",
-                        "value": 9
-                    },
-                    {
-                        "name": "know",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 34
-                    },
-                    {
-                        "name": "good",
-                        "value": 22
-                    },
-                    {
-                        "name": "good",
-                        "value": 14
-                    },
-                    {
-                        "name": "play",
-                        "value": 33
-                    },
-                    {
-                        "name": "fish",
-                        "value": 19
-                    },
-                    {
-                        "name": "things",
-                        "value": 18,
-
-                    },
-                    {
-                        "name": "look",
-                        "value": 16
-                    },
-                    {
-                        "name": "two",
-                        "value": 15
-                    },
-                    {
-                        "name": "fun",
-                        "value": 9
-                    },
-                    {
-                        "name": "know",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 34
-                    },
-                    {
-                        "name": "good",
-                        "value": 22
-                    },
-                    {
-                        "name": "good",
-                        "value": 14
-                    },
-                    {
-                        "name": "play",
-                        "value": 33
-                    },
-                    {
-                        "name": "fish",
-                        "value": 19
-                    },
-                    {
-                        "name": "things",
-                        "value": 18,
-
-                    },
-                    {
-                        "name": "look",
-                        "value": 16
-                    },
-                    {
-                        "name": "two",
-                        "value": 15
-                    },
-                    {
-                        "name": "fun",
-                        "value": 9
-                    },
-                    {
-                        "name": "know",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 9
-                    },
-                    {
-                        "name": "good",
-                        "value": 34
-                    },
-                    {
-                        "name": "good",
-                        "value": 22
-                    },
-                    {
-                        "name": "good",
-                        "value": 14
-                    },
-                    {
-                        "name": "play",
-                        "value": 33
-                    }
                 ]
+                */
             }
         }
     }
