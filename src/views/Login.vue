@@ -1,41 +1,41 @@
 <template>
     <html>
- <head>Login
-    <meta charset="UTF-8">
-<title> Transparent Login Form </title>
-</head>
+    <head>Login
+        <meta charset="UTF-8">
+        <title> Transparent Login Form </title>
+    </head>
 
-<body>
-<v-parallax src="../../img/Background/ocean.jpg" class="oceanbackground" width="width" height="100%">
-
-    <v-container>
-    <v-layout>
-        <v-row justify="center" align="center">
-            <v-flex xs12  xs5 offset-md12)>
-            <v-card-text>
-                <v-form class="px-3">
-                    <div id="login">
-                        <header><h1><strong> Login </strong></h1></header><br>
-                        <v-form ref="form" v-model="valid">
-                                 <v-text-field label="E-mail" v-model="userdata.txtemail" required></v-text-field>
-                                 <v-text-field label="Password"  type="password"  v-model="userdata.txtpassword"></v-text-field>
-                            <v-row no-gutters>
-                                 <v-btn color="#D9A566" @click="auth">Sign up</v-btn><registration/><v-spacer/>
-                            </v-row>
+    <body>
+    <v-container style="margin-top: 250px;">
+        <v-layout>
+            <v-row justify="center" align="center">
+                <v-flex xs12 xs5 offset-md12)>
+                    <v-card-text>
+                        <v-form class="px-3">
+                            <div id="login">
+                                <header><h1><strong> Login </strong></h1></header>
+                                <br>
+                                <v-form ref="form" v-model="valid">
+                                    <v-text-field label="E-mail" v-model="userdata.txtemail" required></v-text-field>
+                                    <v-text-field label="Password" type="password"
+                                                  v-model="userdata.txtpassword"></v-text-field>
+                                    <v-row no-gutters>
+                                        <v-btn color="#D9A566" @click="auth">Sign up</v-btn>
+                                        <registration/>
+                                        <v-spacer/>
+                                        <v-spacer/>
+                                    </v-row>
+                                </v-form>
+                            </div>
                         </v-form>
-                    </div>
-                </v-form><br>
-                 </v-card-text>
-              </v-flex>
-           </v-row>
+                        <br>
+                    </v-card-text>
+                </v-flex>
+            </v-row>
         </v-layout>
-
-</v-container>
-
-</v-parallax>
-
-</body>
-</html>
+    </v-container>
+    </body>
+    </html>
 </template>
 
 
@@ -44,7 +44,6 @@
 
     import registration from "./registration";
     import db from '../db'
-
 
 
     export default {
@@ -56,32 +55,30 @@
 
             valid: true,
             success: false,
-            userdata:{
-                txtemail:'testpersonFuwa@gmail.com',
-                txtpassword:'furtwangen'
+            userdata: {
+                txtemail: 'testpersonFuwa@gmail.com',
+                txtpassword: 'furtwangen'
 
             }
-
 
 
         }),
 
 
-
-    methods: {
+        methods: {
 
             auth() {
                 db
-                .auth().signInWithEmailAndPassword(this.userdata.txtemail,this.userdata.txtpassword).then( () => {
+                    .auth().signInWithEmailAndPassword(this.userdata.txtemail, this.userdata.txtpassword).then(() => {
 
                     //bei erfolg
                     this.$router.push('/postinglist')
-                } )
-                }
+                })
+            }
 
         },
-          created() {
-                      }
+        created() {
+        }
     }
 
 
@@ -89,18 +86,20 @@
 
 <style scoped>
 
-    .oceanbackground{
+    .oceanbackground {
         width: 100%;
         height: 100%;
         position: absolute;
 
     }
-    @font-face { font-family: 'Standard-Font';
+
+    @font-face {
+        font-family: 'Standard-Font';
         src: local('HWYGCOND.tff'),
         url('../../fonts/highway_gothic/HWYGNRRW.TTF') format('truetype');
     }
 
-    h1{
+    h1 {
         font-family: Standard-Font;
         font-size: 3em;
     }
@@ -113,23 +112,22 @@
     }
 
     a {
-        color:#fff;
+        color: #fff;
         font-weight: bolder;
     }
+
     a:visited {
-        color:#fff;
+        color: #fff;
     }
 
-       input[type="text"], input[type="password"] {
+    input[type="text"], input[type="password"] {
         width: 300px;
         height: 50px;
         font-size: 18px;
         margin-bottom: 20px;
-        padding-left:5px;
+        padding-left: 5px;
 
     }
-
-
 
 
 </style>
