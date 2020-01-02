@@ -307,9 +307,22 @@
                 </v-dialog>-->
 
                 <router-view/>
+
             </div>
         </v-content>
 
+        <v-footer
+                fixed
+                class="font-weight-medium"
+                color="#D9A566"
+        >
+            <v-col
+                    class="text-center"
+                    cols="12"
+            >
+                {{ new Date().getFullYear() }} — <strong> HFU Beta</strong>
+            </v-col>
+        </v-footer>
 
     </v-app>
 </template>
@@ -325,11 +338,6 @@
 
 
     export default {
-
-
-
-
-
 
         // gebt jeder Page einen eigenen Namen
         name: 'LayoutsDemosBaselineFlipped',
@@ -389,19 +397,33 @@
 
         // Initialisierung
         created() {
-            this.$router.push({name: 'homepage'})
+            this.$router.push({path: '/homepage'})
         }
     }
 </script>
 
 <style>
     {
-        primary: '#1976D2';
+        /*primary: '#1976D2';
         secondary: '#424242';
         accent: '#D9A566';
         error: '#FF5252';
         info: '#2196F3';
         success: '#4CAF50';
+        warning: '#FFC107';*/
+
+        --main-color1: #BF4974;
+        --main-color2: #8C3F63;
+        --main-color3: #8F94A6;
+        --main-color4: #132B40;
+        --main-color5: #D9A566;
+
+        primary: '#132B40';
+        secondary: '#8F94A6';
+        accent: '#D9A566';
+        error: '#FF5252';
+        info: ' #8C3F63';
+        success: '#BF4974';
         warning: '#FFC107';
     }
 
