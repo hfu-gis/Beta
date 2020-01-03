@@ -104,12 +104,12 @@
             <vue-word-cloud
                     style="position:fixed; width: 80%; height: 70%; margin-left: 10%; margin-top: 2%; text-transform: uppercase;"
                     :words="words"
-                    :rotation="0"
+                    :rotation="1"
                     :color="([, weight]) => weight > 17 ? '#132B40' : weight > 8 ? '#D9A566' : 'Indigo'"
                     font-family="Anton"
                     :font-size-ratio="5"
                     animation-easing="ease"
-                    :spacing="0.8"
+                    :spacing="0.7"
             >
                 <template slot-scope="{text, weight, word}">
                     <div :title="weight" style="cursor: pointer;" @click="onWordClick(word)">
@@ -169,7 +169,7 @@
                     { title: 'fusee',  hashtag: '#CSharp', text: 'text4', flex: 12 },
 
                 ],*/
-                words: [['romance', 2], ['fantasy', 8], ['romance', 2], ['fantasy', 8], ['Camera', 13], ['fantasy', 28], ['adventure', 3], ['horror', 13], ['horror', 13], ['fantasy', 18], ['adventure', 6], ['Spotify', 13], ['Witcher', 12], ['Minecraft', 8], ['fantasy', 8], ['horror', 23], ['adventure', 13], ['fantasy', 4], ['adventure', 3], ['adventure', 3], ['C#', 2], ['Java', 12], ['Eclipse', 13]],
+                words: [['romance', 2], ['fantasy', 8], ['romance', 2], ['fantasy', 8], ['Camera', 13], ['fantasy', 28], ['adventure', 3], ['horror', 13], ['horror', 13], ['adventure', 6], ['Spotify', 13], ['Witcher', 12], ['Minecraft', 8], ['fantasy', 8], ['horror', 23], ['adventure', 13], ['fantasy', 4], ['adventure', 3], ['adventure', 3], ['C#', 2], ['Java', 12], ['Eclipse', 13]],
                 snackbarText: '',
                 snackbarVisible: false,
 
