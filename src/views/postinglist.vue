@@ -1,16 +1,54 @@
 <template>
     <div class="body-1">
             <v-toolbar dense color="#8C3F63">
-                <v-container fluid>
+                <!--<v-container fluid>
                     <v-row>
-                        <v-btn text color="white">#Sucheingabe</v-btn>
-                        <v-btn text color="white" height="35" width="35" @click.stop="dialog1 = true">+</v-btn>
+                            <v-chip
+                                    close
+                                    v-for="(keyword, i) in hashtags"
+                                    :key="i"
+                                    class="ma-1"
+                                    @click:close="hashtags[i] = false"
+                            >
+                                {{ keyword }}
+                            </v-chip>
+
+                        <v-chip class="ma-1" height="35" width="35">+</v-chip>
+
+                        <v-chip class="ma-1" close close-icon="mdi-check")>
+                            <v-text-field
+                                    style="margin: auto"
+                            ></v-text-field>
+                        </v-chip>
 
                     </v-row>
+                </v-container>-->
+
+                <v-container fluid style="margin-top: 30px; height: 100px;">
+                    <v-layout wrap>
+                        <v-flex xs12>
+                            <v-combobox multiple
+                                        v-model="select"
+                                        append-icon
+                                        chips
+
+                                        deletable-chips
+                                        class="tag-input"
+                                        :search-input.sync="search"
+                                        @keyup.tab="updateTags"
+                                        @paste="updateTags">
+                            </v-combobox>
+                        </v-flex>
+
+                        <v-chip close v-for="tag in select"
+                                color="success"
+                                text-color="white">
+                                <v-icon left>label</v-icon>{{tag}}
+                        </v-chip>
+                    </v-layout>
                 </v-container>
 
-                <v-spacer></v-spacer>
-
+                <!--FILTER-->
                 <v-menu offset-y>
                     <template v-slot:activator="{ on }">
                         <v-btn
@@ -128,6 +166,7 @@
         // Variablen-Speicher
         data: () => ({
             thread: false,
+
             items: [
                 {
                     color: '#8F94A6',
@@ -174,7 +213,16 @@
         watch: {},
 
         // interne Methoden
-        methods: [],
+        methods: {
+            updateTags() {
+                this.$nextTick(() => {
+                    this.select.push(...this.search.split(","));
+                    this.$nextTick(() => {
+                        this.search = "";
+                    });
+                });
+            }
+        },
 
         // Initialisierung
         created() {
@@ -187,4 +235,5 @@
     .img-circle {
         border-radius: 5%;
     }
+
 </style>

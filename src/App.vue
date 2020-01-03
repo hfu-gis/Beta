@@ -65,15 +65,6 @@
                     </v-list-item-content>
                 </v-list-item>
 
-                <v-list-item link :to="{ path: '/test'}">
-                    <v-list-item-action>
-                        <v-icon color="#D9A566">mdi-account</v-icon>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <v-list-item-title class="accent--text">TEST</v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
-
                 <v-list-item v-slot:activator="{ on }" color="primary" dark v-on="on">Open Dialog>
                     <v-list-item-action>
                         <v-icon mdi-eye></v-icon>

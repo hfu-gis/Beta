@@ -8,7 +8,6 @@ import registration from "../views/registration";
 import homepage from "../views/homepage";
 import App from "../App";
 import profilesettings from "../views/profilesettings";
-import test from "../views/test";
 
 Vue.use(VueRouter);
 
@@ -42,10 +41,6 @@ export default new VueRouter({
         {
             path: '/homepage',
             component: homepage
-        },
-        {
-            path: '/test',
-            component: test
         }
     ]
 })
