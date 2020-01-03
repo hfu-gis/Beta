@@ -1,4 +1,10 @@
 # Beta
-Team Beta: Ladet hier euren Code hoch
+"You need a bit of advice? Just ask!"
 
-Ey, Ey, Sir! ;)
+BitOfAdvice wird eine Forenseite für technische Fragen.
+
+Eine vereinfachte und innovative Vorgehensweise wird zu schnellen Suchergebnissen führen.
+Geplant sind Kommentar-/ Votefunktionen und verschiedenste Profileigenschaften, die das Leben in der Forenwelt
+vereinfachen sollen.
+
+Stay tuned! ;-)
