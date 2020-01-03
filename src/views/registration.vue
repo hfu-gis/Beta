@@ -16,7 +16,7 @@
                         </v-row>
                     </v-card-title>
                     <v-divider/>
-                    <v-card-text style="background: #ffeac4;">
+                    <v-card-text style="background: linear-gradient(to right, #f9f5ef, #ffd6a6);">
                         <v-container>
                             <v-row>
 
@@ -155,6 +155,9 @@
             create() {
                 let docRef = db.collection("Users").doc(this.user.userName)
                 docRef.set(this.user)
+
+                //TODO Fehlermeldungn Catchen!!!
+                this.registration = false
             }
         },
 
