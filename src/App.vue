@@ -47,7 +47,7 @@
                     </v-list-item-content>
                 </v-list-item>
 
-                <v-list-item link :to="{ path: '/views/Profilesettings'}">
+                <v-list-item link :to="{ path: '/profilesettings.json'}">
                     <v-list-item-action>
                         <v-icon color="#D9A566">mdi-sort</v-icon>
                     </v-list-item-action>
@@ -80,9 +80,8 @@
         <v-app-bar app color="#132B40" right dark>
 
             <a :to="{ path: '/homepage'}">
-                <v-btn :to="{ path: '/homepage'}" text height="60" width="150" color="#132B40"><img contain
-                                                                                                    src="../img/Logos/BitOfAdvice_logo_2.png"
-                                                                                                    height="50"/>
+                <v-btn :to="{ path: '/homepage'}" text height="60" width="150" color="#132B40">
+                    <img contain src="../img/Logos/BitOfAdvice_logo_2.png" height="50"/>
                 </v-btn>
             </a>
 
@@ -93,8 +92,9 @@
             <v-btn icon class="mx-10" color="#D9A566">
                 <v-icon>mdi-magnify</v-icon>
             </v-btn>
-            <v-app-bar-nav-icon color="#D9A566" @click.stop="drawer = !drawer"/>
 
+
+                <v-app-bar-nav-icon color="#D9A566" @click.stop="drawer = !drawer"/>
             <!--
             <div id="searchbox">
              <v-text-field filled rounded dense label="search" id="txtsearch"> </v-text-field>
@@ -366,6 +366,12 @@
         // entspricht den HTML-Attributen
         props: {
             source: String,
+        },
+
+        data(){
+            return{
+
+            }
         },
 
         // Variablen-Speicher

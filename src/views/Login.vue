@@ -71,7 +71,7 @@
                 db
                     .auth().signInWithEmailAndPassword(this.userdata.txtemail, this.userdata.txtpassword).then(() => {
 
-                    //bei erfolg
+                    //bei Erfolg
                     this.$router.push('/postinglist')
                 })
             }

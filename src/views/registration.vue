@@ -95,7 +95,6 @@
         // interne Methoden
         methods: {
             onSignup() {
-
                 console.log({email: this.email, password: this.password, confirmpassword: this.confirmpassword})
             }
 

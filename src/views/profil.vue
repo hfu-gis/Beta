@@ -21,7 +21,6 @@
 
             <v-col class="text-center" cols="12" sm="3">
                 <div class="my-2">
-
                     <v-btn width="100em" height="8em" class="button md5" outlined @click.stop="dialogProfile = true">
                         Profile
                     </v-btn>
