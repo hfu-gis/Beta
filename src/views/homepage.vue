@@ -1,5 +1,6 @@
 <template>
     <div>
+        <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
         <!--<div class="body-1" id="cloud">
             <wordcloud :data="defaultWords" nameKey="name" valueKey="value" :color="myColors" :showTooltip="true" :wordClick="wordClickHandler">
             </wordcloud>
@@ -101,14 +102,14 @@
 
         <div style="height: 100%; width: 100%;">
             <vue-word-cloud
-                    style="position:fixed; width: 80%; height: 70%; margin-left: 10%; margin-top: 2%;"
+                    style="position:fixed; width: 80%; height: 70%; margin-left: 10%; margin-top: 2%; text-transform: uppercase;"
                     :words="words"
                     :rotation="0"
                     :color="([, weight]) => weight > 17 ? '#132B40' : weight > 8 ? '#D9A566' : 'Indigo'"
-                    font-family="Bebas Neue"
-                    :font-size-ratio="6"
+                    font-family="Anton"
+                    :font-size-ratio="5"
                     animation-easing="ease"
-                    :spacing="0.3"
+                    :spacing="0.8"
             >
                 <template slot-scope="{text, weight, word}">
                     <div :title="weight" style="cursor: pointer;" @click="onWordClick(word)">
@@ -208,5 +209,4 @@
 
 
 <style scoped>
-
 </style>
