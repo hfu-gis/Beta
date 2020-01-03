@@ -7,7 +7,7 @@
                 <v-btn solo depressed text v-on="on" color="#D9A566">Register</v-btn>
             </template>
             <v-card>
-                <v-form ref="form" v-model="valid" @submit.prevent="onSignup" style="background: #162a3b">
+                <v-form ref="form" v-model="valid" style="background: #162a3b">
                     <br>
                     <v-card-title>
                         <v-row justify="center">
@@ -21,30 +21,78 @@
                             <v-row>
 
                                 <v-col cols="12">
-                                    <v-text-field solo flat filled name="username" label="User Name*" id="username"
-                                                  v-model="username" required></v-text-field>
+                                    <v-text-field required name="username" label="User Name*" id="username"
+                                                  v-model="user.userName" required></v-text-field>
                                 </v-col>
+                                <v-container>
+                                    <v-row>
+                                        <v-col
+                                                cols="12"
+                                                md="6"
+                                        >
+                                            <v-text-field
+                                                    v-model="user.first"
+                                                    :rules="nameRules"
+                                                    :counter="10"
+                                                    label="First Name*"
+                                                    required
+                                            />
+                                        </v-col>
+
+                                        <v-col
+                                                cols="12"
+                                                md="6"
+                                        >
+                                            <v-text-field
+                                                    v-model="user.last"
+                                                    :rules="nameRules"
+                                                    :counter="10"
+                                                    label="Last Name*"
+                                                    required
+                                            />
+                                        </v-col>
+                                    </v-row>
+                                </v-container>
                                 <v-col cols="12">
-                                    <v-text-field solo flat filled name="email" v-model="email" type="email"
-                                                  label="E-mail*" id="email" required></v-text-field>
+                                    <v-text-field
+                                            required
+                                            name="email"
+                                            v-model="user.email"
+                                            type="email"
+                                            label="E-Mail*"
+                                            id="email"
+                                            :rules="emailRules"
+                                    />
                                 </v-col>
-                                <v-col cols="12">
-                                    <v-text-field filled solo flat name="password" v-model="password" label="Password*"
-                                                  type="password" id="password" required></v-text-field>
-                                </v-col>
-                                <v-col cols="12">
-                                    <v-text-field filled solo flat name="confirmpassword" v-model="confirmpassword"
-                                                  type="password" label="Confirm Password*" id="confirmpassword"
-                                                  :rules="[comparepassword]"></v-text-field>
-                                </v-col>
+                                <v-container>
+                                    <v-row>
+                                        <v-col
+                                                cols="12"
+                                                md="6"
+                                        >
+                                            <v-text-field required name="password" v-model="user.password"
+                                                          label="Password*"
+                                                          type="password" id="password" required></v-text-field>
+                                        </v-col>
+
+                                        <v-col
+                                                cols="12"
+                                                md="6"
+                                        >
+                                            <v-text-field required name="confirmpassword" v-model="confirmpassword"
+                                                          type="password" label="Confirm Password*" id="confirmpassword"
+                                                          :rules="[comparepassword]"></v-text-field>
+                                        </v-col>
+                                    </v-row>
+                                </v-container>
                             </v-row>
                         </v-container>
                         <small style="color: #132B40">*indicates required field</small>
                     </v-card-text>
                     <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn text type="submit" @click="registration = false" color="#D9A566">Close</v-btn>
-                        <v-btn text @click="validate" color="#D9A566">Save</v-btn>
+                        <v-btn text @click="registration = false" color="#D9A566">Close</v-btn>
+                        <v-btn text @click="create" color="success">Save</v-btn>
                     </v-card-actions>
                 </v-form>
             </v-card>
@@ -58,14 +106,31 @@
 
     export default {
 
+        //variabler Speicher
         data: () => ({
             registration: false,
             valid: true,
             success: false,
-            username: '',
-            email: '',
-            password: '',
+
             confirmpassword: '',
+
+            user: {
+                userName: '',
+                first: '',
+                last: '',
+                email: '',
+                password: '',
+            },
+
+            nameRules: [
+                v => !!v || 'Name is required',
+                v => v.length <= 10 || 'Name must be less than 10 characters',
+            ],
+
+            emailRules: [
+                v => !!v || 'E-mail is required',
+                v => /.+@.+/.test(v) || 'E-mail must be valid',
+            ],
         }),
 
         // gebt jeder Page einen eigenen Namen
@@ -77,40 +142,25 @@
         // entspricht den HTML-Attributen
         props: {},
 
-        // Variablen-Speicher
-
-
         // reagieren auf prop-Veränderung
         watch: {},
         computed: {
             comparepassword() {
-
-                return this.password !== this.confirmpassword ? 'passwords do not match' : ''
+                return this.user.password !== this.confirmpassword ? 'passwords do not match' : ''
             }
-
-
         },
 
         // interne Methoden
         methods: {
-            onSignup() {
-                console.log({email: this.email, password: this.password, confirmpassword: this.confirmpassword})
+            create() {
+                let docRef = db.collection("Users").doc(this.user.userName)
+                docRef.set(this.user)
             }
-
-
         },
-        created() {
-            let docRef = db.collection('Users')
-            docRef.get().then(docs => {
-                docs.forEach(doc => this.username.push(doc.data()))
-            })
-
-
-        }
 
         // Initialisierung
-
-
+        created() {
+        }
     }
 </script>
 
