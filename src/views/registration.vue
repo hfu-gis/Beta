@@ -4,7 +4,7 @@
         <v-dialog v-model="registration" persistent max-width="600px" @keydown.esc="registration = false"
                   @keydown.enter="registration = false">
             <template v-slot:activator="{ on }">
-                <v-btn solo depressed text v-on="on" color="#D9A566">Register</v-btn>
+                <v-btn  depressed  v-on="on" color="#D9A566">Register</v-btn>
             </template>
             <v-card>
                 <v-form ref="form" v-model="valid" style="background: #162a3b">
@@ -21,7 +21,7 @@
                             <v-row>
 
                                 <v-col cols="12">
-                                    <v-text-field required name="username" label="User Name*" id="username"
+                                    <v-text-field required name="username" placeholder="User Name*" id="username"
                                                   v-model="user.userName" required></v-text-field>
                                 </v-col>
                                 <v-container>
@@ -34,7 +34,7 @@
                                                     v-model="user.first"
                                                     :rules="nameRules"
                                                     :counter="10"
-                                                    label="First Name*"
+                                                    placeholder="First Name*"
                                                     required
                                             />
                                         </v-col>
@@ -47,7 +47,7 @@
                                                     v-model="user.last"
                                                     :rules="nameRules"
                                                     :counter="10"
-                                                    label="Last Name*"
+                                                    placeholder="Last Name*"
                                                     required
                                             />
                                         </v-col>
@@ -59,7 +59,7 @@
                                             name="email"
                                             v-model="user.email"
                                             type="email"
-                                            label="E-Mail*"
+                                            placeholder="E-Mail*"
                                             id="email"
                                             :rules="emailRules"
                                     />
@@ -71,7 +71,7 @@
                                                 md="6"
                                         >
                                             <v-text-field required name="password" v-model="user.password"
-                                                          label="Password*"
+                                                          placeholder="Password*"
                                                           type="password" id="password" required></v-text-field>
                                         </v-col>
 
@@ -80,9 +80,12 @@
                                                 md="6"
                                         >
                                             <v-text-field required name="confirmpassword" v-model="confirmpassword"
-                                                          type="password" label="Confirm Password*" id="confirmpassword"
+                                                          type="password" placeholder="Confirm Password*" id="confirmpassword"
                                                           :rules="[comparepassword]"></v-text-field>
                                         </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-file-input label="Upload file" @change="Image" />
                                     </v-row>
                                 </v-container>
                             </v-row>
@@ -92,7 +95,8 @@
                     <v-card-actions>
                         <v-spacer></v-spacer>
                         <v-btn text @click="registration = false" color="#D9A566">Close</v-btn>
-                        <v-btn text @click="create" color="success">Save</v-btn>
+                        <v-btn text @click="create" color="success" @chlick="onUpload">Save</v-btn>
+
                     </v-card-actions>
                 </v-form>
             </v-card>
@@ -111,6 +115,7 @@
             registration: false,
             valid: true,
             success: false,
+            selectedfile: null,
 
             confirmpassword: '',
 
@@ -120,6 +125,7 @@
                 last: '',
                 email: '',
                 password: '',
+                image: '',
             },
 
             nameRules: [
@@ -158,7 +164,12 @@
 
                 //TODO Fehlermeldungn Catchen!!!
                 this.registration = false
-            }
+            },
+            Image(e){
+                this.selectedfile = e;
+
+            },
+
         },
 
         // Initialisierung

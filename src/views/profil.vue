@@ -5,15 +5,20 @@
         <div class="text-center">
             <img class="img-circle" src="https://randomuser.me/api/portraits/men/39.jpg" height="150" width="150"
                  align="center"/>
-            <v-btn fab x-small dark>
+            <input id="fileUpload" type="file" hidden>
+            <v-btn fab x-small dark @click="chooseFiles">
                 <v-icon color="#D9A566">mdi-pencil</v-icon>
             </v-btn>
 
             <header>
                 <h1 class="h1"><strong class="accent--text">Profile Name</strong>
-                    <v-btn fab x-small dark>
+
+
+
+                    <v-btn fab x-small dark @click="dialogName = true">
                         <v-icon color="#D9A566">mdi-pencil</v-icon>
                     </v-btn>
+
                     <!--Change name--></h1>
             </header>
         </div>
@@ -72,6 +77,26 @@
                         Logout
                     </v-btn>
                 </div>
+                <v-dialog v-model="dialogName" max-width="400">
+                    <v-card color="#8F94A6">
+                            <v-col cols="12">
+                                <v-card-title>
+                                    Peter Olaf Droschbart
+                                </v-card-title>
+
+                           <v-text-field placeholder="enter new name"  outlined solo filled flat  color="#D9A566"></v-text-field>
+
+            </v-col >
+
+                            <v-col cols="12">
+                        <v-btn color="#D9A566" @click="change">Save</v-btn>
+                            </v-col>
+
+
+
+
+                    </v-card>
+                </v-dialog>
 
                 <v-dialog v-model="dialogProfile" max-width="400">
                     <v-card>
@@ -287,6 +312,7 @@
             dialogNotifications: false,
             dialogPosts: false,
             dialogProfile: false,
+            dialogName: false,
             labels: [
                 '1.5',
                 '1.6',
@@ -314,7 +340,13 @@
         watch: {},
 
         // interne Methoden
-        methods: [],
+        methods: {
+            chooseFiles() {
+                document.getElementById("fileUpload").click()
+            },
+
+
+        },
 
 
         // Initialisierung
