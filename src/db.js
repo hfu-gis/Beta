@@ -1,6 +1,10 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 
+
+
+
+
 const firebaseConfig = {
     apiKey: "AIzaSyDTaJU7UfdTnjfY7XIvP5nMm8LLQgadMmY",
     authDomain: "bitofadvice-ff8b5.firebaseapp.com",
@@ -15,4 +19,3 @@ const db = firebase.initializeApp(firebaseConfig).firestore()
 export default db
 const {TimeStamp, GeoPoint} = firebase.firestore
 export {TimeStamp, GeoPoint}
-

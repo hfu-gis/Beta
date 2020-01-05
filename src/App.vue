@@ -355,7 +355,9 @@
     import registration from "./views/registration";
 
 
+
     export default {
+
 
         // gebt jeder Page einen eigenen Namen
         name: 'LayoutsDemosBaselineFlipped',
@@ -371,11 +373,13 @@
         data(){
             return{
 
+
             }
         },
 
         // Variablen-Speicher
         data: () => ({
+
             valid: true,
             drawer: null,
             dialog: false,

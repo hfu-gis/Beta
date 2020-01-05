@@ -112,12 +112,35 @@
                     :spacing="0.7"
             >
                 <template slot-scope="{text, weight, word}">
-                    <div :title="weight" style="cursor: pointer;" @click="onWordClick(word)">
+                    <div :title="weight" style="cursor: pointer;"  @click.stop="Beitrag = true">
+
                         {{ text }}
                     </div>
+                    <!--<div :title="weight" style="cursor: pointer;" @click="onWordClick(word)">
+
+                        {{ text }}
+                    </div>-->
                 </template>
             </vue-word-cloud>
         </div>
+        <v-dialog v-model="Beitrag" max-width="260">
+            <v-card>
+                <v-card
+
+                        class="mx-auto"
+                        max-width="260"
+                        color="#8F94A6"
+                >
+
+
+                    <v-card-title>
+                        Here could be a Thread...????
+                    </v-card-title>
+
+
+                </v-card>
+            </v-card>
+        </v-dialog>
 
 
     </div>
@@ -149,7 +172,9 @@
         },
 
         data() {
+
             return {
+                Beitrag: false,
                 /*
                 cards:[
                     { title: 'Camera', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', flex: 3},
@@ -172,6 +197,7 @@
                 words: [['romance', 2], ['fantasy', 8], ['romance', 2], ['fantasy', 8], ['Camera', 13], ['fantasy', 28], ['adventure', 3], ['horror', 13], ['horror', 13], ['adventure', 6], ['Spotify', 13], ['Witcher', 12], ['Minecraft', 8], ['fantasy', 8], ['horror', 23], ['adventure', 13], ['fantasy', 4], ['adventure', 3], ['adventure', 3], ['C#', 2], ['Java', 12], ['Eclipse', 13]],
                 snackbarText: '',
                 snackbarVisible: false,
+
 
                 //Alte WordCloud
                 /*

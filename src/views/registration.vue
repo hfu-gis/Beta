@@ -7,7 +7,7 @@
                 <v-btn  depressed  v-on="on" color="#D9A566">Register</v-btn>
             </template>
             <v-card>
-                <v-form ref="form" v-model="valid" style="background: #162a3b">
+                <v-form ref="form" v-model="valid" style="background: #162a3b" id="signup">
                     <br>
                     <v-card-title>
                         <v-row justify="center">
@@ -95,7 +95,7 @@
                     <v-card-actions>
                         <v-spacer></v-spacer>
                         <v-btn text @click="registration = false" color="#D9A566">Close</v-btn>
-                        <v-btn text @click="create" color="success" @chlick="onUpload">Save</v-btn>
+                        <v-btn text @click="create" color="success">Save</v-btn>
 
                     </v-card-actions>
                 </v-form>
@@ -107,6 +107,7 @@
 
 <script>
     import db from '../db'
+
 
     export default {
 
