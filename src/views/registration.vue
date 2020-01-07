@@ -21,43 +21,10 @@
                             <v-row>
 
                                 <v-col cols="12">
-                                    <v-text-field required name="username" placeholder="User Name*" id="username"
-                                                  v-model="user.userName" required></v-text-field>
-                                </v-col>
-                                <v-container>
-                                    <v-row>
-                                        <v-col
-                                                cols="12"
-                                                md="6"
-                                        >
-                                            <v-text-field
-                                                    v-model="user.first"
-                                                    :rules="nameRules"
-                                                    :counter="10"
-                                                    placeholder="First Name*"
-                                                    required
-                                            />
-                                        </v-col>
-
-                                        <v-col
-                                                cols="12"
-                                                md="6"
-                                        >
-                                            <v-text-field
-                                                    v-model="user.last"
-                                                    :rules="nameRules"
-                                                    :counter="10"
-                                                    placeholder="Last Name*"
-                                                    required
-                                            />
-                                        </v-col>
-                                    </v-row>
-                                </v-container>
-                                <v-col cols="12">
                                     <v-text-field
                                             required
                                             name="email"
-                                            v-model="user.email"
+                                            v-model="form.email"
                                             type="email"
                                             placeholder="E-Mail*"
                                             id="email"
@@ -70,7 +37,7 @@
                                                 cols="12"
                                                 md="6"
                                         >
-                                            <v-text-field required name="password" v-model="user.password"
+                                            <v-text-field required name="password" v-model="form.password"
                                                           placeholder="Password*"
                                                           type="password" id="password" required></v-text-field>
                                         </v-col>
@@ -84,9 +51,7 @@
                                                           :rules="[comparepassword]"></v-text-field>
                                         </v-col>
                                     </v-row>
-                                    <v-row>
-                                        <v-file-input label="Upload file" @change="Image" />
-                                    </v-row>
+
                                 </v-container>
                             </v-row>
                         </v-container>
@@ -95,9 +60,10 @@
                     <v-card-actions>
                         <v-spacer></v-spacer>
                         <v-btn text @click="registration = false" color="#D9A566">Close</v-btn>
-                        <v-btn text @click="create" color="success">Save</v-btn>
+                        <v-btn text @click="submit" color="success">Save</v-btn>
 
                     </v-card-actions>
+                    <div v-if="error" class="alert alert-danger">{{error}}</div>
                 </v-form>
             </v-card>
         </v-dialog>
@@ -107,27 +73,23 @@
 
 <script>
     import db from '../db'
-
+    import firebase from 'firebase';
 
     export default {
 
         //variabler Speicher
         data: () => ({
+            form: {
+                name: "",
+                email: "",
+                password: ""
+            },
+            error: null,
+
             registration: false,
             valid: true,
-            success: false,
-            selectedfile: null,
 
             confirmpassword: '',
-
-            user: {
-                userName: '',
-                first: '',
-                last: '',
-                email: '',
-                password: '',
-                image: '',
-            },
 
             nameRules: [
                 v => !!v || 'Name is required',
@@ -153,24 +115,33 @@
         watch: {},
         computed: {
             comparepassword() {
-                return this.user.password !== this.confirmpassword ? 'passwords do not match' : ''
+                return this.form.password !== this.confirmpassword ? 'passwords do not match' : ''
             }
         },
 
         // interne Methoden
         methods: {
-            create() {
-                let docRef = db.collection("Users").doc(this.user.userName)
-                docRef.set(this.user)
+            submit() {
+                firebase
+                    .auth()
+                    .createUserWithEmailAndPassword(this.form.email, this.form.password)
+                    .then(data => {
+                        data.user
+                            .updateProfile({
+                                displayName: this.form.name
+                            })
+                            .then(() => {});
 
-                //TODO Fehlermeldungn Catchen!!!
-                this.registration = false
+                            this.form.name = '';
+                            this.form.email = '';
+                            this.form.password = '';
+                            this.confirmpassword = '';
+                            this.registration = false;
+                    })
+                    .catch(err => {
+                        this.error = err.message;
+                    });
             },
-            Image(e){
-                this.selectedfile = e;
-
-            },
-
         },
 
         // Initialisierung
