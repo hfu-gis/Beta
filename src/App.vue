@@ -65,6 +65,17 @@
                     </v-list-item-content>
                 </v-list-item>
 
+                <!--
+                <v-list-item @click.stop="...">
+                    <v-list-item-action>
+                        <v-icon color="#D9A566">mdi-account</v-icon>
+                    </v-list-item-action>
+                    <v-list-item-content>
+                        <v-list-item-title class="accent--text">Sign Out</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+
+
                 <v-list-item v-slot:activator="{ on }" color="primary" dark>Open Dialog>
                     <v-list-item-action>
                         <v-icon mdi-eye></v-icon>
@@ -72,7 +83,7 @@
                     <v-list-item-content>
                         <v-list-item-title>Register</v-list-item-title>
                     </v-list-item-content>
-                </v-list-item>
+                </v-list-item>-->
 
             </v-list>
         </v-navigation-drawer>
@@ -352,7 +363,7 @@
 
 
     import db from './db'
-
+    import firebase from 'firebase';
     import Template from "./views/Template";
     import registration from "./views/registration";
 
@@ -361,7 +372,8 @@
     export default {
 
 
-        // gebt jeder Page einen eigenen Namen
+
+    // gebt jeder Page einen eigenen Namen
         name: 'LayoutsDemosBaselineFlipped',
         components: {registration},
         // benötigte Komponenten

@@ -16,11 +16,10 @@
                                 <header><h1><strong>Login</strong></h1></header>
                                 <br>
                                 <v-form ref="form" v-model="valid">
-                                    <v-text-field label="Username" v-model="userdata.userName" required></v-text-field>
-                                    <v-text-field label="Password" type="password"
-                                                  v-model="userdata.password"></v-text-field>
+                                    <v-text-field label="E-Mail" type="email" v-model="email" required></v-text-field>
+                                    <v-text-field label="Password" type="password" v-model="password"></v-text-field>
                                     <v-row no-gutters>
-                                        <v-btn color="#D9A566" @click="auth">Sign up</v-btn>
+                                        <v-btn color="#D9A566" v-on:click="login">Sign up</v-btn>
                                         <registration/>
                                         <v-spacer/>
                                         <v-spacer/>
@@ -35,6 +34,7 @@
         </v-layout>
     </v-container>
 
+    <!--
     <v-alert
             v-model="alertFalse"
             color="pink"
@@ -58,7 +58,7 @@
             align="center"
     >
         Anmeldung erfolgreich!
-    </v-alert>
+    </v-alert>-->
 
     </body>
     </html>
@@ -67,10 +67,8 @@
 
 <script>
 
-
     import registration from "./registration";
-    import db from '../db'
-
+    import firebase from 'firebase';
 
     export default {
         name: 'login',
@@ -81,46 +79,28 @@
             alertFalse: false,
             alertRight: false,
 
-            valid: true,
-            success: false,
-            userdata: {
-                userName: '',
-                password: ''
-            },
-
-            user: {}
+            email: '',
+            password: ''
         }),
 
 
         methods: {
-            /*
-                auth() {
-                    db
-                        .auth().signInWithEmailAndPassword(this.userdata.txtemail, this.userdata.txtpassword).then(() => {
+            login: function (e) {
+                firebase
+                    .auth()
+                    .signInWithEmailAndPassword(this.email, this.password)
+                    .then(
+                        user => {
+                            alert(`You are logged in as ${user.user.uid}`);
+                            this.$router.push('/profile.json');
 
-                        //bei Erfolg
-                        this.$router.push('/postinglist')
-                    })
-                }
-            */
-
-            auth() {
-                db.collection("Users").doc(this.userdata.userName).get().then(doc => {
-                    this.user = doc.data()
-                }).catch(err => {
-                    console.log('Error getting documents', err)
-                })
-
-                if (this.user.password === this.userdata.password) {
-                    this.alertFalse = false
-                    this.alertRight = true
-                    console.log("Anmeldung erfolgreich")
-                    //ANMELDUNG
-                } else {
-                    this.alertFalse = true
-                    this.alertRight = false
-                }
-            },
+                        },
+                        err => {
+                            alert(err.message);
+                        }
+                    );
+                e.preventDefault();
+            }
         },
         created() {
 
