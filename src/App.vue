@@ -65,7 +65,7 @@
                     </v-list-item-content>
                 </v-list-item>
 
-                <v-list-item v-slot:activator="{ on }" color="primary" dark v-on="on">Open Dialog>
+                <v-list-item v-slot:activator="{ on }" color="primary" dark>Open Dialog>
                     <v-list-item-action>
                         <v-icon mdi-eye></v-icon>
                     </v-list-item-action>
@@ -325,6 +325,8 @@
                           </v-card-actions>
                       </v-card>
                   </v-dialog>-->
+
+                
 
                 <router-view/>
             </div>

@@ -86,6 +86,8 @@
 
           <v-card-actions>
             <v-list-item class="grow">
+
+
               <v-list-item-avatar color="grey darken-3">
 
                 <v-img class="elevation-6" :src="active_items.src"></v-img>
@@ -117,12 +119,15 @@
             <v-col
                     v-for="(item, i) in items"
                     :key="i"
-                    cols="12"
+
             >
                 <v-card
                         :color="item.color"
                         dark
+                        cols="12"
                 >
+                    <v-row>
+                    <v-col cols="1">
                     <v-avatar
                             class="ma-3"
                             size="125"
@@ -131,22 +136,37 @@
                         <v-img class="img-circle" :src="item.src"></v-img>
                     </v-avatar>
 
-                  <v-breadcrumbs :items="bread_items" divider=">"></v-breadcrumbs>
+                        <v-card-subtitle v-text="item.artist"></v-card-subtitle>
 
-                    <div class="d-flex d-inline-flex">
+                    </v-col>
+                        <v-divider vertical color="#D9A566"></v-divider>
+        <v-col cols="9">
+
+
+
 
                         <v-card-title
                                 class="headline"
                                 v-text="item.title"
+
                         ></v-card-title>
 
-                        <v-card-subtitle v-text="item.artist"></v-card-subtitle>
-                    </div>
+                        <v-breadcrumbs :items="bread_items" divider=">" ></v-breadcrumbs>
 
-                  <v-card-text v-text="item.text" />
+            <v-card-text v-text="item.text" />
 
-                <v-btn @click="thread = true" >weiterlesen</v-btn>
+        </v-col>
 
+
+
+
+
+    <v-col cols="1">
+
+                <v-btn @click="thread = true" style="height: 90%; width: 10%; background: #3d4f68; margin-right: 10%; position: absolute; justify:end" >weiterlesen </v-btn>
+
+    </v-col>
+                    </v-row>
                 </v-card>
             </v-col>
         </div>

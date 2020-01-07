@@ -6,7 +6,9 @@
                 <img class="img-circle" src="https://randomuser.me/api/portraits/men/39.jpg" height="150" width="150"
                      align="center"/>
                 <input id="fileUpload" type="file" hidden>
-                <v-btn fab x-small dark @click="chooseFiles">
+                <v-btn fab x-small dark @click="chooseFiles" >
+
+
                     <v-icon color="#D9A566">mdi-pencil</v-icon>
                 </v-btn>
 
@@ -303,6 +305,7 @@
 
         import db from "../db";
 
+
         export default {
 
             // gebt jeder Page einen eigenen Namen
@@ -317,6 +320,7 @@
 
             // Variablen-Speicher
             data: () => ({
+
                 userdata: {
                     userName: '',
                 },
@@ -380,7 +384,10 @@
 
 
 
+
+
             },
+
 
 
             // Initialisierung

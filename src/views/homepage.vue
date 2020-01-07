@@ -111,18 +111,20 @@
                     animation-easing="ease"
                     :spacing="0.7"
             >
-                <template slot-scope="{text, weight, word}">
+                <template slot-scope="{text, weight, words}">
                     <div :title="weight" style="cursor: pointer;"  @click.stop="Beitrag = true">
 
                         {{ text }}
+
                     </div>
-                    <!--<div :title="weight" style="cursor: pointer;" @click="onWordClick(word)">
+                    <!--<div :title="weight" style="cursor: pointer;" @click="onWordClick(words)">
 
                         {{ text }}
                     </div>-->
                 </template>
             </vue-word-cloud>
         </div>
+
         <v-dialog v-model="Beitrag" max-width="260">
             <v-card>
                 <v-card
@@ -147,6 +149,8 @@
 </template>
 
 <script>
+
+
 
     //import wordcloud from 'vue-wordcloud'
     import Registration from "./registration";
@@ -195,6 +199,7 @@
 
                 ],*/
                 words: [['romance', 2], ['fantasy', 8], ['romance', 2], ['fantasy', 8], ['Camera', 13], ['fantasy', 28], ['adventure', 3], ['horror', 13], ['horror', 13], ['adventure', 6], ['Spotify', 13], ['Witcher', 12], ['Minecraft', 8], ['fantasy', 8], ['horror', 23], ['adventure', 13], ['fantasy', 4], ['adventure', 3], ['adventure', 3], ['C#', 2], ['Java', 12], ['Eclipse', 13]],
+
                 snackbarText: '',
                 snackbarVisible: false,
 
