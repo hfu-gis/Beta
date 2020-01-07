@@ -74,7 +74,7 @@
                 </div>
                 <br>
                 <div class="my-2">
-                    <v-btn width="100em" min-height="8em" class="button" outlined @click.stop="dialoglogout = true">
+                    <v-btn width="100em" min-height="8em" class="button" outlined v-on:click="signOut">
                         Logout
                     </v-btn>
                 </div>
@@ -326,7 +326,7 @@
                 text: ''
             },
 
-            message: 'Peter',
+            message: 'no user logged in',
             dialoglogout: false,
             dialogAbo: false,
             dialogSuggestions: false,
@@ -378,11 +378,27 @@
             },
 
 
-            updateName(){
+            updateName() {
                 firebase.auth().currentUser.updateProfile({
                     displayName: this.message
                 })
-            }
+            },
+
+            signOut() {
+                firebase
+                    .auth()
+                    .signOut()
+                    .then(() => {
+                        if (this.message != "no user logged in") {
+
+                            this.dialoglogout = true
+                            this.message = 'no user logged in'
+                        }
+                        /*this.$router.replace({
+                            name: "home"
+                        });*/
+                    });
+            },
 
         },
 
@@ -391,7 +407,7 @@
         created() {
 
             var user = firebase.auth().currentUser;
-            if(user){
+            if (user) {
                 this.message = user.displayName;
             }
 

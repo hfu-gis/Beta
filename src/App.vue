@@ -1,27 +1,73 @@
 <template>
     <v-app id="inspire">
+
+        <!-------------------------App-Bar------------------------------------------------------------>
+        <v-app-bar app color="#132B40" right dark>
+
+            <a :to="{ path: '/homepage'}">
+                <v-btn :to="{ path: '/homepage'}" text height="60" width="150" color="#132B40">
+                    <img contain src="../img/Logos/BitOfAdvice_logo_2.png" height="50"/>
+                </v-btn>
+            </a>
+
+            <v-spacer/>
+            <div id="searchbox">
+                <v-text-field outlined rounded dense color="#D9A566" label="search" id="txtsearch"></v-text-field>
+            </div>
+            <v-btn icon class="mx-10" color="#D9A566">
+                <v-icon>mdi-magnify</v-icon>
+            </v-btn>
+
+
+            <v-app-bar-nav-icon color="#D9A566" @click.stop="drawer = !drawer" v-on:click="updateUser"/>
+            <!--
+            <div id="searchbox">
+             <v-text-field filled rounded dense label="search" id="txtsearch"> </v-text-field>
+         </div>
+         <v-app-bar app color="#132B40" right dark>
+
+            <a><img src="../img/Logos/BitOfAdvice_logo_2.png" height="536" width="1242" class="BitofadviceBar" /> </a>
+            <div id="searchbox" class="d-flex d-inline-flex">
+                <v-text-field outlined rounded dense label="search" id="txtsearch"> </v-text-field>
+            </div>
+             <v-btn link :to="{ path: '/homepage'}" x-large text height="60" width="150">
+             </v-btn>
+               <v-spacer></v-spacer>
+
+                   -->
+        </v-app-bar>
+
+        <!-------------------------Navigation-Drawer-------------------------------------------------->
         <v-navigation-drawer v-model="drawer" right temporary fixed color="#162a3b">
             <!-- Farbe grey: rgb(55, 57, 59)-->
             <!--<v-navigation-drawer v-model="drawer" right temporary fixed src="../img/Background/ocean.jpg">-->
 
 
             <!--wenn angemeldet -->
-            <v-list-item @click.stop="dialog = true" style="background: #D9A566; height: 64px;">
-                <v-list-item-avatar>
-                    <v-img src="https://randomuser.me/api/portraits/men/39.jpg" height="40" width="50"/>
-                </v-list-item-avatar>
-                <v-list-item-content>
-                    <v-list-item-title>Peter Olaf Droschbart</v-list-item-title>
-                </v-list-item-content>
+            <v-list-item style="background: #D9A566; height: 64px; width: 100%;">
+                <!--<v-btn text v-if="this.authenticated" @click.stop="dialog = true" style="height: 80%; width: 100%;">-->
+                <v-btn text v-if="this.authenticated" link :to="{ path: '/profile.json'}" style="height: 80%; width: 100%;">
+                    <v-list-item-avatar>
+                        <v-img src="https://randomuser.me/api/portraits/men/39.jpg" height="40" width="50"/>
+                    </v-list-item-avatar>
+                    <v-list-item-content>
+                        <v-list-item-title>{{userData.userName}}</v-list-item-title>
+                    </v-list-item-content>
+                </v-btn>
+
+                <v-list-item-title style="text-align: center" v-if="!this.authenticated">Get your Advice!</v-list-item-title>
             </v-list-item>
             <v-divider/>
             <br>
-            <v-row no-gutters>
-                <v-col>
-                    <registration/>
+            <v-row no-gutters style="padding-left: 10%; padding-right: 5%;">
+                <v-col v-if="!this.authenticated">
+                    <registration  style="width: 100%" />
                 </v-col>
-                <v-col>
-                    <v-btn depressed color="#D9A566" link :to="{ path: '/login'}">Sign In</v-btn>
+                <v-col v-if="!this.authenticated">
+                    <v-btn depressed color="#D9A566" link :to="{ path: '/login'}" style="width: 100%">Sign In</v-btn>
+                </v-col>
+                <v-col v-if="this.authenticated">
+                    <v-btn depressed color="#D9A566" v-on:click="signOut" style="width: 100%">Sign Out</v-btn>
                 </v-col>
             </v-row>
             <br>
@@ -47,16 +93,16 @@
                     </v-list-item-content>
                 </v-list-item>
 
-                <v-list-item link :to="{ path: '/profilesettings.json'}">
+                <!--<v-list-item link :to="{ path: '/profilesettings.json'}">
                     <v-list-item-action>
                         <v-icon color="#D9A566">mdi-sort</v-icon>
                     </v-list-item-action>
                     <v-list-item-content>
                         <v-list-item-title class="accent--text">Profilesettings</v-list-item-title>
                     </v-list-item-content>
-                </v-list-item>
+                </v-list-item>-->
 
-                <v-list-item link :to="{ path: '/profile.json'}">
+                <v-list-item v-if="this.authenticated" link :to="{ path: '/profile.json'}">
                     <v-list-item-action>
                         <v-icon color="#D9A566">mdi-account</v-icon>
                     </v-list-item-action>
@@ -66,16 +112,6 @@
                 </v-list-item>
 
                 <!--
-                <v-list-item @click.stop="...">
-                    <v-list-item-action>
-                        <v-icon color="#D9A566">mdi-account</v-icon>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <v-list-item-title class="accent--text">Sign Out</v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
-
-
                 <v-list-item v-slot:activator="{ on }" color="primary" dark>Open Dialog>
                     <v-list-item-action>
                         <v-icon mdi-eye></v-icon>
@@ -88,45 +124,11 @@
             </v-list>
         </v-navigation-drawer>
 
-        <v-app-bar app color="#132B40" right dark>
-
-            <a :to="{ path: '/homepage'}">
-                <v-btn :to="{ path: '/homepage'}" text height="60" width="150" color="#132B40">
-                    <img contain src="../img/Logos/BitOfAdvice_logo_2.png" height="50"/>
-                </v-btn>
-            </a>
-
-            <v-spacer/>
-            <div id="searchbox">
-                <v-text-field outlined rounded dense color="#D9A566" label="search" id="txtsearch"></v-text-field>
-            </div>
-            <v-btn icon class="mx-10" color="#D9A566">
-                <v-icon>mdi-magnify</v-icon>
-            </v-btn>
-
-
-                <v-app-bar-nav-icon color="#D9A566" @click.stop="drawer = !drawer"/>
-            <!--
-            <div id="searchbox">
-             <v-text-field filled rounded dense label="search" id="txtsearch"> </v-text-field>
-         </div>
-         <v-app-bar app color="#132B40" right dark>
-
-            <a><img src="../img/Logos/BitOfAdvice_logo_2.png" height="536" width="1242" class="BitofadviceBar" /> </a>
-            <div id="searchbox" class="d-flex d-inline-flex">
-                <v-text-field outlined rounded dense label="search" id="txtsearch"> </v-text-field>
-            </div>
-             <v-btn link :to="{ path: '/homepage'}" x-large text height="60" width="150">
-             </v-btn>
-               <v-spacer></v-spacer>
-
-                   -->
-        </v-app-bar>
-
-
+        <!-------------------------Content------------------------------------------------------------>
         <v-content style="background: linear-gradient(to right, #fffbf4, #ffe6c6);">
             <div id="app">
                 <!--PROFILE-->
+                <!--//TODO Dialog derzeit noch nicht eingebunden-->
                 <v-dialog v-model="dialog" max-width="400">
                     <v-card>
                         <v-card
@@ -141,7 +143,7 @@
                             />
 
                             <v-card-title>
-                                Peter Olaf Droschbart
+                                {{userData.first}} {{userData.last}}
                             </v-card-title>
 
                             <v-card-subtitle>
@@ -337,7 +339,6 @@
                       </v-card>
                   </v-dialog>-->
 
-                
 
                 <router-view/>
             </div>
@@ -368,12 +369,10 @@
     import registration from "./views/registration";
 
 
-
     export default {
 
 
-
-    // gebt jeder Page einen eigenen Namen
+        // gebt jeder Page einen eigenen Namen
         name: 'LayoutsDemosBaselineFlipped',
         components: {registration},
         // benötigte Komponenten
@@ -384,11 +383,8 @@
             source: String,
         },
 
-        data(){
-            return{
-
-
-            }
+        data() {
+            return {}
         },
 
         // Variablen-Speicher
@@ -401,6 +397,15 @@
             dialog3: false,
             dialogprivacy: true,
 
+            userData: {
+                userName: '',
+                first: '',
+                last: '',
+                mail: '',
+                password: '',
+            },
+
+            authenticated: false
         }),
 
         // reagieren auf prop-Veränderung
@@ -426,14 +431,30 @@
 
             },
 
-            twoToThree: function () {
-                this.dialog2 = true;
-                this.dialog3 = false;
+            updateUser() {
+                var user = firebase.auth().currentUser;
+                if (user) {
+                    console.log(user.uid)
+                    db.collection("Users").doc(user.uid).get().then(doc => {
+                        this.userData = doc.data()
+                        this.authenticated = true;
+                    }).catch(err => {
+                        console.log('Error getting documents', err)
+                    })
+                }
+                else{
+                    this.authenticated = false;
+                }
             },
 
-            threeToTwo: function () {
-                this.dialog2 = false;
-                this.dialog3 = true;
+            signOut() {
+                firebase
+                    .auth()
+                    .signOut()
+                    .then(() => {
+                        this.updateUser()
+                        this.$router.push('/homepage');
+                    });
             }
         },
 

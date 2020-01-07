@@ -4,7 +4,7 @@
         <v-dialog v-model="registration" persistent max-width="600px" @keydown.esc="registration = false"
                   @keydown.enter="registration = false">
             <template v-slot:activator="{ on }">
-                <v-btn  depressed  v-on="on" color="#D9A566">Register</v-btn>
+                <v-btn depressed v-on="on" color="#D9A566">Register</v-btn>
             </template>
             <v-card>
                 <v-form ref="form" v-model="valid" style="background: #162a3b" id="signup">
@@ -24,7 +24,35 @@
                                     <v-text-field required name="username" placeholder="User Name*" id="username"
                                                   v-model="form.name" required></v-text-field>
                                 </v-col>
+                                <v-container>
+                                    <v-row>
+                                        <v-col
+                                                cols="12"
+                                                md="6"
+                                        >
+                                            <v-text-field
+                                                    v-model="userData.first"
+                                                    :rules="nameRules"
+                                                    :counter="10"
+                                                    placeholder="First Name*"
+                                                    required
+                                            />
+                                        </v-col>
 
+                                        <v-col
+                                                cols="12"
+                                                md="6"
+                                        >
+                                            <v-text-field
+                                                    v-model="userData.last"
+                                                    :rules="nameRules"
+                                                    :counter="10"
+                                                    placeholder="Last Name*"
+                                                    required
+                                            />
+                                        </v-col>
+                                    </v-row>
+                                </v-container>
                                 <v-col cols="12">
                                     <v-text-field
                                             required
@@ -52,7 +80,8 @@
                                                 md="6"
                                         >
                                             <v-text-field required name="confirmpassword" v-model="confirmpassword"
-                                                          type="password" placeholder="Confirm Password*" id="confirmpassword"
+                                                          type="password" placeholder="Confirm Password*"
+                                                          id="confirmpassword"
                                                           :rules="[comparepassword]"></v-text-field>
                                         </v-col>
                                     </v-row>
@@ -96,6 +125,14 @@
 
             confirmpassword: '',
 
+            userData: {
+                userName: '',
+                first: '',
+                last: '',
+                mail: '',
+                password: '',
+            },
+
             nameRules: [
                 v => !!v || 'Name is required',
                 v => v.length <= 10 || 'Name must be less than 10 characters',
@@ -135,13 +172,27 @@
                             .updateProfile({
                                 displayName: this.form.name
                             })
-                            .then(() => {});
+                            .then(() => {
+                            });
 
-                            this.form.name = '';
-                            this.form.email = '';
-                            this.form.password = '';
-                            this.confirmpassword = '';
-                            this.registration = false;
+
+                        //Parallel erstellte Datenbank für weitere Informationen
+                        let docRef = db.collection("Users").doc(data.user.uid)
+
+                        this.userData.mail = this.form.email;
+                        this.userData.password = this.form.password;
+                        this.userData.userName = this.form.name;
+
+                        docRef.set(this.userData)
+
+                        //Felder clearen
+                        this.form.name = '';
+                        this.form.email = '';
+                        this.form.password = '';
+                        this.confirmpassword = '';
+
+                        //Dialog schließen
+                        this.registration = false
                     })
                     .catch(err => {
                         this.error = err.message;
