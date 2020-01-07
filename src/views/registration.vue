@@ -21,6 +21,11 @@
                             <v-row>
 
                                 <v-col cols="12">
+                                    <v-text-field required name="username" placeholder="User Name*" id="username"
+                                                  v-model="form.name" required></v-text-field>
+                                </v-col>
+
+                                <v-col cols="12">
                                     <v-text-field
                                             required
                                             name="email"
