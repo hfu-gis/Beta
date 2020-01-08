@@ -75,34 +75,39 @@
                         Logout
                     </v-btn>
                 </div>
-                <v-dialog v-model="dialogName" max-width="400">
-                    <v-card color="#8F94A6">
-                        <v-col cols="12">
-                            <v-card-title>
+                <v-dialog v-model="dialogName" max-width="400" style="background: linear-gradient(to right, #f9f5ef, #ffd8b8);">
+                    <v-card
+                            style="background: linear-gradient(to right, #f9f5ef, #ffd8b8);">
+                        <v-col cols="12" style="background: #132B40">
+                            <v-card-title style="color: white">
                                 {{message}}
                             </v-card-title>
-
-
-                            <input v-model="message"/>
-
-
                         </v-col>
 
-                        <v-col cols="12">
-                            <v-btn color="#D9A566" @click.stop="dialogName = false" v-on:click="updateName">Save</v-btn>
+
+                            <input v-model="message" style="margin-left: 7%; margin-top: 5%; margin-bottom: 2%"/>
+
+
+
+
+                        <v-col cols="12" >
+
+                            <v-btn color="#132B40" style="color: white " @click.stop="dialogName = false" v-on:click="updateName" >Save</v-btn>
+
                         </v-col>
 
 
                     </v-card>
-                </v-dialog>
+                </v-dialog >
 
-                <v-dialog v-model="dialogProfile" max-width="400">
+                <v-dialog v-model="dialogProfile" max-width="400" >
                     <v-card>
                         <v-card
 
                                 class="mx-auto"
                                 max-width="400"
                                 color="#8F94A6"
+                                style="background: linear-gradient(to right, #f9f5ef, #ffd8b8);"
                         >
                             <v-img
                                     src="https://randomuser.me/api/portraits/men/11.jpg"
@@ -128,6 +133,7 @@
                                 class="mx-auto"
                                 max-width="260"
                                 color="#8F94A6"
+                                style="background: linear-gradient(to right, #f9f5ef, #ffd8b8);"
                         >
 
 
@@ -146,6 +152,7 @@
                                 class="mx-auto"
                                 max-width="260"
                                 color="#8F94A6"
+                                style="background: linear-gradient(to right, #f9f5ef, #ffd8b8);"
                         >
 
 
@@ -164,6 +171,7 @@
                                 class="mx-auto"
                                 max-width="400"
                                 color="#8F94A6"
+                                style="background: linear-gradient(to right, #f9f5ef, #ffd8b8);"
                         >
 
 
@@ -182,6 +190,7 @@
                                 class="mx-auto"
                                 max-width="400"
                                 color="#8F94A6"
+                                style="background: linear-gradient(to right, #f9f5ef, #ffd8b8);"
                         >
 
 
@@ -202,11 +211,13 @@
                                 class="mx-auto"
                                 max-width="100%"
                                 color="#8F94A6"
+                                style="background: linear-gradient(to right, #f9f5ef, #ffd8b8);"
+
 
                         >
 
-                            <v-col style="background: #D9A566">
-                            <v-card-title>
+                            <v-col style="background: #132B40">
+                            <v-card-title style="color: white">
                                 Submit your Idea
                             </v-card-title>
                             </v-col>
@@ -222,8 +233,8 @@
                                 <v-textarea solo flat filled color="#D9A566" label="type here"
                                             v-model="mySuggestions.text" placeholder="type here"></v-textarea>
                             </v-col>
-                            <v-col cols="12">
-                                <v-btn solo depressed flat @click="createSuggestion" type="submit" color="#D9A566">Send
+                            <v-col cols="12" >
+                                <v-btn solo depressed flat @click="createSuggestion" type="submit" color="#132B40" style="color: white">Send
                                 </v-btn>
                             </v-col>
 
@@ -244,16 +255,32 @@
                                 class="mx-auto"
                                 max-width="400"
                                 color="#8F94A6"
+                                style="background: linear-gradient(to right, #f9f5ef, #ffd8b8);"
                         >
-                            <v-card-title>Those are your current Suggestions:</v-card-title>
+                            <v-col style="background: #132B40">
+                            <v-card-title style="color: white">Those are your current Suggestions:</v-card-title>
+                                </v-col>
 
                             <v-col>
-                                <v-card-text>{{mySuggestions.text}}</v-card-text>
+                                <v-card-text>{{mySuggestions.idea}}</v-card-text>
                             </v-col>
-                            <v-text>
+                            <v-col>
+                            <v-card-text>
+                                {{mySuggestions.text}}
 
-                                {{mySuggestions.idea}}
-                            </v-text>
+                            </v-card-text>
+                                </v-col>
+                            <v-col>
+<v-card-title>
+    Your answer
+</v-card-title>
+                            </v-col>
+                            <v-col>
+                                <v-card-text>
+                                    {{mySuggestions.answer}}
+                                </v-card-text>
+
+                            </v-col>
                             <!--<v-btn @click.stop="updateMessage">update</v-btn>-->
 
 
@@ -265,6 +292,7 @@
                             class="mt-4 mx-auto"
                             max-width="500"
                             color="#8F94A6"
+                            style="background: linear-gradient(to right, #f9f5ef, #ffd8b8);"
                     >
                         <v-sheet
                                 class="v-sheet--offset mx-auto"
@@ -328,6 +356,7 @@
                 idea: '',
                 text: '',
                 creatorID: '',
+                answer: 'no answer yet',
             },
 
             userData: {
@@ -413,6 +442,7 @@
                     this.mySuggestions.text = '';
                     this.mySuggestions.idea = '';
                     this.mySuggestions.creatorID = '';
+                    this.mySuggestions.answer = '';
                 }
             },
 

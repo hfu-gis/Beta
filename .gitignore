@@ -60,3 +60,8 @@ typings/
 # next.js build output
 .next
 /src/views/
+/dist/css/app.0201090b.css
+/dist/js/app.af495498.js
+/dist/js/app.af495498.js.map
+/dist/js/chunk-vendors.28d48a52.js
+/dist/js/chunk-vendors.28d48a52.js.map
