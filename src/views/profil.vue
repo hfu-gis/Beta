@@ -46,9 +46,7 @@
                 </div>
                 <br>
                 <div class="my-2">
-                    <v-btn width="100em" min-height="8em" class="button" outlined @click.stop="dialogIdea = true">Submit
-                        an
-                        Idea
+                    <v-btn width="100em" min-height="8em" class="button" outlined @click.stop="dialogIdea = true">Submit an Idea
                     </v-btn>
                 </div>
             </v-col>
@@ -61,8 +59,7 @@
                 <br>
                 <div class="my-2">
                     <v-btn width="100em" min-height="8em" class="button" outlined
-                           @click.stop="dialogSuggestions = true" >My
-                        Suggestions
+                           v-on:click="updateMessage">My Suggestions
                     </v-btn>
                 </div>
             </v-col>
@@ -213,19 +210,18 @@
                                 Submit your Idea
                             </v-card-title>
                             <v-col cols="12">
-                                <v-text solo flat filled  required
-                                              v-model="usersuggestion.userName">{{userData.userName}}</v-text>
+                                <v-text solo flat filled required>from: {{userData.userName}}</v-text>
                             </v-col>
                             <v-col cols="12">
                                 <v-text-field solo flat filled label="Titel" required
-                                              v-model="usersuggestion.Idea"></v-text-field>
+                                              v-model="mySuggestions.idea"></v-text-field>
                             </v-col>
                             <v-col cols="12">
                                 <v-textarea solo flat filled color="#D9A566" label="type here"
-                                            v-model="usersuggestion.text" placeholder="type here"></v-textarea>
+                                            v-model="mySuggestions.text" placeholder="type here"></v-textarea>
                             </v-col>
                             <v-col cols="12">
-                                <v-btn solo depressed flat @click="create" type="submit" color="#D9A566">Send
+                                <v-btn solo depressed flat @click="createSuggestion" type="submit" color="#D9A566">Send
                                 </v-btn>
                             </v-col>
 
@@ -242,16 +238,16 @@
                                 max-width="400"
                                 color="#8F94A6"
                         >
-                            <v-card-title >Those are your current Suggestions</v-card-title>
+                            <v-card-title>Those are your current Suggestions:</v-card-title>
 
                             <v-col>
-                            <v-card-text>{{message1}}</v-card-text>
+                                <v-card-text>{{mySuggestions.text}}</v-card-text>
                             </v-col>
                             <v-text>
 
-                                {{usersuggestion.Idea}}
+                                {{mySuggestions.idea}}
                             </v-text>
-                            <v-btn @click.stop="updateMessage">update</v-btn>
+                            <!--<v-btn @click.stop="updateMessage">update</v-btn>-->
 
 
                         </v-card>
@@ -321,6 +317,12 @@
 
         // Variablen-Speicher
         data: () => ({
+            mySuggestions: {
+                idea: '',
+                text: '',
+                creatorID: '',
+            },
+
             userData: {
                 userName: '',
                 first: '',
@@ -329,14 +331,7 @@
                 //password: '',
             },
 
-
-
-            usersuggestion: {
-                Idea: '',
-                text: ''
-            },
-
-            message1:'',
+            message1: '',
             message: 'no user logged in',
             dialoglogout: false,
             dialogAbo: false,
@@ -397,14 +392,21 @@
             },
 
 
+            createSuggestion() {
+                if(this.mySuggestions.idea != '' && this.mySuggestions.text != '') {
+                    var user = firebase.auth().currentUser;
+                    let docRef = db.collection("Suggestions").doc(user.uid)
+                    this.mySuggestions.creatorID = user.uid;
+                    docRef.set(this.mySuggestions)
 
-            create() {
-                var user = firebase.auth().currentUser;
-                let docRef = db.collection("Suggestions").doc(user.uid)
-                docRef.set(this.usersuggestion)
+                    //TODO Fehlermeldungn Catchen!!!
+                    this.dialogIdea = false
 
-                //TODO Fehlermeldungn Catchen!!!
-                this.dialogIdea = false
+                    //Felder clearen
+                    this.mySuggestions.text = '';
+                    this.mySuggestions.idea = '';
+                    this.mySuggestions.creatorID = '';
+                }
             },
 
 
@@ -451,19 +453,20 @@
                             name: "home"
                         });*/
                     });
-            }
-            ,
-            updateMessage(){
+            },
+
+            updateMessage() {
+                this.dialogSuggestions = true;
 
                 var user = firebase.auth().currentUser;
-                if(user){
-                    this.updateUser()
-                    let docRef = db.collection("Suggestions").doc(user.uid)
+                if (user) {
+                    db.collection("Suggestions").doc(user.uid).get().then(doc => {
+                        this.mySuggestions = doc.data()
+                    }).catch(err => {
+                        console.log('Error getting documents', err)
+                    })
 
-                    this.usersuggestion.Idea= this.message1
-
-                    docRef.set(this.usersuggestion)
-                    docRef.update()
+                    console.log(this.mySuggestions.creatorID);
                 }
             }
 

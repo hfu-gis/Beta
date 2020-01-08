@@ -4,6 +4,8 @@
         <!-------------------------App-Bar------------------------------------------------------------>
         <v-app-bar app color="#132B40" right dark>
 
+
+
             <a :to="{ path: '/homepage'}">
                 <v-btn :to="{ path: '/homepage'}" text height="60" width="150" color="#132B40">
                     <img contain src="../img/Logos/BitOfAdvice_logo_2.png" height="50"/>

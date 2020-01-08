@@ -35,7 +35,7 @@
                     </v-card-actions>
                     <div v-if="error" class="alert alert-danger">{{error}}</div>
                 </v-form>-->
-                <v-stepper v-model="e1" dark style="background: #f9f5ef">
+                <v-stepper v-model="e1" dark style="background: linear-gradient(to right, #f9f5ef, #ffd8b8);">
                     <v-stepper-header style="background: #132B40">
                         <v-stepper-step editable :complete="e1 > 1" step="1" color="#D9A566">Username</v-stepper-step>
 
@@ -182,7 +182,6 @@
                                 <v-btn text v-on:click="cancel" light>Cancel</v-btn>
                                 <v-btn v-on:click="submit" color="success">Confirm</v-btn>
                             </div>
-                            <v-btn text v-on:click="cancel">Cancel</v-btn>
                         </v-stepper-content>
                     </v-stepper-items>
                 </v-stepper>

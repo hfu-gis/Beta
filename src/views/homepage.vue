@@ -57,8 +57,6 @@
                </v-card>
            </v-app>
        </div>-->
-        <br>
-        <br>
         <!--V-Cards-->
         <!-- <div>
             <v-app id="inspire">
@@ -100,7 +98,16 @@
             </v-app>
         </div>-->
 
-        <div style="height: 100%; width: 100%;">
+        <v-toolbar light flat color="rgba(121, 120, 124, 0)" style="justify-content: center;">
+            <v-spacer/>
+            <v-btn text color="grey">
+                Neuer Beitrag
+                <v-icon style="margin-left: 20px;">mdi-plus-circle</v-icon>
+            </v-btn>
+            <v-spacer/>
+        </v-toolbar>
+
+        <div style="height: 90%; width: 100%;">
             <vue-word-cloud
                     style="position:fixed; width: 80%; height: 70%; margin-left: 10%; margin-top: 2%; text-transform: uppercase;"
                     :words="words"
@@ -112,7 +119,7 @@
                     :spacing="0.7"
             >
                 <template slot-scope="{text, weight, words}">
-                    <div :title="weight" style="cursor: pointer;"  @click.stop="Beitrag = true">
+                    <div :title="weight" style="cursor: pointer;" @click.stop="Beitrag = true">
 
                         {{ text }}
 
@@ -123,6 +130,7 @@
                     </div>-->
                 </template>
             </vue-word-cloud>
+
         </div>
 
         <v-dialog v-model="Beitrag" max-width="260">
@@ -144,12 +152,16 @@
             </v-card>
         </v-dialog>
 
+        <v-dialog v-model="addThread" max-width="260">
+            <v-card>
+                <!-- Hier kommt der Dialog für neue Beiträge hin -->
+            </v-card>
+        </v-dialog>
 
     </div>
 </template>
 
 <script>
-
 
 
     //import wordcloud from 'vue-wordcloud'
@@ -178,6 +190,7 @@
         data() {
 
             return {
+                addThread: false,
                 Beitrag: false,
                 /*
                 cards:[
