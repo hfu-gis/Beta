@@ -181,6 +181,22 @@
                                 </v-flex>
                             </v-layout>
                         </v-container>-->
+
+                        <v-row>
+                            <v-text-field v-model="newHashtag" style="width: 70%; margin-left: 20px;"></v-text-field>
+                            <v-btn icon dark style="background: grey" v-on:click="addHashtagToArray"><v-icon>mdi-plus</v-icon></v-btn>
+                        </v-row>
+                        <div style="margin-left: 20px;">
+                            <v-chip-group
+                                    column
+                                    active-class="primary--text"
+                            >
+                                <v-chip v-for="tag in myThread.hashtags" :key="tag">
+                                    {{ tag }}
+                                </v-chip>
+                            </v-chip-group>
+                        </div>
+
                     </v-col>
                     <v-divider vertical color="#D9A566" style="margin-left: 30px; margin-right: 30px;"></v-divider>
                     <v-col cols="7">
@@ -195,15 +211,16 @@
                             </v-text-field>
 
                             <v-textarea
-                                    v-model="myThread.title"
-                                    :counter="10"
+                                    v-model="myThread.text"
+                                    :counter="100"
                                     label="Thread-Text"
                                     outlined
                                     required
                                     height="300px"
-                            >{{myThread.title}}
+                            >{{myThread.text}}
                             </v-textarea>
                         </section>
+                        <v-btn outlined v-on:click="saveNewThread">Publish</v-btn>
                     </v-col>
                 </v-row>
                 <br>
@@ -220,6 +237,7 @@
     import Registration from "./registration";
     import VueWordCloud from 'vuewordcloud';
     import firebase from 'firebase';
+    import db from "../db";
 
     export default {
         name: "homepage",
@@ -229,6 +247,9 @@
             [VueWordCloud.name]: VueWordCloud,
         },
         methods: {
+            addHashtagToArray(){
+                this.myThread.hashtags.push(this.newHashtag)
+            },
             updateTags() {
                 this.$nextTick(() => {
                     this.select.push(...this.search.split(","));
@@ -259,22 +280,29 @@
 
             saveNewThread() {
                 if (this.myThread.hashtags != '' && this.myThread.text != '' && this.myThread.title != '') {
+
                     var user = firebase.auth().currentUser;
                     let docRef = db.collection("Threads").doc(this.myThread.title)
+
+                    console.log(this.myThread.title);
 
                     //Werte zuweisen
                     this.myThread.creatorID = user.uid;
                     this.myThread.datetime = new Date().toDateString();
 
-                    docRef.set(this.mySuggestions)
+                    docRef.set(this.myThread)
 
                     //TODO Fehlermeldungn Catchen!!!
                     this.dialogIdea = false
 
                     //Felder clearen
-                    /*this.mySuggestions.text = '';
-                    this.mySuggestions.idea = '';
-                    this.mySuggestions.creatorID = '';*/
+                    this.myThread.hashtags = [];
+                    this.myThread.title = '';
+                    this.myThread.datetime = '';
+                    this.myThread.text = '';
+                    this.myThread.creatorID = '';
+                    this.myThread.likes = '';
+
                 }
             }
         },
@@ -285,13 +313,14 @@
                 myThread: {
                     creatorID: '',
                     datetime: '',
-                    hashtags: {},
-                    likes: '',
+                    hashtags: ['Haus', 'Baum'],
+                    likes: '123',
                     text: '',
                     title: ''
                 },
                 threadCreatorName: '',
                 addThread: false,
+                newHashtag: '',
 
                 Beitrag: false,
                 /*
