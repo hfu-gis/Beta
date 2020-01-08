@@ -205,17 +205,19 @@
 
                         >
 
-
+                            <v-col style="background: #D9A566">
                             <v-card-title>
                                 Submit your Idea
                             </v-card-title>
-                            <v-col cols="12">
+                            </v-col>
+                            <v-col cols="12" >
                                 <v-text solo flat filled required>from: {{userData.userName}}</v-text>
                             </v-col>
                             <v-col cols="12">
                                 <v-text-field solo flat filled label="Titel" required
                                               v-model="mySuggestions.idea"></v-text-field>
                             </v-col>
+
                             <v-col cols="12">
                                 <v-textarea solo flat filled color="#D9A566" label="type here"
                                             v-model="mySuggestions.text" placeholder="type here"></v-textarea>
@@ -230,6 +232,11 @@
                 </v-dialog>
 
 
+
+
+
+
+
                 <v-dialog v-model="dialogSuggestions" max-width="400">
                     <v-card>
                         <v-card
@@ -237,16 +244,33 @@
                                 class="mx-auto"
                                 max-width="400"
                                 color="#8F94A6"
-                        >
-                            <v-card-title>Those are your current Suggestions:</v-card-title>
 
+                        >
+                            <v-col style="background: #D9A566">
+                            <v-card-title>Those are your current Suggestions:</v-card-title>
+                            </v-col>
+                            <v-col>
+                                <v-card-title>
+
+                                    {{mySuggestions.idea}}
+
+                                </v-card-title>
+
+                            </v-col>
                             <v-col>
                                 <v-card-text>{{mySuggestions.text}}</v-card-text>
                             </v-col>
-                            <v-text>
+                            <v-divider color="#D9A566"/>
+                            <v-col>
 
-                                {{mySuggestions.idea}}
-                            </v-text>
+                                <v-card-title> Your answer</v-card-title>
+
+                            </v-col>
+
+            <v-col>
+                <v-card-text>{{mySuggestions.answer}}</v-card-text>
+
+            </v-col>
                             <!--<v-btn @click.stop="updateMessage">update</v-btn>-->
 
 
@@ -321,6 +345,7 @@
                 idea: '',
                 text: '',
                 creatorID: '',
+                answer:'no answer yet',
             },
 
             userData: {
@@ -406,6 +431,7 @@
                     this.mySuggestions.text = '';
                     this.mySuggestions.idea = '';
                     this.mySuggestions.creatorID = '';
+                    this.mySuggestions.answer = '';
                 }
             },
 
