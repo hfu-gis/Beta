@@ -261,6 +261,8 @@
                 this.form.email = '';
                 this.form.password = '';
                 this.confirmpassword = '';
+
+                this.e1 = 0;
             },
 
             submit() {
