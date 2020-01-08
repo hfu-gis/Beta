@@ -254,7 +254,7 @@
         // interne Methoden
         methods: {
             cancel() {
-                registration = false;
+                this.registration = false;
 
                 //Felder clearen
                 this.form.name = '';
