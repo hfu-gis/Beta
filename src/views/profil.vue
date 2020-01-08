@@ -244,7 +244,6 @@
                                 <v-card-text>{{mySuggestions.text}}</v-card-text>
                             </v-col>
                             <v-text>
-
                                 {{mySuggestions.idea}}
                             </v-text>
                             <!--<v-btn @click.stop="updateMessage">update</v-btn>-->

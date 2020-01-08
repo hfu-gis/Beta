@@ -100,7 +100,7 @@
 
         <v-toolbar light flat color="rgba(121, 120, 124, 0)" style="justify-content: center;">
             <v-spacer/>
-            <v-btn text color="grey">
+            <v-btn text color="grey" v-on:click="openAddThread">
                 Neuer Beitrag
                 <v-icon style="margin-left: 20px;">mdi-plus-circle</v-icon>
             </v-btn>
@@ -152,9 +152,61 @@
             </v-card>
         </v-dialog>
 
-        <v-dialog v-model="addThread" max-width="260">
-            <v-card>
-                <!-- Hier kommt der Dialog für neue Beiträge hin -->
+        <!---------------------------------- NEUEN THREAD ERSTELLEN ---------------------------------->
+        <v-dialog v-model="addThread" v-on:click="openAddThread">
+            <v-card style="width: 100%; background: linear-gradient(to right, #f9f5ef, #ffdcc8);">
+                <v-card-title>Create new Thread:</v-card-title>
+
+                <v-row cols="12" style="width: 100%; height: 500px;">
+                    <v-col cols="4">
+                        <v-subheader>from: {{threadCreatorName}}</v-subheader>
+                        <!--
+                        <v-container>
+                            <v-layout wrap>
+                                <v-flex xs12>
+                                    <v-combobox multiple
+                                                v-model="select"
+                                                label="Hashtags"
+                                                append-icon
+                                                chips
+                                                outlined
+                                                deletable-chips
+                                                class="tag-input"
+                                                :search-input.sync="search"
+                                                @keyup.tab="updateTags"
+                                                @paste="updateTags"
+                                                height="300px"
+                                    >
+                                    </v-combobox>
+                                </v-flex>
+                            </v-layout>
+                        </v-container>-->
+                    </v-col>
+                    <v-divider vertical color="#D9A566" style="margin-left: 30px; margin-right: 30px;"></v-divider>
+                    <v-col cols="7">
+                        <section>
+                            <v-text-field
+                                    v-model="myThread.title"
+                                    :counter="10"
+                                    label="Title"
+                                    outlined
+                                    required
+                            >{{myThread.title}}
+                            </v-text-field>
+
+                            <v-textarea
+                                    v-model="myThread.title"
+                                    :counter="10"
+                                    label="Thread-Text"
+                                    outlined
+                                    required
+                                    height="300px"
+                            >{{myThread.title}}
+                            </v-textarea>
+                        </section>
+                    </v-col>
+                </v-row>
+                <br>
             </v-card>
         </v-dialog>
 
@@ -167,6 +219,7 @@
     //import wordcloud from 'vue-wordcloud'
     import Registration from "./registration";
     import VueWordCloud from 'vuewordcloud';
+    import firebase from 'firebase';
 
     export default {
         name: "homepage",
@@ -176,6 +229,14 @@
             [VueWordCloud.name]: VueWordCloud,
         },
         methods: {
+            updateTags() {
+                this.$nextTick(() => {
+                    this.select.push(...this.search.split(","));
+                    this.$nextTick(() => {
+                        this.search = "";
+                    });
+                });
+            },
             /*wordClickHandler(name, value, vm) {
                 console.log('wordClickHandler', name, value, vm);
                 //location = 'https://google.com';
@@ -185,12 +246,53 @@
                 this.snackbarVisible = true;
                 this.snackbarText = word[0];
             },
+
+            openAddThread() {
+                this.addThread = true;
+                var user = firebase.auth().currentUser;
+                if (user) {
+                    this.threadCreatorName = user.displayName;
+                } else {
+                    this.threadCreatorName = "lalelo";
+                }
+            },
+
+            saveNewThread() {
+                if (this.myThread.hashtags != '' && this.myThread.text != '' && this.myThread.title != '') {
+                    var user = firebase.auth().currentUser;
+                    let docRef = db.collection("Threads").doc(this.myThread.title)
+
+                    //Werte zuweisen
+                    this.myThread.creatorID = user.uid;
+                    this.myThread.datetime = new Date().toDateString();
+
+                    docRef.set(this.mySuggestions)
+
+                    //TODO Fehlermeldungn Catchen!!!
+                    this.dialogIdea = false
+
+                    //Felder clearen
+                    /*this.mySuggestions.text = '';
+                    this.mySuggestions.idea = '';
+                    this.mySuggestions.creatorID = '';*/
+                }
+            }
         },
 
         data() {
 
             return {
+                myThread: {
+                    creatorID: '',
+                    datetime: '',
+                    hashtags: {},
+                    likes: '',
+                    text: '',
+                    title: ''
+                },
+                threadCreatorName: '',
                 addThread: false,
+
                 Beitrag: false,
                 /*
                 cards:[

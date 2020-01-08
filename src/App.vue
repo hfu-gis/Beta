@@ -463,6 +463,7 @@
         // Initialisierung
         created() {
             this.$router.push({path: '/homepage'})
+            this.updateUser()
         }
     }
 </script>

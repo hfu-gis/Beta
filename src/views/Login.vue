@@ -15,7 +15,7 @@
                             <div id="login">
                                 <header><h1><strong>Login</strong></h1></header>
                                 <br>
-                                <v-form ref="form" v-model="valid">
+                                <v-form ref="form">
                                     <v-text-field label="E-Mail" type="email" v-model="email" required></v-text-field>
                                     <v-text-field label="Password" type="password" v-model="password"></v-text-field>
                                     <v-row no-gutters>
