@@ -19,7 +19,7 @@
                                     <v-text-field label="E-Mail" type="email" v-model="email" required></v-text-field>
                                     <v-text-field label="Password" type="password" v-model="password"></v-text-field>
                                     <v-row no-gutters>
-                                        <v-btn color="#D9A566" v-on:click="login">Sign up</v-btn>
+                                        <v-btn color="#D9A566" v-on:click="login">Sign in</v-btn>
                                         <registration/>
                                         <v-spacer/>
                                         <v-spacer/>
@@ -100,7 +100,8 @@
                         }
                     );
                 e.preventDefault();
-            }
+            },
+
         },
         created() {
 
