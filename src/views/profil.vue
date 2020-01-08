@@ -205,17 +205,19 @@
 
                         >
 
-
+                            <v-col style="background: #D9A566">
                             <v-card-title>
                                 Submit your Idea
                             </v-card-title>
-                            <v-col cols="12">
+                            </v-col>
+                            <v-col cols="12" >
                                 <v-text solo flat filled required>from: {{userData.userName}}</v-text>
                             </v-col>
                             <v-col cols="12">
                                 <v-text-field solo flat filled label="Titel" required
                                               v-model="mySuggestions.idea"></v-text-field>
                             </v-col>
+
                             <v-col cols="12">
                                 <v-textarea solo flat filled color="#D9A566" label="type here"
                                             v-model="mySuggestions.text" placeholder="type here"></v-textarea>
@@ -228,6 +230,11 @@
                         </v-card>
                     </v-card>
                 </v-dialog>
+
+
+
+
+
 
 
                 <v-dialog v-model="dialogSuggestions" max-width="400">
@@ -244,6 +251,7 @@
                                 <v-card-text>{{mySuggestions.text}}</v-card-text>
                             </v-col>
                             <v-text>
+
                                 {{mySuggestions.idea}}
                             </v-text>
                             <!--<v-btn @click.stop="updateMessage">update</v-btn>-->
