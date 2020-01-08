@@ -244,33 +244,16 @@
                                 class="mx-auto"
                                 max-width="400"
                                 color="#8F94A6"
-
                         >
-                            <v-col style="background: #D9A566">
                             <v-card-title>Those are your current Suggestions:</v-card-title>
-                            </v-col>
-                            <v-col>
-                                <v-card-title>
 
-                                    {{mySuggestions.idea}}
-
-                                </v-card-title>
-
-                            </v-col>
                             <v-col>
                                 <v-card-text>{{mySuggestions.text}}</v-card-text>
                             </v-col>
-                            <v-divider color="#D9A566"/>
-                            <v-col>
+                            <v-text>
 
-                                <v-card-title> Your answer</v-card-title>
-
-                            </v-col>
-
-            <v-col>
-                <v-card-text>{{mySuggestions.answer}}</v-card-text>
-
-            </v-col>
+                                {{mySuggestions.idea}}
+                            </v-text>
                             <!--<v-btn @click.stop="updateMessage">update</v-btn>-->
 
 
@@ -345,7 +328,6 @@
                 idea: '',
                 text: '',
                 creatorID: '',
-                answer:'no answer yet',
             },
 
             userData: {
@@ -431,7 +413,6 @@
                     this.mySuggestions.text = '';
                     this.mySuggestions.idea = '';
                     this.mySuggestions.creatorID = '';
-                    this.mySuggestions.answer = '';
                 }
             },
 
