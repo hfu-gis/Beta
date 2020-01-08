@@ -3,7 +3,7 @@
     <body>
     <div style="margin-top: 150px; width: 90%; height: 90%; margin-left: auto; margin-right: auto; margin-bottom: 70px;">
         <div class="text-center">
-            <img class="img-circle" src="https://randomuser.me/api/portraits/men/39.jpg" height="150" width="150"
+            <img class="img-circle" src="https://randomuser.me/api/portraits/men/11.jpg" height="150" width="150"
                  align="center"/>
             <input id="fileUpload" type="file" hidden>
             <v-btn fab x-small dark @click="chooseFiles">
@@ -108,7 +108,7 @@
                                 color="#8F94A6"
                         >
                             <v-img
-                                    src="https://randomuser.me/api/portraits/men/39.jpg"
+                                    src="https://randomuser.me/api/portraits/men/11.jpg"
                                     height="200px"
                             />
 
@@ -316,10 +316,14 @@
 
         // Variablen-Speicher
         data: () => ({
-
-            userdata: {
+            userData: {
                 userName: '',
+                first: '',
+                last: '',
+                mail: '',
+                //password: '',
             },
+
             usersuggestion: {
                 username: '',
                 Idea: '',
@@ -382,6 +386,29 @@
                 firebase.auth().currentUser.updateProfile({
                     displayName: this.message
                 })
+
+                var user = firebase.auth().currentUser;
+                if (user) {
+                    this.updateUser()
+                    let docRef = db.collection("Users").doc(user.uid)
+
+                    //Neuen Namen setzen
+                    this.userData.userName = this.message
+
+                    docRef.set(this.userData)
+                    docRef.update()
+                }
+            },
+
+            updateUser() {
+                var user = firebase.auth().currentUser;
+                if (user) {
+                    db.collection("Users").doc(user.uid).get().then(doc => {
+                        this.userData = doc.data()
+                    }).catch(err => {
+                        console.log('Error getting documents', err)
+                    })
+                }
             },
 
             signOut() {
@@ -398,19 +425,19 @@
                             name: "home"
                         });*/
                     });
-            },
+            }
+            ,
 
         },
 
 
         // Initialisierung
         created() {
-
+            this.updateUser()
             var user = firebase.auth().currentUser;
             if (user) {
                 this.message = user.displayName;
             }
-
         }
     }
 </script>

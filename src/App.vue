@@ -48,7 +48,7 @@
                 <!--<v-btn text v-if="this.authenticated" @click.stop="dialog = true" style="height: 80%; width: 100%;">-->
                 <v-btn text v-if="this.authenticated" link :to="{ path: '/profile.json'}" style="height: 80%; width: 100%;">
                     <v-list-item-avatar>
-                        <v-img src="https://randomuser.me/api/portraits/men/39.jpg" height="40" width="50"/>
+                        <v-img src="https://randomuser.me/api/portraits/men/11.jpg" height="40" width="50"/>
                     </v-list-item-avatar>
                     <v-list-item-content>
                         <v-list-item-title>{{userData.userName}}</v-list-item-title>
@@ -402,7 +402,7 @@
                 first: '',
                 last: '',
                 mail: '',
-                password: '',
+                //password: '',
             },
 
             authenticated: false

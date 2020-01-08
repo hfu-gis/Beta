@@ -130,7 +130,7 @@
                 first: '',
                 last: '',
                 mail: '',
-                password: '',
+                //password: '',
             },
 
             nameRules: [
