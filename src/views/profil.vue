@@ -74,7 +74,7 @@
                 </div>
                 <br>
                 <div class="my-2">
-                    <v-btn width="100em" min-height="8em" class="button" outlined v-on:click="signOut">
+                    <v-btn width="100em" min-height="8em" class="button" outlined v-on:click="logout">
                         Logout
                     </v-btn>
                 </div>
@@ -213,8 +213,8 @@
                                 Submit your Idea
                             </v-card-title>
                             <v-col cols="12">
-                                <v-text-field solo flat filled label="Username" required
-                                              v-model="usersuggestion.username"></v-text-field>
+                                <v-text solo flat filled  required
+                                              v-model="usersuggestion.userName">{{userData.userName}}</v-text>
                             </v-col>
                             <v-col cols="12">
                                 <v-text-field solo flat filled label="Titel" required
@@ -325,10 +325,10 @@
             },
 
             usersuggestion: {
-                username: '',
                 Idea: '',
                 text: ''
             },
+
 
             message: 'no user logged in',
             dialoglogout: false,
@@ -371,10 +371,27 @@
             chooseFiles() {
                 document.getElementById("fileUpload").click()
             },
+            logout: function (e) {
+                firebase
+                    .auth()
+                    .signOut()
+                    .then(
+                        user => {
+                            alert(`You are now logged Out`);
+                            this.updateUser()
+                            this.$router.push('/homepage');
+
+                        },
+                        err => {
+                            alert(err.message);
+                        }
+                    );
+                e.preventDefault();
+            },
 
 
             create() {
-                let docRef = db.collection("Suggestions").doc(this.usersuggestion.Idea)
+                let docRef = db.collection("Suggestions").doc(this.userData.userName)
                 docRef.set(this.usersuggestion)
 
                 //TODO Fehlermeldungn Catchen!!!
