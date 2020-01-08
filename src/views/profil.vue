@@ -61,7 +61,7 @@
                 <br>
                 <div class="my-2">
                     <v-btn width="100em" min-height="8em" class="button" outlined
-                           @click.stop="dialogSuggestions = true">My
+                           @click.stop="dialogSuggestions = true" >My
                         Suggestions
                     </v-btn>
                 </div>
@@ -234,19 +234,24 @@
                 </v-dialog>
 
 
-                <v-dialog v-model="dialogSuggestions" max-width="260">
+                <v-dialog v-model="dialogSuggestions" max-width="400">
                     <v-card>
                         <v-card
 
                                 class="mx-auto"
-                                max-width="260"
+                                max-width="400"
                                 color="#8F94A6"
                         >
+                            <v-card-title >Those are your current Suggestions</v-card-title>
 
+                            <v-col>
+                            <v-card-text>{{message1}}</v-card-text>
+                            </v-col>
+                            <v-text>
 
-                            <v-card-title>
-                                You currently have no Suggestions
-                            </v-card-title>
+                                {{usersuggestion.Idea}}
+                            </v-text>
+                            <v-btn @click.stop="updateMessage">update</v-btn>
 
 
                         </v-card>
@@ -324,12 +329,14 @@
                 //password: '',
             },
 
+
+
             usersuggestion: {
                 Idea: '',
                 text: ''
             },
 
-
+            message1:'',
             message: 'no user logged in',
             dialoglogout: false,
             dialogAbo: false,
@@ -390,8 +397,10 @@
             },
 
 
+
             create() {
-                let docRef = db.collection("Suggestions").doc(this.userData.userName)
+                var user = firebase.auth().currentUser;
+                let docRef = db.collection("Suggestions").doc(user.uid)
                 docRef.set(this.usersuggestion)
 
                 //TODO Fehlermeldungn Catchen!!!
@@ -444,6 +453,19 @@
                     });
             }
             ,
+            updateMessage(){
+
+                var user = firebase.auth().currentUser;
+                if(user){
+                    this.updateUser()
+                    let docRef = db.collection("Suggestions").doc(user.uid)
+
+                    this.usersuggestion.Idea= this.message1
+
+                    docRef.set(this.usersuggestion)
+                    docRef.update()
+                }
+            }
 
         },
 
