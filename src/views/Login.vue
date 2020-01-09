@@ -6,12 +6,12 @@
     </head>
 
     <body>
-    <v-container style="margin-top: 250px;">
+    <v-container style="margin-top: 250px;" @keydown.enter="login">
         <v-layout>
             <v-row justify="center" align="center">
                 <v-flex xs12 xs5 offset-md12)>
                     <v-card-text>
-                        <v-form class="px-3">
+                        <v-form class="px-3" >
                             <div id="login">
                                 <header><h1><strong>Login</strong></h1></header>
                                 <br>
