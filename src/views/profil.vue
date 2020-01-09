@@ -7,8 +7,8 @@
                  align="center"/>
             <input id="fileUpload" type="file" hidden>
             <!--<v-btn fab x-small dark @click="chooseFiles">-->
-            <v-btn fab x-small dark v-on:click="changePhotoURL = true">
-                <v-icon color="#D9A566">mdi-pencil</v-icon>
+            <v-btn fab x-small dark v-on:click="changePhotoURL = true" style="position: relative; margin-top: 4.4%;margin-left: -1.3%">
+                <v-icon color="#D9A566" >mdi-pencil</v-icon>
             </v-btn>
 
             <v-dialog v-model="changePhotoURL" max-width="700px">
@@ -23,7 +23,7 @@
                                     style="padding-left: 2%; padding-right: 2%;"
                             >
                             </v-text-field>
-                            <v-btn outlined v-on:click="changeURL">Confirm</v-btn>
+                            <v-btn outlined v-on:click="changeURL" >Confirm</v-btn>
                     </v-row>
                 </v-card>
             </v-dialog>
@@ -285,6 +285,7 @@
 
                                 </v-card-text>
                             </v-col>
+                            <v-divider color="#132B40"/>
                             <v-col>
                                 <v-card-title>
                                     Your answer

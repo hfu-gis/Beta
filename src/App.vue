@@ -4,7 +4,7 @@
         <!-------------------------App-Bar------------------------------------------------------------>
         <v-app-bar app color="#132B40" right dark>
 
-
+            <v-row>
 
             <a :to="{ path: '/homepage'}">
                 <v-btn :to="{ path: '/homepage'}" text height="60" width="150" color="#132B40">
@@ -13,12 +13,14 @@
             </a>
 
             <v-spacer/>
+
             <div id="searchbox">
                 <v-text-field outlined rounded dense color="#D9A566" label="search" id="txtsearch"></v-text-field>
             </div>
             <v-btn icon class="mx-10" color="#D9A566">
                 <v-icon>mdi-magnify</v-icon>
             </v-btn>
+            </v-row>
 
 
             <v-app-bar-nav-icon color="#D9A566" @click.stop="drawer = !drawer" v-on:click="updateUser"/>
