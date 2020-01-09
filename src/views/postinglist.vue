@@ -160,23 +160,21 @@
 
                             <!--<v-breadcrumbs :items="bread_items" divider=">"></v-breadcrumbs>-->
 
-                            <v-card-text v-text="item.text"/>
+
 
                         </v-col>
                         <v-col cols="2" style="padding-top: 2%;">
-                            <v-btn @click="item.title = !item.title"
+                            <v-btn @click="item.beitragsnummer = !item.beitragsnummer"
                                    style="height: 90%; background: #3d4f68; float: right; margin-right: 10%;">
                                 weiterlesen
                             </v-btn>
                         </v-col>
                     </v-row>
                     <v-expand-transition>
-                        <div v-show="item.title">
+                        <div v-show="!item.beitragsnummer">
                             <v-divider></v-divider>
 
-                            <v-card-text>
-                                I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
-                            </v-card-text>
+                            <v-card-text v-text="item.text"/>
                         </div>
                     </v-expand-transition>
                 </v-card>
@@ -207,6 +205,7 @@
         data: () => ({
 
             thread: false,
+
             profileURL: '',
 
             /*items: [
