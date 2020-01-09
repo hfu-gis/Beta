@@ -271,7 +271,8 @@
                     .then(data => {
                         data.user
                             .updateProfile({
-                                displayName: this.form.name
+                                displayName: this.form.name,
+                                photoURL: 'http://pronksiapartments.ee/wp-content/uploads/2015/10/placeholder-face-big.png'
                             })
                             .then(() => {
                             });

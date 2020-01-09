@@ -50,7 +50,7 @@
                 <!--<v-btn text v-if="this.authenticated" @click.stop="dialog = true" style="height: 80%; width: 100%;">-->
                 <v-btn text v-if="this.authenticated" link :to="{ path: '/profile.json'}" style="height: 80%; width: 100%;">
                     <v-list-item-avatar>
-                        <v-img src="https://randomuser.me/api/portraits/men/11.jpg" height="40" width="50"/>
+                        <v-img :src="photoURL" height="40" width="50"/>
                     </v-list-item-avatar>
                     <v-list-item-content>
                         <v-list-item-title>{{userData.userName}}</v-list-item-title>
@@ -88,7 +88,7 @@
 
                 <v-list-item link :to="{ path: '/postinglist'}">
                     <v-list-item-action>
-                        <v-icon color="#D9A566">mdi-sort</v-icon>
+                        <v-icon color="#D9A566">mdi-rocket</v-icon>
                     </v-list-item-action>
                     <v-list-item-content>
                         <v-list-item-title class="accent--text">PostingList</v-list-item-title>
@@ -110,6 +110,15 @@
                     </v-list-item-action>
                     <v-list-item-content>
                         <v-list-item-title class="accent--text">Profile</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+
+                <v-list-item v-on:click="dialogprivacy = true">
+                    <v-list-item-action>
+                        <v-icon color="#D9A566">mdi-text</v-icon>
+                    </v-list-item-action>
+                    <v-list-item-content>
+                        <v-list-item-title class="accent--text">Privacy Policy</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
 
@@ -391,13 +400,14 @@
 
         // Variablen-Speicher
         data: () => ({
+            photoURL: '',
 
             valid: true,
             drawer: null,
             dialog: false,
             dialog2: false,
             dialog3: false,
-            dialogprivacy: true,
+            dialogprivacy: false,
 
             userData: {
                 userName: '',
@@ -440,6 +450,7 @@
                     db.collection("Users").doc(user.uid).get().then(doc => {
                         this.userData = doc.data()
                         this.authenticated = true;
+                        this.photoURL = user.photoURL;
                     }).catch(err => {
                         console.log('Error getting documents', err)
                     })

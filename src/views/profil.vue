@@ -3,14 +3,31 @@
     <body>
     <div style="margin-top: 150px; width: 90%; height: 90%; margin-left: auto; margin-right: auto; margin-bottom: 70px;">
         <div class="text-center">
-            <img class="img-circle" src="https://randomuser.me/api/portraits/men/11.jpg" height="150" width="150"
+            <img class="img-circle" :src="profileURL" height="150" width="150"
                  align="center"/>
             <input id="fileUpload" type="file" hidden>
-            <v-btn fab x-small dark @click="chooseFiles">
-
-
+            <!--<v-btn fab x-small dark @click="chooseFiles">-->
+            <v-btn fab x-small dark v-on:click="changePhotoURL = true">
                 <v-icon color="#D9A566">mdi-pencil</v-icon>
             </v-btn>
+
+            <v-dialog v-model="changePhotoURL" max-width="700px">
+                <v-card style="background: linear-gradient(to right, #f9f5ef, #ffd8b8);">
+                    <v-card-title>Insert new Photo URL:</v-card-title>
+                    <v-row style="width: 100%; padding: 20px;">
+                            <v-text-field
+                                    v-model="newPhotoURL"
+                                    label="URL"
+                                    outlined
+                                    required
+                                    style="padding-left: 2%; padding-right: 2%;"
+                            >
+                            </v-text-field>
+                            <v-btn outlined v-on:click="changeURL">Confirm</v-btn>
+                    </v-row>
+                </v-card>
+            </v-dialog>
+
 
             <header>
                 <h1 class="h1"><strong class="accent--text">{{message}}</strong>
@@ -46,7 +63,8 @@
                 </div>
                 <br>
                 <div class="my-2">
-                    <v-btn width="100em" min-height="8em" class="button" outlined @click.stop="dialogIdea = true">Submit an Idea
+                    <v-btn width="100em" min-height="8em" class="button" outlined @click.stop="dialogIdea = true">Submit
+                        an Idea
                     </v-btn>
                 </div>
             </v-col>
@@ -75,7 +93,8 @@
                         Logout
                     </v-btn>
                 </div>
-                <v-dialog v-model="dialogName" max-width="400" style="background: linear-gradient(to right, #f9f5ef, #ffd8b8);">
+                <v-dialog v-model="dialogName" max-width="400"
+                          style="background: linear-gradient(to right, #f9f5ef, #ffd8b8);">
                     <v-card
                             style="background: linear-gradient(to right, #f9f5ef, #ffd8b8);">
                         <v-col cols="12" style="background: #132B40">
@@ -85,22 +104,22 @@
                         </v-col>
 
 
-                            <input v-model="message" style="margin-left: 7%; margin-top: 5%; margin-bottom: 2%"/>
+                        <input v-model="message" style="margin-left: 7%; margin-top: 5%; margin-bottom: 2%"/>
 
 
+                        <v-col cols="12">
 
-
-                        <v-col cols="12" >
-
-                            <v-btn color="#132B40" style="color: white " @click.stop="dialogName = false" v-on:click="updateName" >Save</v-btn>
+                            <v-btn color="#132B40" style="color: white " @click.stop="dialogName = false"
+                                   v-on:click="updateName">Save
+                            </v-btn>
 
                         </v-col>
 
 
                     </v-card>
-                </v-dialog >
+                </v-dialog>
 
-                <v-dialog v-model="dialogProfile" max-width="400" >
+                <v-dialog v-model="dialogProfile" max-width="400">
                     <v-card>
                         <v-card
 
@@ -217,11 +236,11 @@
                         >
 
                             <v-col style="background: #132B40">
-                            <v-card-title style="color: white">
-                                Submit your Idea
-                            </v-card-title>
+                                <v-card-title style="color: white">
+                                    Submit your Idea
+                                </v-card-title>
                             </v-col>
-                            <v-col cols="12" >
+                            <v-col cols="12">
                                 <v-text solo flat filled required>from: {{userData.userName}}</v-text>
                             </v-col>
                             <v-col cols="12">
@@ -233,19 +252,15 @@
                                 <v-textarea solo flat filled color="#D9A566" label="type here"
                                             v-model="mySuggestions.text" placeholder="type here"></v-textarea>
                             </v-col>
-                            <v-col cols="12" >
-                                <v-btn solo depressed flat @click="createSuggestion" type="submit" color="#132B40" style="color: white">Send
+                            <v-col cols="12">
+                                <v-btn solo depressed flat @click="createSuggestion" type="submit" color="#132B40"
+                                       style="color: white">Send
                                 </v-btn>
                             </v-col>
 
                         </v-card>
                     </v-card>
                 </v-dialog>
-
-
-
-
-
 
 
                 <v-dialog v-model="dialogSuggestions" max-width="400">
@@ -258,22 +273,22 @@
                                 style="background: linear-gradient(to right, #f9f5ef, #ffd8b8);"
                         >
                             <v-col style="background: #132B40">
-                            <v-card-title style="color: white">Those are your current Suggestions:</v-card-title>
-                                </v-col>
+                                <v-card-title style="color: white">Those are your current Suggestions:</v-card-title>
+                            </v-col>
 
                             <v-col>
                                 <v-card-text>{{mySuggestions.idea}}</v-card-text>
                             </v-col>
                             <v-col>
-                            <v-card-text>
-                                {{mySuggestions.text}}
+                                <v-card-text>
+                                    {{mySuggestions.text}}
 
-                            </v-card-text>
-                                </v-col>
+                                </v-card-text>
+                            </v-col>
                             <v-col>
-<v-card-title>
-    Your answer
-</v-card-title>
+                                <v-card-title>
+                                    Your answer
+                                </v-card-title>
                             </v-col>
                             <v-col>
                                 <v-card-text>
@@ -352,6 +367,10 @@
 
         // Variablen-Speicher
         data: () => ({
+            changePhotoURL: false,
+            newPhotoURL: '',
+            profileURL: '',
+
             mySuggestions: {
                 idea: '',
                 text: '',
@@ -427,9 +446,18 @@
                 e.preventDefault();
             },
 
+            changeURL(){
+                var user = firebase.auth().currentUser;
+                if (user) {
+                    user.updateProfile({photoURL: this.newPhotoURL})
+                    this.changePhotoURL = false;
+                }
+                this.profileURL = this.newPhotoURL;
+                this.updateUser();
+            },
 
             createSuggestion() {
-                if(this.mySuggestions.idea != '' && this.mySuggestions.text != '') {
+                if (this.mySuggestions.idea != '' && this.mySuggestions.text != '') {
                     var user = firebase.auth().currentUser;
                     let docRef = db.collection("Suggestions").doc(user.uid)
                     this.mySuggestions.creatorID = user.uid;
@@ -516,6 +544,7 @@
             var user = firebase.auth().currentUser;
             if (user) {
                 this.message = user.displayName;
+                this.profileURL = user.photoURL;
             }
         }
     }
