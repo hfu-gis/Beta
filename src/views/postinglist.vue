@@ -24,6 +24,7 @@
                 </v-row>
             </v-container>-->
 
+            <!--
             <v-container fluid style="margin-top: 30px; height: 100px;">
                 <v-layout wrap>
                     <v-flex xs12>
@@ -39,7 +40,7 @@
                         </v-combobox>
                     </v-flex>
                 </v-layout>
-            </v-container>
+            </v-container>-->
 
             <!--FILTER-->
             <v-menu offset-y>
@@ -126,12 +127,12 @@
                                         tile
                                         style="margin-left: 10%;"
                                 >
-                                    <v-img class="img-circle" :src="profileURL"></v-img>
+                                    <v-img class="img-circle" :src="profileURL"/>
                                 </v-avatar>
 
                                 <v-card-subtitle v-text="item.username"
                                                  style="margin-left: 3%;"
-                                ></v-card-subtitle>
+                                />
                             </section>
                         </v-col>
                         <v-col cols="8">
@@ -141,7 +142,7 @@
                                     class="headline"
                                     v-text="item.title"
 
-                            ></v-card-title>
+                            />
 
                             <v-chip-group
                                     column
@@ -253,9 +254,13 @@
         created() {
             var user = firebase.auth().currentUser;
             if (user) {
-                db.collection("Threads").get().then(threadsFromDB => {
+                db.collection("Threads").where("hashtags", "array-contains", "Furtwangen").get().then(threadsFromDB => {
                     threadsFromDB.forEach(
                         doc => {
+
+
+
+
                             this.items.push(doc.data())
                         })
                     this.profileURL = user.photoURL;

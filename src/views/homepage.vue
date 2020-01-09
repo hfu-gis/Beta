@@ -107,6 +107,8 @@
             <v-spacer/>
         </v-toolbar>
 
+        <div>{{tempWord}}</div>
+
         <div style="height: 90%; width: 100%;">
             <vue-word-cloud
                     style="position:fixed; width: 80%; height: 70%; margin-left: 10%; margin-top: 2%; text-transform: uppercase;"
@@ -117,18 +119,29 @@
                     :font-size-ratio="5"
                     animation-easing="ease"
                     :spacing="0.7"
-            >
-                <template slot-scope="{text, weight, words}">
+>
+            <!--<vue-word-cloud
+                    style="position:fixed; width: 80%; height: 70%; margin-left: 10%; margin-top: 2%; text-transform: uppercase;"
+                    :words="[['romance', 19], ['horror', 3], ['fantasy', 7], ['adventure', 3]]"
+                    :color="([, weight]) => weight > 10 ? 'DeepPink' : weight > 5 ? 'RoyalBlue' : 'Indigo'"
+                    font-family="Roboto"
+            >-->
+                    <template slot-scope="{text, weight, word}">
+                        <div :title="weight" style="cursor: pointer;" @click="onWordClick(word)">
+                            {{ text }}
+                        </div>
+                    </template>
+                <!--<template slot-scope="{text, weight, words}">
                     <div :title="weight" style="cursor: pointer;" @click.stop="Beitrag = true">
 
                         {{ text }}
 
-                    </div>
+                    </div>-->
                     <!--<div :title="weight" style="cursor: pointer;" @click="onWordClick(words)">
 
                         {{ text }}
-                    </div>-->
-                </template>
+                    </div>
+                </template>-->
             </vue-word-cloud>
 
         </div>
@@ -157,8 +170,8 @@
             <v-card style="width: 100%; background: linear-gradient(to right, #f9f5ef, #ffdcc8);">
                 <v-card-title>Create new Thread:</v-card-title>
 
-                <v-row cols="12" style="width: 100%; height: 500px;">
-                    <v-col cols="4">
+                <v-row cols="12" style="width: 100%; height: 350px;">
+                    <v-col cols="4" style="padding-left: 2%">
                         <v-subheader>from: {{myThread.username}}</v-subheader>
                         <!--
                         <v-container>
@@ -184,7 +197,7 @@
 
                         <v-row>
                             <v-text-field v-model="newHashtag" style="width: 70%; margin-left: 20px;"></v-text-field>
-                            <v-btn icon dark style="background: grey" v-on:click="addHashtagToArray">
+                            <v-btn icon dark style="background: grey;" v-on:click="addHashtagToArray">
                                 <v-icon>mdi-plus</v-icon>
                             </v-btn>
                         </v-row>
@@ -216,7 +229,6 @@
                                     label="Thread-Text"
                                     outlined
                                     required
-                                    height="300px"
                             >{{myThread.text}}
                             </v-textarea>
                         </section>
@@ -251,8 +263,12 @@
         },
         methods: {
             addHashtagToArray() {
+                if (this.newHashtag != '' && this.newHashtag != ' ') {
+                }
                 this.myThread.hashtags.push(this.newHashtag)
+                this.newHashtag = '';
             },
+
             updateTags() {
                 this.$nextTick(() => {
                     this.select.push(...this.search.split(","));
@@ -265,8 +281,7 @@
                 var user = firebase.auth().currentUser;
                 if (user) {
                     this.authenticated = true;
-                }
-                else{
+                } else {
                     this.authenticated = false;
                 }
             },
@@ -276,8 +291,7 @@
                 path = '/postinglist';
             },*/
             onWordClick: function (word) {
-                this.snackbarVisible = true;
-                this.snackbarText = word[0];
+                this.tempWord = word[0];
             },
 
             openAddThread() {
@@ -320,13 +334,14 @@
             }
         },
 
-
         data() {
             return {
+                tempWord: '',
+
                 myThread: {
                     creatorID: '',
                     datetime: '',
-                    hashtags: ['Haus', 'Baum'],
+                    hashtags: [],
                     likes: '123',
                     text: '',
                     title: '',
@@ -336,6 +351,8 @@
                 newHashtag: '',
 
                 authenticated: false,
+
+                temp: '',
 
                 Beitrag: false,
                 /*
