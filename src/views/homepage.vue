@@ -241,8 +241,27 @@
                 <br>
             </v-card>
         </v-dialog>
+        <v-dialog v-model="fehler" max-width="600">
+            <v-card>
+                <v-card
 
+                        class="mx-auto"
+                        max-width="600"
+                        color="#8F94A6"
+                        style="background: linear-gradient(to right, #f9f5ef, #ffd8b8);"
+                >
+
+
+                    <v-card-title>
+                        You need to add Hashtags and fill in a Titel and Threadtext
+                    </v-card-title>
+
+
+                </v-card>
+            </v-card>
+        </v-dialog>
     </div>
+
 </template>
 
 <script>
@@ -256,6 +275,7 @@
     import {mapState} from 'vuex'
 
     export default {
+
         name: "homepage",
 
         components: {
@@ -347,6 +367,10 @@
 
 
                 }
+                else{
+                    this.fehler=true;
+
+                }
             },
 
         },
@@ -360,6 +384,7 @@
 
         data() {
             return {
+                fehler: false,
                 tempWord: '',
 
                 myThread: {
