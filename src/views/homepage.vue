@@ -98,7 +98,7 @@
             </v-app>
         </div>-->
 
-        <v-toolbar light flat color="rgba(121, 120, 124, 0)" style="justify-content: center;">
+        <v-toolbar v-if="this.authenticated" light flat color="rgba(121, 120, 124, 0)" style="justify-content: center;">
             <v-spacer/>
             <v-btn text color="grey" v-on:click="openAddThread">
                 Neuer Beitrag
@@ -246,6 +246,9 @@
             //wordcloud,
             [VueWordCloud.name]: VueWordCloud,
         },
+        created() {
+            this.updateUser()
+        },
         methods: {
             addHashtagToArray() {
                 this.myThread.hashtags.push(this.newHashtag)
@@ -257,6 +260,15 @@
                         this.search = "";
                     });
                 });
+            },
+            updateUser() {
+                var user = firebase.auth().currentUser;
+                if (user) {
+                    this.authenticated = true;
+                }
+                else{
+                    this.authenticated = false;
+                }
             },
             /*wordClickHandler(name, value, vm) {
                 console.log('wordClickHandler', name, value, vm);
@@ -322,6 +334,8 @@
                 },
                 addThread: false,
                 newHashtag: '',
+
+                authenticated: false,
 
                 Beitrag: false,
                 /*

@@ -437,8 +437,8 @@
 
             register: () => {
 
-                let docRef = db.collection('Users').doc(this.userdata.firstname)
-                docRef.set(this.userdata)
+                let docRef = db.collection('Users').doc(this.userData.firstname)
+                docRef.set(this.userData)
                     .catch(error => console.debug('Error', error))
 
             },
@@ -466,7 +466,8 @@
                     .signOut()
                     .then(() => {
                         this.updateUser()
-                        this.$router.push('/homepage');
+                        //TODO Soll "Beitrag erstellen" auch angezeigt werden wenn man nicht angemeldet ist?
+                        this.$router.push('/');
                     });
             }
         },
