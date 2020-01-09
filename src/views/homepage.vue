@@ -1,6 +1,9 @@
 <template>
     <div>
+        <!--Schriftarten einbetten-->
         <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Teko&display=swap" rel="stylesheet">
+
         <!--<div class="body-1" id="cloud">
             <wordcloud :data="defaultWords" nameKey="name" valueKey="value" :color="myColors" :showTooltip="true" :wordClick="wordClickHandler">
             </wordcloud>
@@ -98,7 +101,8 @@
             </v-app>
         </div>-->
 
-        <v-toolbar v-if="this.authenticated" light flat color="rgba(121, 120, 124, 0)" style="justify-content: center;">
+        <!--<v-toolbar v-if="this.authenticated" light flat color="rgba(121, 120, 124, 0)" style="justify-content: center;">-->
+        <v-toolbar light flat color="rgba(121, 120, 124, 0)" style="justify-content: center;">
             <v-spacer/>
             <v-btn text color="grey" v-on:click="openAddThread">
                 Neuer Beitrag
@@ -109,7 +113,7 @@
 
         <div>{{tempWord}}</div>
 
-        <div style="height: 90%; width: 100%;">
+        <div style="height: 100%; width: 100%;">
             <vue-word-cloud
                     style="position:fixed; width: 80%; height: 70%; margin-left: 10%; margin-top: 2%; text-transform: uppercase;"
                     :words="words"
@@ -117,31 +121,30 @@
                     :color="([, weight]) => weight > 17 ? '#132B40' : weight > 8 ? '#D9A566' : 'Indigo'"
                     font-family="Anton"
                     :font-size-ratio="5"
-                    animation-easing="ease"
                     :spacing="0.7"
->
-            <!--<vue-word-cloud
-                    style="position:fixed; width: 80%; height: 70%; margin-left: 10%; margin-top: 2%; text-transform: uppercase;"
-                    :words="[['romance', 19], ['horror', 3], ['fantasy', 7], ['adventure', 3]]"
-                    :color="([, weight]) => weight > 10 ? 'DeepPink' : weight > 5 ? 'RoyalBlue' : 'Indigo'"
-                    font-family="Roboto"
-            >-->
-                    <template slot-scope="{text, weight, word}">
-                        <div :title="weight" style="cursor: pointer;" @click="onWordClick(word)">
-                            {{ text }}
-                        </div>
-                    </template>
+            >
+                <!--<vue-word-cloud
+                        style="position:fixed; width: 80%; height: 70%; margin-left: 10%; margin-top: 2%; text-transform: uppercase;"
+                        :words="[['romance', 19], ['horror', 3], ['fantasy', 7], ['adventure', 3]]"
+                        :color="([, weight]) => weight > 10 ? 'DeepPink' : weight > 5 ? 'RoyalBlue' : 'Indigo'"
+                        font-family="Roboto"
+                >-->
+                <template slot-scope="{text, weight, word}">
+                    <div :title="weight" style="cursor: pointer;" @click="onWordClick(word)">
+                        {{ text }}
+                    </div>
+                </template>
                 <!--<template slot-scope="{text, weight, words}">
                     <div :title="weight" style="cursor: pointer;" @click.stop="Beitrag = true">
 
                         {{ text }}
 
                     </div>-->
-                    <!--<div :title="weight" style="cursor: pointer;" @click="onWordClick(words)">
+                <!--<div :title="weight" style="cursor: pointer;" @click="onWordClick(words)">
 
-                        {{ text }}
-                    </div>
-                </template>-->
+                    {{ text }}
+                </div>
+            </template>-->
             </vue-word-cloud>
 
         </div>
@@ -250,7 +253,7 @@
     import VueWordCloud from 'vuewordcloud';
     import firebase from 'firebase';
     import db from "../db";
-    import { mapState } from 'vuex'
+    import {mapState} from 'vuex'
 
     export default {
         name: "homepage",
@@ -263,12 +266,13 @@
         created() {
             this.updateUser()
         },
+
         methods: {
             addHashtagToArray() {
                 if (this.newHashtag != '' && this.newHashtag != ' ') {
+                    this.myThread.hashtags.push(this.newHashtag)
+                    this.newHashtag = '';
                 }
-                this.myThread.hashtags.push(this.newHashtag)
-                this.newHashtag = '';
             },
 
             updateTags() {
@@ -348,7 +352,10 @@
         },
 
         computed: {
-            ...mapState(['searchHashtag']),
+            ...mapState(['searchHashtag', 'doubleLoaded']),
+        },
+
+        watch:{
         },
 
         data() {
