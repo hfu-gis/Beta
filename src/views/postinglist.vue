@@ -42,6 +42,10 @@
                 </v-layout>
             </v-container>-->
 
+            <v-chip>{{this.searchHashtag}}</v-chip>
+
+            <v-spacer></v-spacer>
+
             <!--FILTER-->
             <v-menu offset-y>
                 <template v-slot:activator="{ on }">
@@ -175,6 +179,7 @@
 <script>
     import firebase from 'firebase';
     import db from "../db";
+    import { mapState } from 'vuex'
 
     export default {
         name: 'postinglist',
@@ -184,6 +189,10 @@
 
         // entspricht den HTML-Attributen
         props: {},
+
+        computed: {
+            ...mapState(['searchHashtag']),
+        },
 
         // Variablen-Speicher
         data: () => ({
@@ -254,21 +263,19 @@
         created() {
             var user = firebase.auth().currentUser;
             if (user) {
-                db.collection("Threads").where("hashtags", "array-contains", "Furtwangen").get().then(threadsFromDB => {
-                    threadsFromDB.forEach(
-                        doc => {
-
-
-
-
-                            this.items.push(doc.data())
-                        })
-                    this.profileURL = user.photoURL;
-                })
-                    .catch(err => {
-                        console.log('Error getting documents', err)
-                    })
+                this.profileURL = user.photoURL;
             }
+            db.collection("Threads").where("hashtags", "array-contains", this.searchHashtag).get().then(threadsFromDB => {
+                threadsFromDB.forEach(
+                    doc => {
+                        this.items.push(doc.data())
+                    })
+            })
+                .catch(err => {
+                    console.log('Error getting documents', err)
+                })
+
+
         }
     }
 </script>

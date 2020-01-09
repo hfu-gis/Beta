@@ -250,6 +250,7 @@
     import VueWordCloud from 'vuewordcloud';
     import firebase from 'firebase';
     import db from "../db";
+    import { mapState } from 'vuex'
 
     export default {
         name: "homepage",
@@ -292,6 +293,9 @@
             },*/
             onWordClick: function (word) {
                 this.tempWord = word[0];
+                //console.log(this.searchHashtag)
+                this.$store.commit('changeSearchHashtag', word[0])
+                this.$router.push('/postinglist');
             },
 
             openAddThread() {
@@ -332,6 +336,10 @@
 
                 }
             }
+        },
+
+        computed: {
+            ...mapState(['searchHashtag']),
         },
 
         data() {
@@ -375,7 +383,7 @@
 
                 ],*/
 
-                words: [['romance', 2], ['fantasy', 8], ['romance', 2], ['fantasy', 8], ['Camera', 13], ['fantasy', 28], ['adventure', 3], ['horror', 13], ['horror', 13], ['adventure', 6], ['Spotify', 13], ['Witcher', 12], ['Minecraft', 8], ['fantasy', 8], ['horror', 23], ['adventure', 13], ['fantasy', 4], ['adventure', 3], ['adventure', 3], ['C#', 2], ['Java', 12], ['Eclipse', 13]],
+                words: [['Furtwangen', 2], ['Baum', 8], ['Haus', 2], ['fantasy', 8], ['Camera', 13], ['fantasy', 28], ['adventure', 3], ['horror', 13], ['horror', 13], ['adventure', 6], ['Spotify', 13], ['Witcher', 12], ['Minecraft', 8], ['fantasy', 8], ['horror', 23], ['adventure', 13], ['fantasy', 4], ['adventure', 3], ['adventure', 3], ['C#', 2], ['Java', 12], ['Eclipse', 13]],
 
                 snackbarText: '',
                 snackbarVisible: false,
