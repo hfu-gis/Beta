@@ -115,26 +115,27 @@
 
             >
                 <v-card
-                        :color="item.color"
+                        color="#8F94A6"
                         dark
-                        cols="12"
                 >
-                    <v-row>
-                        <v-col cols="1">
-                            <v-avatar
-                                    class="ma-3"
-                                    size="125"
-                                    tile
-                            >
-                                <v-img class="img-circle" :src="item.src"></v-img>
-                            </v-avatar>
+                    <v-row cols="12">
+                        <v-col cols="2">
+                            <section>
+                                <v-avatar
+                                        size="125"
+                                        tile
+                                        style="margin-left: 10%;"
+                                >
+                                    <v-img class="img-circle" :src="profileURL"></v-img>
+                                </v-avatar>
 
-                            <v-card-subtitle v-text="item.artist"></v-card-subtitle>
-
+                                <v-card-subtitle v-text="item.username"
+                                                 style="margin-left: 3%;"
+                                ></v-card-subtitle>
+                            </section>
                         </v-col>
-                        <v-divider vertical color="#D9A566"></v-divider>
-                        <v-col cols="9">
-
+                        <v-col cols="8">
+                            <!--<v-divider vertical color="#D9A566"></v-divider>-->
 
                             <v-card-title
                                     class="headline"
@@ -142,20 +143,26 @@
 
                             ></v-card-title>
 
-                            <v-breadcrumbs :items="bread_items" divider=">"></v-breadcrumbs>
+                            <v-chip-group
+                                    column
+                                    active-class="primary--text"
+                                    dark
+                            >
+                                <v-chip disabled v-for="tag in item.hashtags" :key="tag">
+                                    {{ tag }}
+                                </v-chip>
+                            </v-chip-group>
+
+                            <!--<v-breadcrumbs :items="bread_items" divider=">"></v-breadcrumbs>-->
 
                             <v-card-text v-text="item.text"/>
 
                         </v-col>
-
-
-                        <v-col cols="1">
-
+                        <v-col cols="2" style="padding-top: 2%;">
                             <v-btn @click="thread = true"
-                                   style="height: 90%; width: 10%; background: #3d4f68; margin-right: 10%; position: absolute; justify:end">
+                                   style="height: 90%; background: #3d4f68; float: right; margin-right: 10%;">
                                 weiterlesen
                             </v-btn>
-
                         </v-col>
                     </v-row>
                 </v-card>
@@ -165,6 +172,9 @@
 </template>
 
 <script>
+    import firebase from 'firebase';
+    import db from "../db";
+
     export default {
         name: 'postinglist',
 
@@ -177,8 +187,9 @@
         // Variablen-Speicher
         data: () => ({
             thread: false,
+            profileURL: '',
 
-            items: [
+            /*items: [
                 {
                     color: '#8F94A6',
                     src: 'https://randomuser.me/api/portraits/men/39.jpg',
@@ -193,7 +204,10 @@
                     artist: '_Fr4nk13_',
                     text: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. ',
                 },
-            ],
+            ],*/
+
+            items: [],
+
             bread_items: [
                 {
                     text: 'Dashboard',
@@ -237,6 +251,19 @@
 
         // Initialisierung
         created() {
+            var user = firebase.auth().currentUser;
+            if (user) {
+                db.collection("Threads").get().then(threadsFromDB => {
+                    threadsFromDB.forEach(
+                        doc => {
+                            this.items.push(doc.data())
+                        })
+                    this.profileURL = user.photoURL;
+                })
+                    .catch(err => {
+                        console.log('Error getting documents', err)
+                    })
+            }
         }
     }
 </script>

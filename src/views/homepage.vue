@@ -159,7 +159,7 @@
 
                 <v-row cols="12" style="width: 100%; height: 500px;">
                     <v-col cols="4">
-                        <v-subheader>from: {{threadCreatorName}}</v-subheader>
+                        <v-subheader>from: {{myThread.username}}</v-subheader>
                         <!--
                         <v-container>
                             <v-layout wrap>
@@ -184,7 +184,9 @@
 
                         <v-row>
                             <v-text-field v-model="newHashtag" style="width: 70%; margin-left: 20px;"></v-text-field>
-                            <v-btn icon dark style="background: grey" v-on:click="addHashtagToArray"><v-icon>mdi-plus</v-icon></v-btn>
+                            <v-btn icon dark style="background: grey" v-on:click="addHashtagToArray">
+                                <v-icon>mdi-plus</v-icon>
+                            </v-btn>
                         </v-row>
                         <div style="margin-left: 20px;">
                             <v-chip-group
@@ -203,7 +205,6 @@
                         <section>
                             <v-text-field
                                     v-model="myThread.title"
-                                    :counter="10"
                                     label="Title"
                                     outlined
                                     required
@@ -212,7 +213,6 @@
 
                             <v-textarea
                                     v-model="myThread.text"
-                                    :counter="100"
                                     label="Thread-Text"
                                     outlined
                                     required
@@ -247,7 +247,7 @@
             [VueWordCloud.name]: VueWordCloud,
         },
         methods: {
-            addHashtagToArray(){
+            addHashtagToArray() {
                 this.myThread.hashtags.push(this.newHashtag)
             },
             updateTags() {
@@ -272,9 +272,9 @@
                 this.addThread = true;
                 var user = firebase.auth().currentUser;
                 if (user) {
-                    this.threadCreatorName = user.displayName;
+                    this.myThread.username = user.displayName;
                 } else {
-                    this.threadCreatorName = "lalelo";
+                    this.myThread.username = "openAddThread konnte nicht ausgeführt werden";
                 }
             },
 
@@ -302,13 +302,14 @@
                     this.myThread.text = '';
                     this.myThread.creatorID = '';
                     this.myThread.likes = '';
+                    this.myThread.username = '';
 
                 }
             }
         },
 
-        data() {
 
+        data() {
             return {
                 myThread: {
                     creatorID: '',
@@ -316,9 +317,9 @@
                     hashtags: ['Haus', 'Baum'],
                     likes: '123',
                     text: '',
-                    title: ''
+                    title: '',
+                    username: ''
                 },
-                threadCreatorName: '',
                 addThread: false,
                 newHashtag: '',
 
@@ -342,6 +343,7 @@
                     { title: 'fusee',  hashtag: '#CSharp', text: 'text4', flex: 12 },
 
                 ],*/
+
                 words: [['romance', 2], ['fantasy', 8], ['romance', 2], ['fantasy', 8], ['Camera', 13], ['fantasy', 28], ['adventure', 3], ['horror', 13], ['horror', 13], ['adventure', 6], ['Spotify', 13], ['Witcher', 12], ['Minecraft', 8], ['fantasy', 8], ['horror', 23], ['adventure', 13], ['fantasy', 4], ['adventure', 3], ['adventure', 3], ['C#', 2], ['Java', 12], ['Eclipse', 13]],
 
                 snackbarText: '',
