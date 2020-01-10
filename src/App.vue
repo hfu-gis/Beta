@@ -476,8 +476,8 @@
 
         // Initialisierung
         created() {
-            this.$router.push({path: '/homepage'})
             this.updateUser()
+            this.$router.push({path: '/homepage'})
         }
     }
 </script>
