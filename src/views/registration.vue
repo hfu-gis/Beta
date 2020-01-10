@@ -185,8 +185,9 @@
                         </v-stepper-content>
                     </v-stepper-items>
                 </v-stepper>
+                <div style="background: darkred; color: white; padding: 2%; text-align: center" v-if="error" class="alert alert-danger">{{error}}</div>
+
             </v-card>
-            <div v-if="error" class="alert alert-danger">{{error}}</div>
         </v-dialog>
     </v-row>
 
