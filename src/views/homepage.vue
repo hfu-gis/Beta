@@ -346,6 +346,7 @@
                     });
                 });
             },
+
             updateUser() {
                 var user = firebase.auth().currentUser;
                 if (user) {
@@ -354,11 +355,7 @@
                     this.authenticated = false;
                 }
             },
-            /*wordClickHandler(name, value, vm) {
-                console.log('wordClickHandler', name, value, vm);
-                //location = 'https://google.com';
-                path = '/postinglist';
-            },*/
+
             onWordClick: function (word) {
                 this.tempWord = word[0];
                 //console.log(this.searchHashtag)
@@ -496,62 +493,12 @@
                 temp: '',
 
                 Beitrag: false,
-                /*
-                cards:[
-                    { title: 'Camera', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', flex: 3},
-                    { title: 'Video', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', flex: 3},
-                    { title: 'Java', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', flex: 3 },
-                    { title: 'C#', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', flex: 3 },
-                    { title: 'Blender', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', flex: 3 },
-                    { title: 'Simulation', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', flex: 3 },
-                    { title: 'Latex', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', flex: 3 },
-                    { title: 'MS office', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', flex: 3},
-                ],
-
-               posts:[
-                   { title: 'camera', hashtag: '#camera', text: 'text1', flex: 12},
-                    { title: 'best movie',  hashtag: '#movietime', text: 'text2', flex: 12},
-                    { title: 'simulation in Java', hashtag: '#Java', text: 'text3',flex: 12},
-                    { title: 'fusee',  hashtag: '#CSharp', text: 'text4', flex: 12 },
-
-                ],*/
 
                 //words: [['Furtwangen', 2], ['Baum', 8], ['Haus', 2], ['fantasy', 8], ['Camera', 13], ['fantasy', 28], ['adventure', 3], ['horror', 13], ['horror', 13], ['adventure', 6], ['Spotify', 13], ['Witcher', 12], ['Minecraft', 8], ['fantasy', 8], ['horror', 23], ['adventure', 13], ['fantasy', 4], ['adventure', 3], ['adventure', 3], ['C#', 2], ['Java', 12], ['Eclipse', 13]],
                 words: [],
 
                 snackbarText: '',
                 snackbarVisible: false,
-
-
-                //Alte WordCloud
-                /*
-                rotate: {from: 0, to: 0, numOfOrientation: 0},
-                spiral: 'rectangular',
-                showTooltip: false,
-                myColors: ['#D9A566', '#629fc9', '#94bedb', '#132B40'],
-                defaultWords: [{
-                    "name": "Cat",
-                    "value": 26
-                },
-                    {
-                        "name": "fish",
-                        "value": 19
-                    },
-                    {
-                        "name": "things",
-                        "value": 18,
-
-                    },
-                    {
-                        "name": "look",
-                        "value": 16
-                    },
-                    {
-                        "name": "two",
-                        "value": 15
-                    },
-                ]
-                */
             }
         }
     }

@@ -131,7 +131,9 @@
                                         tile
                                         style="margin-left: 10%;"
                                 >
-                                    <v-img class="img-circle" :src="profileURL"/>
+                                    <v-img class="img-circle" :src="itemLinks[i]"/>
+
+                                    <!--<v-img class="img-circle" v-on:load="getProfileURL(item.creatorID)" :src="profileURL"/>-->
                                 </v-avatar>
 
                                 <v-card-subtitle v-text="item.username"
@@ -153,8 +155,9 @@
                                     active-class="primary--text"
                                     dark
                             >
-                                <v-chip disabled v-for="tag in item.hashtags" :key="tag">
-                                    {{ tag }}
+                                <!--<v-chip disabled v-for="tag in item.hashtags" :key="tag">-->
+                                <v-chip disabled>
+                                    {{ item.hashtag }}
                                 </v-chip>
                             </v-chip-group>
 
@@ -207,7 +210,7 @@
             chip1: true,
 
             tempProfileURL: '',
-            profileURL: '',
+            profileURL: null,
 
             /*items: [
                 {
@@ -251,13 +254,15 @@
                 title: 'Threadtitle 1',
                 artist: 'P_Droschbart',
                 text: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-            }
+            },
+
+            itemLinks: []
 
         }),
 
         // reagieren auf prop-Veränderung
         watch: {
-               //searchHashtag: this.reload()
+            //searchHashtag: this.reload()
         },
 
         // interne Methoden
@@ -289,30 +294,49 @@
             },
 
             getProfileURL(profile_url) {
-                db.collection("cities").doc("SF")
+
+                console.log('old', profile_url);
+
+
+                db.collection("Users").doc(profile_url)
                     .get()
-                    .then(function (doc) {
-                        if (doc.exists) {
-                            console.log(doc.data.photoURL)
-                            return doc.data.photoURL
-                        }
-                    }).catch(function (error) {
-                    console.log("Error getting document:", error);
-                });
+                    .then((function (doc) {
+
+                            console.log('url: ', doc.data().photoURL)
+                            this.profileURL = doc.data().photoURL;
+
+                            console.log('newUrl', this.profileURL)
+
+                    }).bind(this));
+
             }
         },
 
-        // Initialisierung
+        //Initialisierung
         created() {
             var user = firebase.auth().currentUser;
             if (user) {
                 this.profileURL = user.photoURL;
             }
+
+            var newLink = '';
+
             //db.collection("Threads").where("hashtag", "array-contains", this.searchHashtag).get().then(threadsFromDB => {
             db.collection("Threads").where("hashtag", "==", this.searchHashtag).get().then(threadsFromDB => {
                 threadsFromDB.forEach(
                     doc => {
                         this.items.push(doc.data())
+
+                        db.collection("Users").doc(doc.data().creatorID)
+                            .get()
+                            .then((function (doc1) {
+
+                                //console.log('url: ', doc1.data().photoURL)
+                                this.itemLinks.push(doc1.data().photoURL);
+
+                                //console.log('newUrl', this.profileURL)
+
+                            }).bind(this));
                     })
             })
                 .catch(err => {
