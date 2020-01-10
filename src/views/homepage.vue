@@ -209,8 +209,11 @@
                                     column
                                     active-class="primary--text"
                             >
-                                <v-chip v-for="tag in myThread.hashtags" :key="tag">
+                                <!--<v-chip v-for="tag in myThread.hashtags" :key="tag">
                                     {{ tag }}
+                                </v-chip>-->
+                                <v-chip>
+                                    {{ this.myThread.hashtag }}
                                 </v-chip>
                             </v-chip-group>
                         </div>
@@ -290,7 +293,8 @@
         methods: {
             addHashtagToArray() {
                 if (this.newHashtag != '' && this.newHashtag != ' ') {
-                    this.myThread.hashtags.push(this.newHashtag)
+                    //this.myThread.hashtags.push(this.newHashtag)
+                    this.myThread.hashtag = this.newHashtag;
                     this.newHashtag = '';
                 }
             },
@@ -334,85 +338,121 @@
             },
 
             saveNewThread() {
-                if (this.myThread.hashtags != '' && this.myThread.text != '' && this.myThread.title != '') {
+                var user = firebase.auth().currentUser;
+                if (user && this.myThread.hashtag !== '' && this.myThread.text !== '' && this.myThread.title !== '') {
 
-                    db.collection("beitragsnummer").doc('fHvJoKSXNA42YVwindRE').get().then(doc => {
-                        this.tempBeitragsnummer = doc.data()
-                    }).catch(err => {
-                        console.log('Error getting documents', err)
-                    })
+                    this.increaseBeitragsnummer();
 
-
-                    var user = firebase.auth().currentUser;
                     let docRef = db.collection("Threads").doc(this.myThread.title)
-
                     //Werte zuweisen
                     this.myThread.creatorID = user.uid;
                     this.myThread.datetime = new Date().toDateString();
-
-                    //------------------------------------------------------------//
-                    let beitragsnummerFB = db.collection("beitragsnummer").doc('fHvJoKSXNA42YVwindRE')
-
-                    //Beitragsnummer erhöhen
-                    this.tempBeitragsnummer.beitragsnummer++;
                     this.myThread.beitragsnummer = this.tempBeitragsnummer.beitragsnummer;
-
-                    beitragsnummerFB.set(this.tempBeitragsnummer)
-                    //beitragsnummerFB.update()
-                    //------------------------------------------------------------//
-
                     docRef.set(this.myThread)
 
-                    //TODO Fehlermeldungen Catchen!!!
-
+                    this.saveNewHashtag();
 
                     //Felder clearen
-                    this.myThread.hashtags = [];
+                    //this.myThread.hashtag = [];
                     this.myThread.title = '';
                     this.myThread.datetime = '';
                     this.myThread.text = '';
                     this.myThread.likes = '';
-                    this.myThread.beitragsnummer='';
+                    this.myThread.beitragsnummer = 1;
 
-
-
-
-
-
-                }
-                else{
-                    this.fehler=true;
-
+                } else {
+                    this.fehler = true;
                 }
             },
 
+            saveNewHashtag(){
+                //Hashtags abspeichern und/ oder Anzahl derer erhöhen:
+                var docRef = db.collection("Hashtags").doc(this.myThread.hashtag);
+
+                docRef.get().then(function (doc) {
+                        if (doc.exists) {
+
+                            this.myThread.hashtag = 'haus';
+
+                            db.collection("Hashtags").doc(this.myThread.hashtag).get().then(doc => {
+                                this.tempHashtag = doc.data()
+                            }).catch(err => {
+                                console.log('Error getting documents', err)
+                            })
+
+                            console.log("Document data: ", this.tempHashtag.tag);
+
+                        } else {
+                            // doc.data() will be undefined in this case
+                            console.log("No such document!");
+                        }
+
+                        /*
+                                console.log("Document data:", doc.data());
+
+                                this.tempHashtag.count++;
+
+                                tag.set(this.tempHashtag);
+
+                                this.tempHashtag = this.myThread.hashtag;
+                                console.log(this.tempHashtag);
+
+                                let tag = db.collection("Hashtags").doc(this.myThread.hashtag[0].toUpperCase())
+                                this.tempHashtag.count = 1;
+                                this.tempHashtag.tag = this.myThread.hashtag[0].toString().toUpperCase();
+                                tag.set(this.tempHashtag);
+                            }*/
+                        }).catch(function (error) {
+                            console.log("Error getting document:", error);
+                        });
+            },
+
+            increaseBeitragsnummer() {
+                //aktuelle Nummer abfragen
+                db.collection("beitragsnummer").doc('fHvJoKSXNA42YVwindRE').get().then(doc => {
+                    this.tempBeitragsnummer = doc.data()
+                    var b = this.tempBeitragsnummer.beitragsnummer;
+                    var c = ++b;
+                    this.tempBeitragsnummer.beitragsnummer = c;
+
+                    //Speichern
+                    let docRef = db.collection("beitragsnummer").doc('fHvJoKSXNA42YVwindRE')
+                    docRef.update(this.tempBeitragsnummer);
+                }).catch(err => {
+                    console.log('Error getting documents', err)
+                })
+            }
         },
 
         computed: {
             ...mapState(['searchHashtag', 'doubleLoaded']),
         },
 
-        watch:{
-        },
+        watch: {},
 
         data() {
             return {
                 fehler: false,
                 tempWord: '',
 
+                tempHashtag: {
+                    tag: '',
+                    count: 1
+                },
+
                 tempBeitragsnummer: {
-                    beitragsnummer: ''
+                    beitragsnummer: 0,
                 },
 
                 myThread: {
                     creatorID: '',
                     datetime: '',
-                    hashtags: [],
+                    hashtag: '',
                     likes: '123',
                     text: '',
                     title: '',
                     username: '',
-                    beitragsnummer:'',
+                    beitragsnummer: 1,
                 },
                 addThread: false,
                 newHashtag: '',

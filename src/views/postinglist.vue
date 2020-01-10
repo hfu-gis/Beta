@@ -274,7 +274,8 @@
             if (user) {
                 this.profileURL = user.photoURL;
             }
-            db.collection("Threads").where("hashtags", "array-contains", this.searchHashtag).get().then(threadsFromDB => {
+            //db.collection("Threads").where("hashtag", "array-contains", this.searchHashtag).get().then(threadsFromDB => {
+            db.collection("Threads").where("hashtag", "==", this.searchHashtag).get().then(threadsFromDB => {
                 threadsFromDB.forEach(
                     doc => {
                         this.items.push(doc.data())
@@ -283,8 +284,6 @@
                 .catch(err => {
                     console.log('Error getting documents', err)
                 })
-
-
         }
     }
 </script>
