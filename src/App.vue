@@ -14,7 +14,7 @@
 
             <v-spacer/>
 
-            <div id="searchbox" >
+            <div id="searchbox" @keydown.enter="search">
                 <v-text-field v-model="searchText" outlined rounded dense color="#D9A566" label="search"
                               id="txtsearch"/>
             </div>
