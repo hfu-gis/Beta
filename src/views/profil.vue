@@ -490,7 +490,7 @@
                     this.userData.userName = this.message
 
                     docRef.set(this.userData)
-                    docRef.update()
+                    //docRef.update()
                 }
             },
 

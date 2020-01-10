@@ -316,30 +316,43 @@
             saveNewThread() {
                 if (this.myThread.hashtags != '' && this.myThread.text != '' && this.myThread.title != '') {
 
+                    db.collection("beitragsnummer").doc('fHvJoKSXNA42YVwindRE').get().then(doc => {
+                        this.tempBeitragsnummer = doc.data()
+                    }).catch(err => {
+                        console.log('Error getting documents', err)
+                    })
+
+
                     var user = firebase.auth().currentUser;
                     let docRef = db.collection("Threads").doc(this.myThread.title)
-
-                    console.log(this.myThread.title);
 
                     //Werte zuweisen
                     this.myThread.creatorID = user.uid;
                     this.myThread.datetime = new Date().toDateString();
 
+                    //------------------------------------------------------------//
+                    let beitragsnummerFB = db.collection("beitragsnummer").doc('fHvJoKSXNA42YVwindRE')
+
+                    //Beitragsnummer erhöhen
+                    this.tempBeitragsnummer.beitragsnummer++;
+                    this.myThread.beitragsnummer = this.tempBeitragsnummer.beitragsnummer;
+
+                    beitragsnummerFB.set(this.tempBeitragsnummer)
+                    //beitragsnummerFB.update()
+                    //------------------------------------------------------------//
+
                     docRef.set(this.myThread)
 
-                    //TODO Fehlermeldungn Catchen!!!
-                    this.dialogIdea = false
-                    this.myThread.beitragsnummer= this.myThread.beitragsnummer;
-                    this.myThread.beitragsnummer++;
+                    //TODO Fehlermeldungen Catchen!!!
+
+
                     //Felder clearen
                     this.myThread.hashtags = [];
                     this.myThread.title = '';
                     this.myThread.datetime = '';
                     this.myThread.text = '';
-
                     this.myThread.likes = '';
-
-                    this.beitragsnummer='';
+                    this.myThread.beitragsnummer='';
 
 
 
@@ -362,6 +375,10 @@
             return {
                 tempWord: '',
 
+                tempBeitragsnummer: {
+                    beitragsnummer: ''
+                },
+
                 myThread: {
                     creatorID: '',
                     datetime: '',
@@ -370,7 +387,7 @@
                     text: '',
                     title: '',
                     username: '',
-                    beitragsnummer:'1',
+                    beitragsnummer:'',
                 },
                 addThread: false,
                 newHashtag: '',
