@@ -25,21 +25,6 @@
 
 
             <v-app-bar-nav-icon color="#D9A566" @click.stop="drawer = !drawer" v-on:click="updateUser"/>
-            <!--
-            <div id="searchbox">
-             <v-text-field filled rounded dense label="search" id="txtsearch"> </v-text-field>
-         </div>
-         <v-app-bar app color="#132B40" right dark>
-
-            <a><img src="../img/Logos/BitOfAdvice_logo_2.png" height="536" width="1242" class="BitofadviceBar" /> </a>
-            <div id="searchbox" class="d-flex d-inline-flex">
-                <v-text-field outlined rounded dense label="search" id="txtsearch"> </v-text-field>
-            </div>
-             <v-btn link :to="{ path: '/homepage'}" x-large text height="60" width="150">
-             </v-btn>
-               <v-spacer></v-spacer>
-
-                   -->
         </v-app-bar>
 
         <!-------------------------Navigation-Drawer-------------------------------------------------->
@@ -98,15 +83,6 @@
                     </v-list-item-content>
                 </v-list-item>
 
-                <!--<v-list-item link :to="{ path: '/profilesettings.json'}">
-                    <v-list-item-action>
-                        <v-icon color="#D9A566">mdi-sort</v-icon>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <v-list-item-title class="accent--text">Profilesettings</v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>-->
-
                 <v-list-item v-if="this.authenticated" link :to="{ path: '/profile.json'}">
                     <v-list-item-action>
                         <v-icon color="#D9A566">mdi-account</v-icon>
@@ -124,16 +100,6 @@
                         <v-list-item-title class="accent--text">Privacy Policy</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
-
-                <!--
-                <v-list-item v-slot:activator="{ on }" color="primary" dark>Open Dialog>
-                    <v-list-item-action>
-                        <v-icon mdi-eye></v-icon>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <v-list-item-title>Register</v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>-->
 
             </v-list>
         </v-navigation-drawer>
@@ -246,113 +212,6 @@
                         </v-card>
                     </v-dialog>
                 </div>
-                <!--
-                  SIGN UP
-                  <v-dialog @keydown.esc="dialog2 = false" v-model="dialog2" max-width="400">
-                      <v-card class="elevation-12">
-                          <v-toolbar
-                                  color="primary"
-                                  dark
-                                  flat
-                          >
-                              <v-toolbar-title>Register</v-toolbar-title>
-
-                          </v-toolbar>
-                          <v-card-text>
-                              <v-form ref="form" v-model="valid">
-                              <v-row>
-                                  <v-col cols="16" sm="8" md="6">
-                                      <v-text-field label="First name" v-model="userdata.firstname" required solo/>
-                                  </v-col>
-
-                                  <v-col cols="16" sm="8" md="6">
-                                      <v-text-field
-                                              label="Last name*"
-                                              v-model="userdata.lastname"
-                                              hint="example of persistent helper text"
-                                              persistent-hint
-                                              required
-                                              solo
-                                      />
-                                  </v-col>
-                                  <v-col cols="12">
-                                      <v-text-field label="Email*" required solo/>
-                                  </v-col>
-                                  <v-col cols="12">
-                                      <v-text-field label="Password*" type="password" required solo/>
-                                  </v-col>
-                              </v-row>
-
-                              <small>*indicates required field</small>
-                              </v-form>
-                          </v-card-text>
-                          <v-card-actions>
-                              <v-spacer />
-
-                              <v-col>
-                                wenn nicht angemeldet
-                                  <v-list-item @click.stop="threeToTwo">
-                                      <v-list-item-content>
-                                          <v-list-item-title>Sign in</v-list-item-title>
-                                      </v-list-item-content>
-                                  </v-list-item>
-                              </v-col>
-                              <v-spacer/>
-                              <v-btn color="blue darken-1" text  @click.stop="validate">Register & Login</v-btn>
-
-                          </v-card-actions>
-                      </v-card>
-                  </v-dialog>
-
-                 SIGN IN
-                  <v-dialog @keydown.esc="dialog3 = false" v-model="dialog3" max-width="400">
-                      <v-card class="elevation-12">
-                          <v-toolbar
-                                  color="primary"
-                                  dark
-                                  flat
-                          >
-                              <v-toolbar-title>Login</v-toolbar-title>
-
-                          </v-toolbar>
-                          <v-card-text>
-                              <v-form ref="form2">
-                                  <br>
-                                  <v-text-field
-                                          label="Login"
-                                          name="login"
-                                          prepend-icon="mdi-face"
-                                          type="text"
-                                          solo
-                                  />
-
-                                  <v-text-field
-                                          id="password"
-                                          label="Password"
-                                          name="password"
-                                          prepend-icon="mdi-lock"
-                                          type="password"
-                                          solo
-                                  />
-                              </v-form>
-                          </v-card-text>
-                          <v-card-actions>
-                              <v-spacer />
-                              <v-col>
-                                  wenn nicht angemeldet
-                                  <v-list-item @click.stop="twoToThree()">
-                                      <v-list-item-content>
-                                          <v-list-item-title>Sign up</v-list-item-title>
-                                      </v-list-item-content>
-                                  </v-list-item>
-                              </v-col>
-                              <v-spacer/>
-                              <v-btn color="blue darken-1" text @click.stop="dialog3 = false">Login</v-btn>
-
-                          </v-card-actions>
-                      </v-card>
-                  </v-dialog>-->
-
 
                 <router-view/>
             </div>
@@ -433,7 +292,7 @@
             search(){
                 this.$store.commit('changeSearchHashtag', this.searchText.toUpperCase())
                 this.updateUser()
-                this.$router.replace('/postinglist');
+                this.$router.push('/searchBlank');
             },
 
             validate: () => {
@@ -494,14 +353,6 @@
 
 <style>
     {
-    /*primary: '#1976D2';
-    secondary: '#424242';
-    accent: '#D9A566';
-    error: '#FF5252';
-    info: '#2196F3';
-    success: '#4CAF50';
-    warning: '#FFC107';*/
-
         --main-color1: #BF4974
     ;
         --main-color2: #8C3F63
