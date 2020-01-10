@@ -296,37 +296,23 @@
 
         methods: {
             fillWordCloud() {
+                var tempArray = [];
+                var that = this;
 
-                //LIMIT HIER EINSTELLBAR
-                /*
-                var query = firebase.database().ref('posts').limitToLast(100);
-                this.mostUsedHashtags.push(query.once('value'));
-                console.log(this.mostUsedHashtags[0])*/
+                    db.collection("Hashtags")
+                        .onSnapshot(function (querySnapshot) {
+                            tempArray = [];
+                            that.words = [];
 
-                //this.words.push(['tada', 2])
+                            querySnapshot.forEach(function (doc) {
+                                tempArray.push([doc.data().tag, doc.data().count]);
+                            });
 
-
-                db.collection("Hashtags").get().then(tagsFromDB => {
-                    tagsFromDB.forEach(
-                        doc => {
-                            this.words.push([doc.data().tag, doc.data().count])
+                            let i;
+                            for (i = 0; i < tempArray.length; i++) {
+                                that.words.push(tempArray[i]);
+                            }
                         })
-                })
-                    .catch(err => {
-                        console.log('Error getting documents', err)
-                    })
-
-                /*
-                db.collection("Hashtags").orderByChild('/count').limitToFirst(5).get().then(hashtagsFromDB => {
-                    hashtagsFromDB.forEach(
-                        doc => {
-                            this.mostUsedHashtags.push(doc.data())
-                        })
-                })
-                    .catch(err => {
-                        console.log('Error getting documents', err)
-                    })
-                */
             },
 
             addHashtagToArray() {
@@ -373,12 +359,54 @@
                 }
             },
 
+
             saveNewThread() {
                 var user = firebase.auth().currentUser;
                 if (user && this.myThread.hashtag !== '' && this.myThread.text !== '' && this.myThread.title !== '') {
 
-                    this.increaseBeitragsnummer();
-                    this.saveNewHashtag();
+                    //----------------------------//
+
+                    //aktuelle Nummer abfragen
+                    db.collection("beitragsnummer").doc('fHvJoKSXNA42YVwindRE').get().then(doc => {
+                        this.tempBeitragsnummer = doc.data()
+                        var b = this.tempBeitragsnummer.beitragsnummer;
+                        var c = ++b;
+                        this.tempBeitragsnummer.beitragsnummer = c;
+
+                        //Speichern
+                        let docRef = db.collection("beitragsnummer").doc('fHvJoKSXNA42YVwindRE')
+                        docRef.update(this.tempBeitragsnummer);
+                    }).catch(err => {
+                        console.log('Error getting documents', err)
+                    })
+
+                    //----------------------------//
+
+                    var aktuellerHashtag = this.myThread.hashtag;
+                    //Hashtags abspeichern und/ oder Anzahl derer erhöhen:
+                    var docRef1 = db.collection("Hashtags").doc(aktuellerHashtag);
+
+                    docRef1.get().then(function (doc) {
+                        if (doc.exists) {
+                            console.log("Der Hashtag ", aktuellerHashtag, " besteht schon, Anzahl um eins erhöht")
+                            db.collection("Hashtags").doc(aktuellerHashtag).update({
+                                count: doc.data().count + 1
+                            });
+                        } else {
+                            console.log("Der Hashtag ", aktuellerHashtag, " wurde zur Sammlung hinzugefügt")
+                            db.collection("Hashtags").doc(aktuellerHashtag).set({
+                                tag: aktuellerHashtag,
+                                count: 1,
+                            })
+
+                        }
+                    }).catch(function (error) {
+                        console.log("Error getting document:", error);
+                    });
+
+
+                    //----------------------------//
+
 
                     let docRef = db.collection("Threads").doc(this.myThread.title)
                     //Werte zuweisen
@@ -399,14 +427,19 @@
                     this.forceRerender();
 
                     this.$nextTick(() => {
-                        location.reload();
+                        this.$nextTick(() => {
+                            location.reload();
+                        });
+
                     });
+
                     //this.$router.push('/');
 
                 } else {
                     this.fehler = true;
                 }
             },
+
 
             forceRerender() {
                 // Remove my-component from the DOM
@@ -416,55 +449,59 @@
                     // Add the component back in
                     this.renderComponent = true;
                 });
-            },
-
-
-            saveNewHashtag() {
-                var aktuellerHashtag = this.myThread.hashtag;
-                //Hashtags abspeichern und/ oder Anzahl derer erhöhen:
-                var docRef = db.collection("Hashtags").doc(aktuellerHashtag);
-
-                docRef.get().then(function (doc) {
-                    if (doc.exists) {
-                        console.log("Der Hashtag ", aktuellerHashtag, " besteht schon, Anzahl um eins erhöht")
-                        db.collection("Hashtags").doc(aktuellerHashtag).update({
-                            count: doc.data().count + 1
-                        });
-                    } else {
-                        console.log("Der Hashtag ", aktuellerHashtag, " wurde zur Sammlung hinzugefügt")
-                        db.collection("Hashtags").doc(aktuellerHashtag).set({
-                            tag: aktuellerHashtag,
-                            count: 1,
-                        })
-
-                    }
-                }).catch(function (error) {
-                    console.log("Error getting document:", error);
-                });
-            },
-
-            increaseBeitragsnummer() {
-                //aktuelle Nummer abfragen
-                db.collection("beitragsnummer").doc('fHvJoKSXNA42YVwindRE').get().then(doc => {
-                    this.tempBeitragsnummer = doc.data()
-                    var b = this.tempBeitragsnummer.beitragsnummer;
-                    var c = ++b;
-                    this.tempBeitragsnummer.beitragsnummer = c;
-
-                    //Speichern
-                    let docRef = db.collection("beitragsnummer").doc('fHvJoKSXNA42YVwindRE')
-                    docRef.update(this.tempBeitragsnummer);
-                }).catch(err => {
-                    console.log('Error getting documents', err)
-                })
             }
+            ,
+
+
+            /*saveNewHashtag() {
+                 var aktuellerHashtag = this.myThread.hashtag;
+                 //Hashtags abspeichern und/ oder Anzahl derer erhöhen:
+                 var docRef = db.collection("Hashtags").doc(aktuellerHashtag);
+
+                 docRef.get().then(function (doc) {
+                     if (doc.exists) {
+                         console.log("Der Hashtag ", aktuellerHashtag, " besteht schon, Anzahl um eins erhöht")
+                         db.collection("Hashtags").doc(aktuellerHashtag).update({
+                             count: doc.data().count + 1
+                         });
+                     } else {
+                         console.log("Der Hashtag ", aktuellerHashtag, " wurde zur Sammlung hinzugefügt")
+                         db.collection("Hashtags").doc(aktuellerHashtag).set({
+                             tag: aktuellerHashtag,
+                             count: 1,
+                         })
+
+                     }
+                 }).catch(function (error) {
+                     console.log("Error getting document:", error);
+                 });
+             },
+
+             increaseBeitragsnummer() {
+                 //aktuelle Nummer abfragen
+                 db.collection("beitragsnummer").doc('fHvJoKSXNA42YVwindRE').get().then(doc => {
+                     this.tempBeitragsnummer = doc.data()
+                     var b = this.tempBeitragsnummer.beitragsnummer;
+                     var c = ++b;
+                     this.tempBeitragsnummer.beitragsnummer = c;
+
+                     //Speichern
+                     let docRef = db.collection("beitragsnummer").doc('fHvJoKSXNA42YVwindRE')
+                     docRef.update(this.tempBeitragsnummer);
+                 }).catch(err => {
+                     console.log('Error getting documents', err)
+                 })
+             }*/
         },
 
         computed: {
-            ...mapState(['searchHashtag', 'doubleLoaded']),
-        },
+            ...
+                mapState(['searchHashtag', 'doubleLoaded']),
+        }
+        ,
 
-        watch: {},
+        watch: {}
+        ,
 
         data() {
             return {
@@ -489,6 +526,7 @@
                     username: '',
                     beitragsnummer: 1,
                 },
+
                 addThread: false,
                 newHashtag: '',
 

@@ -231,31 +231,6 @@
 
             items: [],
 
-            bread_items: [
-                {
-                    text: 'Dashboard',
-                    disabled: false,
-                    href: '/homepage',
-                },
-                {
-                    text: 'Link 1',
-                    disabled: false,
-                    href: '/login',
-                },
-                {
-                    text: 'Link 2',
-                    disabled: true,
-                    href: 'breadcrumbs_link_2',
-                },
-            ],
-            active_items: {
-                color: '#8F94A6',
-                src: 'https://randomuser.me/api/portraits/men/39.jpg',
-                title: 'Threadtitle 1',
-                artist: 'P_Droschbart',
-                text: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-            },
-
             itemLinks: []
 
         }),
