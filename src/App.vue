@@ -474,6 +474,7 @@
             }
         },
 
+
         // Initialisierung
         created() {
             this.updateUser()

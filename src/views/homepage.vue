@@ -257,6 +257,7 @@
 
     export default {
         name: "homepage",
+
         components: {
             Registration,
             //wordcloud,
@@ -328,18 +329,26 @@
 
                     //TODO Fehlermeldungn Catchen!!!
                     this.dialogIdea = false
-
+                    this.myThread.beitragsnummer= this.myThread.beitragsnummer;
+                    this.myThread.beitragsnummer++;
                     //Felder clearen
                     this.myThread.hashtags = [];
                     this.myThread.title = '';
                     this.myThread.datetime = '';
                     this.myThread.text = '';
-                    this.myThread.creatorID = '';
+
                     this.myThread.likes = '';
-                    this.myThread.username = '';
+
+                    this.beitragsnummer='';
+
+
+
+
+
 
                 }
-            }
+            },
+
         },
 
         computed: {
@@ -360,7 +369,8 @@
                     likes: '123',
                     text: '',
                     title: '',
-                    username: ''
+                    username: '',
+                    beitragsnummer:'1',
                 },
                 addThread: false,
                 newHashtag: '',
