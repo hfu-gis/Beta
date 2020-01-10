@@ -296,6 +296,7 @@
                     //this.myThread.hashtags.push(this.newHashtag)
                     this.myThread.hashtag = this.newHashtag;
                     this.newHashtag = '';
+                    console.log(this.myThread.hashtag);
                 }
             },
 
@@ -342,6 +343,8 @@
                 if (user && this.myThread.hashtag !== '' && this.myThread.text !== '' && this.myThread.title !== '') {
 
                     this.increaseBeitragsnummer();
+                    this.saveNewHashtag();
+
 
                     let docRef = db.collection("Threads").doc(this.myThread.title)
                     //Werte zuweisen
@@ -350,10 +353,10 @@
                     this.myThread.beitragsnummer = this.tempBeitragsnummer.beitragsnummer;
                     docRef.set(this.myThread)
 
-                    this.saveNewHashtag();
 
                     //Felder clearen
                     //this.myThread.hashtag = [];
+                    this.myThread.hashtag = '';
                     this.myThread.title = '';
                     this.myThread.datetime = '';
                     this.myThread.text = '';
@@ -365,46 +368,25 @@
                 }
             },
 
-            saveNewHashtag(){
+            saveNewHashtag() {
+                var aktuellerHashtag = this.myThread.hashtag
                 //Hashtags abspeichern und/ oder Anzahl derer erhöhen:
-                var docRef = db.collection("Hashtags").doc(this.myThread.hashtag);
-
+                var docRef = db.collection("Hashtags").doc(aktuellerHashtag);
                 docRef.get().then(function (doc) {
-                        if (doc.exists) {
-
-                            this.myThread.hashtag = 'haus';
-
-                            db.collection("Hashtags").doc(this.myThread.hashtag).get().then(doc => {
-                                this.tempHashtag = doc.data()
-                            }).catch(err => {
-                                console.log('Error getting documents', err)
-                            })
-
-                            console.log("Document data: ", this.tempHashtag.tag);
-
-                        } else {
-                            // doc.data() will be undefined in this case
-                            console.log("No such document!");
-                        }
-
-                        /*
-                                console.log("Document data:", doc.data());
-
-                                this.tempHashtag.count++;
-
-                                tag.set(this.tempHashtag);
-
-                                this.tempHashtag = this.myThread.hashtag;
-                                console.log(this.tempHashtag);
-
-                                let tag = db.collection("Hashtags").doc(this.myThread.hashtag[0].toUpperCase())
-                                this.tempHashtag.count = 1;
-                                this.tempHashtag.tag = this.myThread.hashtag[0].toString().toUpperCase();
-                                tag.set(this.tempHashtag);
-                            }*/
-                        }).catch(function (error) {
-                            console.log("Error getting document:", error);
+                    if (doc.exists) {
+                        db.collection("Hashtags").doc(aktuellerHashtag).update({
+                            count: doc.data().count + 1
                         });
+                    } else {
+                        db.collection("Hashtags").doc(aktuellerHashtag).set({
+                            tag: aktuellerHashtag,
+                            count: 1,
+                        })
+
+                    }
+                }).catch(function (error) {
+                    console.log("Error getting document:", error);
+                });
             },
 
             increaseBeitragsnummer() {
@@ -434,11 +416,6 @@
             return {
                 fehler: false,
                 tempWord: '',
-
-                tempHashtag: {
-                    tag: '',
-                    count: 1
-                },
 
                 tempBeitragsnummer: {
                     beitragsnummer: 0,
