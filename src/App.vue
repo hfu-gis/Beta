@@ -532,13 +532,15 @@
 
     #searchbox {
 
-        position: absolute;
+        position: fixed;
         right: 5%;
-        top: 0%;
-        width: 15em;
+        top: 5%;
+        width: 12em;
+        max-width: 45%;
         height: 100%;
-        margin: 0;
-        padding: 0.7em 0.1em 0.1em 0.5em;
+        max-height: 100%;
+        margin-right: 1.3em;
+        padding: 0.5em 0.1em 0.1em 0.5em;
 
     }
 
