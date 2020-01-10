@@ -4,103 +4,6 @@
         <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Teko&display=swap" rel="stylesheet">
 
-        <!--<div class="body-1" id="cloud">
-            <wordcloud :data="defaultWords" nameKey="name" valueKey="value" :color="myColors" :showTooltip="true" :wordClick="wordClickHandler">
-            </wordcloud>
-            https://www.npmjs.com/package/vue-wordcloud
-        </div>-->
-        <!--Liste-->
-        <!--
-         <div>
-          <v-app>
-               <v-card  color="#8F94A6" class="mx-auto"   width="80%">
-
-                   <v-system-bar color="#D9A566" dark>
-                       <v-spacer></v-spacer>
-
-                       <v-icon>mdi-window-minimize</v-icon>
-
-                       <v-icon>mdi-window-maximize</v-icon>
-
-                       <v-icon>mdi-close</v-icon>
-                   </v-system-bar>
-                   <v-spacer></v-spacer>
-
-                   <v-toolbar color="#132B40" dark>
-                       <v-app-bar-nav-icon></v-app-bar-nav-icon>
-
-                       <v-toolbar-title>latest posts</v-toolbar-title>
-
-                       <v-spacer></v-spacer>
-
-                       <v-btn icon link :to="{ path: '/postinglist'}">
-                           <v-icon>mdi-magnify</v-icon>
-                       </v-btn>
-                   </v-toolbar>
-
-                   <v-container fluid>
-                       <v-row dense>
-                           <v-col v-for="title in posts" :key="title.title" :cols="title.flex">
-                               <v-card class="mx-auto" max-width="95%">
-                                   <v-card-text>
-                                       <p class="display-1 text--primary" v-text="title.title" ></p>
-                                       <p v-text="title.hashtag">adjective</p>
-                                       <div class="text--primary" v-text="title.text">
-                                       </div>
-                                   </v-card-text>
-                                   <v-card-actions>
-                                       <v-btn text color="#BF4974">
-                                           Learn More
-                                       </v-btn>
-                                   </v-card-actions>
-                               </v-card>
-                           </v-col>
-                       </v-row>
-                   </v-container>
-               </v-card>
-           </v-app>
-       </div>-->
-        <!--V-Cards-->
-        <!-- <div>
-            <v-app id="inspire">
-                <v-card color="#8F94A6" class="mx-auto"  max-width="80%">
-                        <v-spacer></v-spacer>
-                    <v-container fluid>
-                        <v-row dense>
-                            <v-col v-for="card in cards" :key="card.title" :cols="card.flex">
-                                <v-card color="#D9A566">
-                                    <v-img
-                                            :src="card.src"
-                                            class="white--text align-end"
-                                            gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                                            height="200px"
-                                    >
-                                        <v-card-title v-text="card.title"></v-card-title>
-                                    </v-img>
-
-                                    <v-card-actions>
-                                        <v-spacer></v-spacer>
-
-                                        <v-btn icon>
-                                            <v-icon>mdi-heart</v-icon>
-                                        </v-btn>
-
-                                        <v-btn icon>
-                                            <v-icon>mdi-bookmark</v-icon>
-                                        </v-btn>
-
-                                        <v-btn icon>
-                                            <v-icon>mdi-share-variant</v-icon>
-                                        </v-btn>
-                                    </v-card-actions>
-                                </v-card>
-                            </v-col>
-                        </v-row>
-                    </v-container>
-                </v-card>
-            </v-app>
-        </div>-->
-
         <!--<v-toolbar v-if="this.authenticated" light flat color="rgba(121, 120, 124, 0)" style="justify-content: center;">-->
         <v-toolbar light flat color="rgba(121, 120, 124, 0)" style="justify-content: center;">
             <v-spacer/>
@@ -122,50 +25,14 @@
                     :font-size-ratio="5"
                     :spacing="0.7"
             >
-                <!--<vue-word-cloud
-                        style="position:fixed; width: 80%; height: 70%; margin-left: 10%; margin-top: 2%; text-transform: uppercase;"
-                        :words="[['romance', 19], ['horror', 3], ['fantasy', 7], ['adventure', 3]]"
-                        :color="([, weight]) => weight > 10 ? 'DeepPink' : weight > 5 ? 'RoyalBlue' : 'Indigo'"
-                        font-family="Roboto"
-                >-->
                 <template slot-scope="{text, weight, word}">
                     <div :title="weight" style="cursor: pointer;" @click="onWordClick(word)">
                         {{ text }}
                     </div>
                 </template>
-                <!--<template slot-scope="{text, weight, words}">
-                    <div :title="weight" style="cursor: pointer;" @click.stop="Beitrag = true">
-
-                        {{ text }}
-
-                    </div>-->
-                <!--<div :title="weight" style="cursor: pointer;" @click="onWordClick(words)">
-
-                    {{ text }}
-                </div>
-            </template>-->
             </vue-word-cloud>
 
         </div>
-
-        <v-dialog v-model="Beitrag" max-width="260">
-            <v-card>
-                <v-card
-
-                        class="mx-auto"
-                        max-width="260"
-                        color="#8F94A6"
-                >
-
-
-                    <v-card-title>
-                        Here could be a Thread...????
-                    </v-card-title>
-
-
-                </v-card>
-            </v-card>
-        </v-dialog>
 
         <!---------------------------------- NEUEN THREAD ERSTELLEN ---------------------------------->
         <v-dialog v-model="addThread" v-on:click="openAddThread">
@@ -175,28 +42,6 @@
                 <v-row cols="12" style="width: 100%; height: 350px;">
                     <v-col cols="4" style="padding-left: 2%">
                         <v-subheader>from: {{myThread.username}}</v-subheader>
-                        <!--
-                        <v-container>
-                            <v-layout wrap>
-                                <v-flex xs12>
-                                    <v-combobox multiple
-                                                v-model="select"
-                                                label="Hashtags"
-                                                append-icon
-                                                chips
-                                                outlined
-                                                deletable-chips
-                                                class="tag-input"
-                                                :search-input.sync="search"
-                                                @keyup.tab="updateTags"
-                                                @paste="updateTags"
-                                                height="300px"
-                                    >
-                                    </v-combobox>
-                                </v-flex>
-                            </v-layout>
-                        </v-container>-->
-
                         <v-row>
                             <v-text-field v-model="newHashtag" style="width: 70%; margin-left: 20px;"></v-text-field>
                             <v-btn icon dark style="background: grey;" v-on:click="addHashtagToArray">
@@ -207,6 +52,7 @@
                             <v-chip-group
                                     column
                                     active-class="primary--text"
+                                    v-if="this.myThread.hashtag !== ''"
                             >
                                 <!--<v-chip v-for="tag in myThread.hashtags" :key="tag">
                                     {{ tag }}
@@ -299,20 +145,20 @@
                 var tempArray = [];
                 var that = this;
 
-                    db.collection("Hashtags")
-                        .onSnapshot(function (querySnapshot) {
-                            tempArray = [];
-                            that.words = [];
+                db.collection("Hashtags")
+                    .onSnapshot(function (querySnapshot) {
+                        tempArray = [];
+                        that.words = [];
 
-                            querySnapshot.forEach(function (doc) {
-                                tempArray.push([doc.data().tag, doc.data().count]);
-                            });
+                        querySnapshot.forEach(function (doc) {
+                            tempArray.push([doc.data().tag, doc.data().count]);
+                        });
 
-                            let i;
-                            for (i = 0; i < tempArray.length; i++) {
-                                that.words.push(tempArray[i]);
-                            }
-                        })
+                        let i;
+                        for (i = 0; i < tempArray.length; i++) {
+                            that.words.push(tempArray[i]);
+                        }
+                    })
             },
 
             addHashtagToArray() {
@@ -364,7 +210,7 @@
                 var user = firebase.auth().currentUser;
                 if (user && this.myThread.hashtag !== '' && this.myThread.text !== '' && this.myThread.title !== '') {
 
-                    //----------------------------//
+                    //-------------Beitragsnummer hinzufügen---------------//
 
                     //aktuelle Nummer abfragen
                     db.collection("beitragsnummer").doc('fHvJoKSXNA42YVwindRE').get().then(doc => {
@@ -380,7 +226,7 @@
                         console.log('Error getting documents', err)
                     })
 
-                    //----------------------------//
+                    //--------------Hashtag Sppeichern/ Anzahl erhöhen--------------//
 
                     var aktuellerHashtag = this.myThread.hashtag;
                     //Hashtags abspeichern und/ oder Anzahl derer erhöhen:
@@ -405,7 +251,7 @@
                     });
 
 
-                    //----------------------------//
+                    //-------------Neuen Thread speichern---------------//
 
 
                     let docRef = db.collection("Threads").doc(this.myThread.title)
@@ -432,9 +278,6 @@
                         });
 
                     });
-
-                    //this.$router.push('/');
-
                 } else {
                     this.fehler = true;
                 }
@@ -449,49 +292,7 @@
                     // Add the component back in
                     this.renderComponent = true;
                 });
-            }
-            ,
-
-
-            /*saveNewHashtag() {
-                 var aktuellerHashtag = this.myThread.hashtag;
-                 //Hashtags abspeichern und/ oder Anzahl derer erhöhen:
-                 var docRef = db.collection("Hashtags").doc(aktuellerHashtag);
-
-                 docRef.get().then(function (doc) {
-                     if (doc.exists) {
-                         console.log("Der Hashtag ", aktuellerHashtag, " besteht schon, Anzahl um eins erhöht")
-                         db.collection("Hashtags").doc(aktuellerHashtag).update({
-                             count: doc.data().count + 1
-                         });
-                     } else {
-                         console.log("Der Hashtag ", aktuellerHashtag, " wurde zur Sammlung hinzugefügt")
-                         db.collection("Hashtags").doc(aktuellerHashtag).set({
-                             tag: aktuellerHashtag,
-                             count: 1,
-                         })
-
-                     }
-                 }).catch(function (error) {
-                     console.log("Error getting document:", error);
-                 });
-             },
-
-             increaseBeitragsnummer() {
-                 //aktuelle Nummer abfragen
-                 db.collection("beitragsnummer").doc('fHvJoKSXNA42YVwindRE').get().then(doc => {
-                     this.tempBeitragsnummer = doc.data()
-                     var b = this.tempBeitragsnummer.beitragsnummer;
-                     var c = ++b;
-                     this.tempBeitragsnummer.beitragsnummer = c;
-
-                     //Speichern
-                     let docRef = db.collection("beitragsnummer").doc('fHvJoKSXNA42YVwindRE')
-                     docRef.update(this.tempBeitragsnummer);
-                 }).catch(err => {
-                     console.log('Error getting documents', err)
-                 })
-             }*/
+            },
         },
 
         computed: {
@@ -534,13 +335,7 @@
 
                 temp: '',
 
-                Beitrag: false,
-
-                //words: [['Furtwangen', 2], ['Baum', 8], ['Haus', 2], ['fantasy', 8], ['Camera', 13], ['fantasy', 28], ['adventure', 3], ['horror', 13], ['horror', 13], ['adventure', 6], ['Spotify', 13], ['Witcher', 12], ['Minecraft', 8], ['fantasy', 8], ['horror', 23], ['adventure', 13], ['fantasy', 4], ['adventure', 3], ['adventure', 3], ['C#', 2], ['Java', 12], ['Eclipse', 13]],
                 words: [],
-
-                snackbarText: '',
-                snackbarVisible: false,
             }
         }
     }

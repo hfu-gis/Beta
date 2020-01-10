@@ -245,12 +245,12 @@
                             </v-col>
                             <v-col cols="12">
                                 <v-text-field solo flat filled label="Titel" required
-                                              v-model="mySuggestions.idea"></v-text-field>
+                                              v-model="mySuggestions.idea"/>
                             </v-col>
 
                             <v-col cols="12">
                                 <v-textarea solo flat filled color="#D9A566" label="type here"
-                                            v-model="mySuggestions.text" placeholder="type here"></v-textarea>
+                                            v-model="mySuggestions.text" placeholder="type here"/>
                             </v-col>
                             <v-col cols="12">
                                 <v-btn solo depressed flat @click="createSuggestion" type="submit" color="#132B40"
@@ -322,14 +322,14 @@
                                     color="#D9A566"
                                     line-width="2"
                                     padding="16"
-                            ></v-sparkline>
+                            />
                         </v-sheet>
                         <br/>
 
                         <v-card-text class="pt-0">
                             <div class="title font-weight-light mb-2">Your Likes</div>
 
-                            <v-divider class="my-2"></v-divider>
+                            <v-divider class="my-2"/>
                             <v-icon
                                     class="mr-2"
                                     small

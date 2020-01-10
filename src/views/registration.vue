@@ -7,34 +7,6 @@
                 <v-btn depressed v-on="on" color="#D9A566">Register</v-btn>
             </template>
             <v-card>
-                <!--<v-form ref="form" v-model="valid" style="background: #162a3b" id="signup">
-                    <br>
-                    <v-card-title>
-                        <v-row justify="center">
-                            <span class="headline"
-                                  style="color: #D9A566;">You need a bit of advice? Just register!</span>
-                        </v-row>
-                    </v-card-title>
-                    <v-divider/>
-                    <v-card-text style="background: linear-gradient(to right, #f9f5ef, #ffd6a6);">
-                        <v-container>
-                            <v-row>
-
-
-
-
-
-                            </v-row>
-                        </v-container>
-                        <small style="color: #132B40">*indicates required field</small>
-                    </v-card-text>
-                    <v-card-actions>
-                        <v-spacer></v-spacer>
-
-
-                    </v-card-actions>
-                    <div v-if="error" class="alert alert-danger">{{error}}</div>
-                </v-form>-->
                 <v-stepper v-model="e1" dark style="background: linear-gradient(to right, #f9f5ef, #ffd8b8);">
                     <v-stepper-header style="background: #132B40">
                         <v-stepper-step editable :complete="e1 > 1" step="1" color="#D9A566">Username</v-stepper-step>
