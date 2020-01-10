@@ -161,7 +161,7 @@
                                     >
                                         <v-text-field light required name="password" v-model="form.password"
                                                       placeholder="Password*"
-                                                      type="password" id="password" required></v-text-field>
+                                                      type="password" id="password" required/>
                                     </v-col>
 
                                     <v-col
@@ -171,7 +171,7 @@
                                         <v-text-field light required name="confirmpassword" v-model="confirmpassword"
                                                       type="password" placeholder="Confirm Password*"
                                                       id="confirmpassword"
-                                                      :rules="[comparepassword]"></v-text-field>
+                                                      :rules="[comparepassword]"/>
                                     </v-col>
                                 </v-row>
 

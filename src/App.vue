@@ -6,8 +6,8 @@
 
             <v-row>
 
-            <a :to="{ path: '/homepage'}">
-                <v-btn :to="{ path: '/homepage'}" text height="60" width="150" color="#132B40">
+            <a>
+                <v-btn :to="{ path: '/'}" text height="60" width="150" color="#132B40">
                     <img contain src="../img/Logos/BitOfAdvice_logo_2.png" height="50"/>
                 </v-btn>
             </a>

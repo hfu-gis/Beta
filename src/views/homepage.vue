@@ -254,8 +254,8 @@
                 >
 
 
-                    <v-card-title>
-                        You need to add Hashtags and fill in a Titel and Threadtext
+                    <v-card-title style="padding: 10%">
+                        You need to add Hashtags and fill in a Titel and Threadtext. You have to be signed in!
                     </v-card-title>
 
 
@@ -334,7 +334,7 @@
                     //this.myThread.hashtags.push(this.newHashtag)
                     this.myThread.hashtag = this.newHashtag.toUpperCase();
                     this.newHashtag = '';
-                    console.log(this.myThread.hashtag);
+                    console.log("Neuen Hashtag angenommen: ", this.myThread.hashtag);
                 }
             },
 
@@ -380,14 +380,12 @@
                     this.increaseBeitragsnummer();
                     this.saveNewHashtag();
 
-
                     let docRef = db.collection("Threads").doc(this.myThread.title)
                     //Werte zuweisen
                     this.myThread.creatorID = user.uid;
                     this.myThread.datetime = new Date().toDateString();
                     this.myThread.beitragsnummer = this.tempBeitragsnummer.beitragsnummer;
                     docRef.set(this.myThread)
-
 
                     //Felder clearen
                     //this.myThread.hashtag = [];
@@ -398,9 +396,12 @@
                     this.myThread.likes = '';
                     this.myThread.beitragsnummer = 1;
 
-                    location.reload();
                     this.forceRerender();
-                    this.$router.push('/');
+
+                    this.$nextTick(() => {
+                        location.reload();
+                    });
+                    //this.$router.push('/');
 
                 } else {
                     this.fehler = true;
@@ -419,15 +420,18 @@
 
 
             saveNewHashtag() {
-                var aktuellerHashtag = this.myThread.hashtag
+                var aktuellerHashtag = this.myThread.hashtag;
                 //Hashtags abspeichern und/ oder Anzahl derer erhöhen:
                 var docRef = db.collection("Hashtags").doc(aktuellerHashtag);
+
                 docRef.get().then(function (doc) {
                     if (doc.exists) {
+                        console.log("Der Hashtag ", aktuellerHashtag, " besteht schon, Anzahl um eins erhöht")
                         db.collection("Hashtags").doc(aktuellerHashtag).update({
                             count: doc.data().count + 1
                         });
                     } else {
+                        console.log("Der Hashtag ", aktuellerHashtag, " wurde zur Sammlung hinzugefügt")
                         db.collection("Hashtags").doc(aktuellerHashtag).set({
                             tag: aktuellerHashtag,
                             count: 1,
