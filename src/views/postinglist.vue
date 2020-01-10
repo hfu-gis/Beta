@@ -42,7 +42,7 @@
                 </v-layout>
             </v-container>-->
 
-            <v-chip color="#D9A566" v-if="chip1" close  @click:close="chip1 = false">{{this.searchHashtag}}</v-chip>
+            <v-chip color="#D9A566" v-if="chip1" close @click:close="chip1 = false">{{this.searchHashtag}}</v-chip>
 
             <v-spacer></v-spacer>
 
@@ -161,7 +161,6 @@
                             <!--<v-breadcrumbs :items="bread_items" divider=">"></v-breadcrumbs>-->
 
 
-
                         </v-col>
                         <v-col cols="2" style="padding-top: 2%;">
                             <v-btn @click="item.beitragsnummer = !item.beitragsnummer"
@@ -186,7 +185,7 @@
 <script>
     import firebase from 'firebase';
     import db from "../db";
-    import { mapState } from 'vuex'
+    import {mapState} from 'vuex'
 
     export default {
         name: 'postinglist',
@@ -257,10 +256,29 @@
         }),
 
         // reagieren auf prop-Veränderung
-        watch: {},
+        watch: {
+               //searchHashtag: this.reload()
+        },
 
         // interne Methoden
         methods: {
+            reload() {
+                var user = firebase.auth().currentUser;
+                if (user) {
+                    this.profileURL = user.photoURL;
+                }
+                //db.collection("Threads").where("hashtag", "array-contains", this.searchHashtag).get().then(threadsFromDB => {
+                db.collection("Threads").where("hashtag", "==", this.searchHashtag).get().then(threadsFromDB => {
+                    threadsFromDB.forEach(
+                        doc => {
+                            this.items.push(doc.data())
+                        })
+                })
+                    .catch(err => {
+                        console.log('Error getting documents', err)
+                    })
+            },
+
             updateTags() {
                 this.$nextTick(() => {
                     this.select.push(...this.search.split(","));
@@ -270,15 +288,15 @@
                 });
             },
 
-            getProfileURL(profile_url){
+            getProfileURL(profile_url) {
                 db.collection("cities").doc("SF")
                     .get()
-                    .then(function(doc) {
+                    .then(function (doc) {
                         if (doc.exists) {
                             console.log(doc.data.photoURL)
                             return doc.data.photoURL
                         }
-                    }).catch(function(error) {
+                    }).catch(function (error) {
                     console.log("Error getting document:", error);
                 });
             }

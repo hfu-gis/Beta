@@ -14,10 +14,11 @@
 
             <v-spacer/>
 
-            <div id="searchbox">
-                <v-text-field outlined rounded dense color="#D9A566" label="search" id="txtsearch"></v-text-field>
+            <div id="searchbox" >
+                <v-text-field v-model="searchText" outlined rounded dense color="#D9A566" label="search"
+                              id="txtsearch"/>
             </div>
-            <v-btn icon class="mx-10" color="#D9A566">
+            <v-btn icon class="mx-10" color="#D9A566" v-on:click="search">
                 <v-icon>mdi-magnify</v-icon>
             </v-btn>
             </v-row>
@@ -404,6 +405,8 @@
         data: () => ({
             photoURL: '',
 
+            searchText: '',
+
             valid: true,
             drawer: null,
             dialog: false,
@@ -427,6 +430,12 @@
 
         // interne Methoden
         methods: {
+            search(){
+                this.$store.commit('changeSearchHashtag', this.searchText.toUpperCase())
+                this.updateUser()
+                this.$router.replace('/postinglist');
+            },
+
             validate: () => {
                 if (this.$refs.form.validate()) {
                     this.register()

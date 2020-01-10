@@ -401,6 +401,7 @@
                     this.myThread.likes = '';
                     this.myThread.beitragsnummer = 1;
 
+                    location.reload();
                     this.forceRerender();
                     this.$router.push('/');
 
