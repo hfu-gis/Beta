@@ -125,6 +125,15 @@
                     </v-list-item-content>
                 </v-list-item>
 
+                <v-list-item link :to="{ path: '/about'}">
+                    <v-list-item-action>
+                        <v-icon color="#D9A566">mdi-group</v-icon>
+                    </v-list-item-action>
+                    <v-list-item-content>
+                        <v-list-item-title class="accent--text">about us</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+
                 <!--
                 <v-list-item v-slot:activator="{ on }" color="primary" dark>Open Dialog>
                     <v-list-item-action>
