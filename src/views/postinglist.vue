@@ -42,7 +42,7 @@
                 </v-layout>
             </v-container>-->
 
-            <v-chip>{{this.searchHashtag}}</v-chip>
+            <v-chip color="#D9A566" v-if="chip1" close  @click:close="chip1 = false">{{this.searchHashtag}}</v-chip>
 
             <v-spacer></v-spacer>
 
@@ -205,6 +205,7 @@
         data: () => ({
 
             thread: false,
+            chip1: true,
 
             profileURL: '',
 
@@ -251,6 +252,7 @@
                 artist: 'P_Droschbart',
                 text: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
             }
+
         }),
 
         // reagieren auf prop-Veränderung
