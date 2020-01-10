@@ -67,6 +67,7 @@
 
 
         <!--Post-->
+        <!--TODO brauchen wir das noch?-->
         <v-dialog v-model="thread" width="70%">
 
             <v-card
@@ -117,7 +118,6 @@
             <v-col
                     v-for="(item, i) in items"
                     :key="i"
-
             >
                 <v-card
                         color="#8F94A6"
@@ -171,7 +171,7 @@
                         </v-col>
                     </v-row>
                     <v-expand-transition>
-                        <div v-show="!item.beitragsnummer">
+                        <div v-show="item.beitragsnummer">
                             <v-divider></v-divider>
 
                             <v-card-text v-text="item.text"/>
@@ -207,6 +207,7 @@
             thread: false,
             chip1: true,
 
+            tempProfileURL: '',
             profileURL: '',
 
             /*items: [
@@ -266,6 +267,19 @@
                     this.$nextTick(() => {
                         this.search = "";
                     });
+                });
+            },
+
+            getProfileURL(profile_url){
+                db.collection("cities").doc("SF")
+                    .get()
+                    .then(function(doc) {
+                        if (doc.exists) {
+                            console.log(doc.data.photoURL)
+                            return doc.data.photoURL
+                        }
+                    }).catch(function(error) {
+                    console.log("Error getting document:", error);
                 });
             }
         },

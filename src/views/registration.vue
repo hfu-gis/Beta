@@ -220,6 +220,7 @@
                 last: '',
                 mail: '',
                 //password: '',
+                photoURL: ''
             },
 
             nameRules: [
@@ -281,6 +282,7 @@
                         //Parallel erstellte Datenbank für weitere Informationen
                         let docRef = db.collection("Users").doc(data.user.uid)
 
+                        this.userData.photoURL = 'http://pronksiapartments.ee/wp-content/uploads/2015/10/placeholder-face-big.png';
                         this.userData.mail = this.form.email;
                         this.userData.password = this.form.password;
                         this.userData.userName = this.form.name;

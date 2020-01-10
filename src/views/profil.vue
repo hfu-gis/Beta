@@ -452,6 +452,11 @@
                 if (user) {
                     user.updateProfile({photoURL: this.newPhotoURL})
                     this.changePhotoURL = false;
+
+                    db.collection("Users").doc(user.uid).update({
+                        photoURL: this.newPhotoURL
+                    });
+
                 }
                 this.profileURL = this.newPhotoURL;
                 this.updateUser();

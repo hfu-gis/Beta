@@ -111,10 +111,9 @@
             <v-spacer/>
         </v-toolbar>
 
-        <div>{{tempWord}}</div>
-
         <div style="height: 100%; width: 100%;">
             <vue-word-cloud
+                    v-if="renderComponent"
                     style="position:fixed; width: 80%; height: 70%; margin-left: 10%; margin-top: 2%; text-transform: uppercase;"
                     :words="words"
                     :rotation="1"
@@ -287,14 +286,53 @@
             [VueWordCloud.name]: VueWordCloud,
         },
         created() {
-            this.updateUser()
+            this.updateUser();
+            this.fillWordCloud();
+        },
+
+        firestore() {
+            mostUsedHashtags: db.collection('Hashtags').orderBy('count');
         },
 
         methods: {
+            fillWordCloud() {
+
+                //LIMIT HIER EINSTELLBAR
+                /*
+                var query = firebase.database().ref('posts').limitToLast(100);
+                this.mostUsedHashtags.push(query.once('value'));
+                console.log(this.mostUsedHashtags[0])*/
+
+                //this.words.push(['tada', 2])
+
+
+                db.collection("Hashtags").get().then(tagsFromDB => {
+                    tagsFromDB.forEach(
+                        doc => {
+                            this.words.push([doc.data().tag, doc.data().count])
+                        })
+                })
+                    .catch(err => {
+                        console.log('Error getting documents', err)
+                    })
+
+                /*
+                db.collection("Hashtags").orderByChild('/count').limitToFirst(5).get().then(hashtagsFromDB => {
+                    hashtagsFromDB.forEach(
+                        doc => {
+                            this.mostUsedHashtags.push(doc.data())
+                        })
+                })
+                    .catch(err => {
+                        console.log('Error getting documents', err)
+                    })
+                */
+            },
+
             addHashtagToArray() {
                 if (this.newHashtag != '' && this.newHashtag != ' ') {
                     //this.myThread.hashtags.push(this.newHashtag)
-                    this.myThread.hashtag = this.newHashtag;
+                    this.myThread.hashtag = this.newHashtag.toUpperCase();
                     this.newHashtag = '';
                     console.log(this.myThread.hashtag);
                 }
@@ -324,7 +362,7 @@
             onWordClick: function (word) {
                 this.tempWord = word[0];
                 //console.log(this.searchHashtag)
-                this.$store.commit('changeSearchHashtag', word[0])
+                this.$store.commit('changeSearchHashtag', word[0].toUpperCase())
                 this.$router.push('/postinglist');
             },
 
@@ -363,10 +401,24 @@
                     this.myThread.likes = '';
                     this.myThread.beitragsnummer = 1;
 
+                    this.forceRerender();
+                    this.$router.push('/');
+
                 } else {
                     this.fehler = true;
                 }
             },
+
+            forceRerender() {
+                // Remove my-component from the DOM
+                this.renderComponent = false;
+
+                this.$nextTick(() => {
+                    // Add the component back in
+                    this.renderComponent = true;
+                });
+            },
+
 
             saveNewHashtag() {
                 var aktuellerHashtag = this.myThread.hashtag
@@ -414,6 +466,10 @@
 
         data() {
             return {
+                mostUsedHashtags: [],
+
+                renderComponent: true,
+
                 fehler: false,
                 tempWord: '',
 
@@ -459,7 +515,8 @@
 
                 ],*/
 
-                words: [['Furtwangen', 2], ['Baum', 8], ['Haus', 2], ['fantasy', 8], ['Camera', 13], ['fantasy', 28], ['adventure', 3], ['horror', 13], ['horror', 13], ['adventure', 6], ['Spotify', 13], ['Witcher', 12], ['Minecraft', 8], ['fantasy', 8], ['horror', 23], ['adventure', 13], ['fantasy', 4], ['adventure', 3], ['adventure', 3], ['C#', 2], ['Java', 12], ['Eclipse', 13]],
+                //words: [['Furtwangen', 2], ['Baum', 8], ['Haus', 2], ['fantasy', 8], ['Camera', 13], ['fantasy', 28], ['adventure', 3], ['horror', 13], ['horror', 13], ['adventure', 6], ['Spotify', 13], ['Witcher', 12], ['Minecraft', 8], ['fantasy', 8], ['horror', 23], ['adventure', 13], ['fantasy', 4], ['adventure', 3], ['adventure', 3], ['C#', 2], ['Java', 12], ['Eclipse', 13]],
+                words: [],
 
                 snackbarText: '',
                 snackbarVisible: false,
