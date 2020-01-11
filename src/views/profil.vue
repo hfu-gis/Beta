@@ -129,7 +129,7 @@
                                 style="background: linear-gradient(to right, #f9f5ef, #ffd8b8);"
                         >
                             <v-img
-                                    src="https://randomuser.me/api/portraits/men/11.jpg"
+                                    :src="profileURL"
                                     height="200px"
                             />
 
