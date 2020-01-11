@@ -208,6 +208,7 @@
 
                 <v-dialog v-model="dialogPosts" max-width="70%">
                     <v-card>
+
                         <v-card
                                 class="mx-auto"
                                 color="#8F94A6"
@@ -282,8 +283,6 @@
                                     </v-card>
                                 </v-col>
                             </div>
-
-
                         </v-card>
                     </v-card>
                 </v-dialog>

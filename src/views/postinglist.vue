@@ -120,6 +120,7 @@
                     v-for="(item, i) in items"
                     :key="i"
             >
+
                 <v-card
                         color="#8F94A6"
                         dark
@@ -181,9 +182,11 @@
                         </div>
                     </v-expand-transition>
                 </v-card>
+
             </v-col>
         </div>
     </div>
+
 </template>
 
 <script>
@@ -195,7 +198,8 @@
         name: 'postinglist',
 
         // benötigte Komponenten
-        components: {},
+        components: {
+        },
 
         // entspricht den HTML-Attributen
         props: {},
@@ -328,5 +332,4 @@
     .img-circle {
         border-radius: 5%;
     }
-
 </style>
