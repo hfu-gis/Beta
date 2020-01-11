@@ -42,7 +42,8 @@
                 </v-layout>
             </v-container>-->
 
-            <v-chip color="#D9A566" v-if="chip1" close @click:close="chip1 = false">{{this.searchHashtag}}</v-chip>
+            <!--<v-chip color="#D9A566" v-if="chip1" close @click:close="chip1 = false">{{this.searchHashtag}}</v-chip>-->
+            <v-chip color="#D9A566" v-if="chip1" @click:close="chip1 = false">{{this.searchHashtag}}</v-chip>
 
             <v-spacer></v-spacer>
 
@@ -68,7 +69,7 @@
 
         <!--Post-->
         <!--TODO brauchen wir das noch?-->
-        <v-dialog v-model="thread" width="70%">
+        <!--<v-dialog v-model="thread" width="70%">
 
             <v-card
                     class="mx-auto"
@@ -110,7 +111,7 @@
                     </v-list-item>
                 </v-card-actions>
             </v-card>
-        </v-dialog>
+        </v-dialog>-->
 
 
         <!--Threads-->
@@ -302,8 +303,6 @@
                 this.profileURL = user.photoURL;
             }
 
-            var newLink = '';
-
             //db.collection("Threads").where("hashtag", "array-contains", this.searchHashtag).get().then(threadsFromDB => {
             db.collection("Threads").where("hashtag", "==", this.searchHashtag).get().then(threadsFromDB => {
                 threadsFromDB.forEach(
@@ -313,12 +312,7 @@
                         db.collection("Users").doc(doc.data().creatorID)
                             .get()
                             .then((function (doc1) {
-
-                                //console.log('url: ', doc1.data().photoURL)
                                 this.itemLinks.push(doc1.data().photoURL);
-
-                                //console.log('newUrl', this.profileURL)
-
                             }).bind(this));
                     })
             })

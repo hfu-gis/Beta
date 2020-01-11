@@ -202,25 +202,94 @@
                         </v-card>
                     </v-card>
                 </v-dialog>
-                <v-dialog v-model="dialogPosts" max-width="400">
+
+
+
+
+                <v-dialog v-model="dialogPosts" max-width="70%">
                     <v-card>
                         <v-card
-
                                 class="mx-auto"
-                                max-width="400"
                                 color="#8F94A6"
                                 style="background: linear-gradient(to right, #f9f5ef, #ffd8b8);"
                         >
 
 
-                            <v-card-title>
+                            <v-card-title v-if="items[0] === ''">
                                 You currently have no Posts
                             </v-card-title>
+
+                            <v-card-title v-if="items[0] !== ''">
+                                All Posts you wrote:
+                            </v-card-title>
+
+                            <div>
+                                <v-col
+                                        v-for="(item, i) in items"
+                                        :key="i"
+                                >
+                                    <v-card
+                                            color="#8F94A6"
+                                            dark
+                                    >
+                                        <v-row cols="12">
+                                            <v-col cols="2">
+                                                <section>
+
+                                                    <v-card-subtitle v-text="item.username"
+                                                                     style="margin-left: 3%;"
+                                                    />
+                                                </section>
+                                            </v-col>
+                                            <v-col cols="8">
+                                                <!--<v-divider vertical color="#D9A566"></v-divider>-->
+
+                                                <v-card-title
+                                                        class="headline"
+                                                        v-text="item.title"
+
+                                                />
+
+                                                <v-chip-group
+                                                        column
+                                                        active-class="primary--text"
+                                                        dark
+                                                >
+                                                    <!--<v-chip disabled v-for="tag in item.hashtags" :key="tag">-->
+                                                    <v-chip disabled>
+                                                        {{ item.hashtag }}
+                                                    </v-chip>
+                                                </v-chip-group>
+
+                                                <!--<v-breadcrumbs :items="bread_items" divider=">"></v-breadcrumbs>-->
+
+
+                                            </v-col>
+                                            <v-col cols="2" style="padding-top: 2%;">
+                                                <v-btn @click="item.beitragsnummer = !item.beitragsnummer"
+                                                       style="height: 90%; background: #3d4f68; float: right; margin-right: 10%;">
+                                                    weiterlesen
+                                                </v-btn>
+                                            </v-col>
+                                        </v-row>
+                                        <v-expand-transition>
+                                            <div v-show="item.beitragsnummer">
+                                                <v-divider></v-divider>
+
+                                                <v-card-text v-text="item.text"/>
+                                            </div>
+                                        </v-expand-transition>
+                                    </v-card>
+                                </v-col>
+                            </div>
 
 
                         </v-card>
                     </v-card>
                 </v-dialog>
+
+
+
 
 
                 <v-dialog v-model="dialogIdea" max-width="500">
@@ -371,6 +440,8 @@
             changePhotoURL: false,
             newPhotoURL: '',
             profileURL: '',
+
+            items: [],
 
             mySuggestions: {
                 idea: '',
@@ -539,6 +610,19 @@
 
                     console.log(this.mySuggestions.creatorID);
                 }
+            },
+
+            updateMyPosts(){
+                var user = firebase.auth().currentUser;
+                db.collection("Threads").where("creatorID", "==", user.uid).get().then(threadsFromDB => {
+                    threadsFromDB.forEach(
+                        doc => {
+                            this.items.push(doc.data())
+                        })
+                })
+                    .catch(err => {
+                        console.log('Error getting documents', err)
+                    })
             }
 
         },
@@ -546,7 +630,8 @@
 
         // Initialisierung
         created() {
-            this.updateUser()
+            this.updateUser();
+            this.updateMyPosts();
             var user = firebase.auth().currentUser;
             if (user) {
                 this.message = user.displayName;
@@ -557,15 +642,7 @@
 </script>
 
 <style scoped>
-    .oceanbackground {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-    }
-
     .img-circle {
         border-radius: 50%;
     }
-
-    /* CSS für diese Seite hier einfügen */
 </style>
