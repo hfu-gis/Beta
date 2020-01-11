@@ -206,7 +206,7 @@
 
 
 
-                <v-dialog v-model="dialogPosts" max-width="70%">
+                <v-dialog v-model="dialogPosts" max-width="90%">
                     <v-card>
 
                         <v-card
@@ -228,21 +228,22 @@
                                 <v-col
                                         v-for="(item, i) in items"
                                         :key="i"
+                                        md="auto"
                                 >
                                     <v-card
                                             color="#8F94A6"
                                             dark
                                     >
-                                        <v-row cols="12">
-                                            <v-col cols="2">
+                                        <v-row >
+                                            <v-col md="auto" >
                                                 <section>
 
                                                     <v-card-subtitle v-text="item.username"
-                                                                     style="margin-left: 3%;"
+
                                                     />
                                                 </section>
                                             </v-col>
-                                            <v-col cols="8">
+                                            <v-col  style="padding-left: 5%">
                                                 <!--<v-divider vertical color="#D9A566"></v-divider>-->
 
                                                 <v-card-title
@@ -266,9 +267,12 @@
 
 
                                             </v-col>
-                                            <v-col cols="2" style="padding-top: 2%;">
+
+                                        </v-row>
+                                        <v-row>
+                                            <v-col  style="padding-top: 2%;" >
                                                 <v-btn @click="item.beitragsnummer = !item.beitragsnummer"
-                                                       style="height: 90%; background: #3d4f68; float: right; margin-right: 10%;">
+                                                       style=" background: #3d4f68; " block>
                                                     weiterlesen
                                                 </v-btn>
                                             </v-col>

@@ -23,40 +23,40 @@
                     <v-stepper-items>
                         <v-stepper-content step="1">
 
-                            <v-container style="height: 280px;">
-                                <v-row>
-                                    <v-col cols="12">
+
+
+
                                         <v-row>
-                                            <v-col cols="4">
-                                                <v-card-title light>Username:</v-card-title>
-                                            </v-col>
-                                            <v-col>
-                                                <v-text-field light required name="username" placeholder="User Name*"
+
+                                                <v-card-title light>Username: </v-card-title>
+
+                                            <v-col >
+                                                <v-text-field light required  placeholder="User Name*"
                                                               id="username"
                                                               v-model="form.name" required></v-text-field>
                                             </v-col>
                                         </v-row>
-                                    </v-col>
-                                    <v-col cols="12">
+
+                                    <v-col >
                                         <v-row>
-                                            <v-col cols="4">
+
                                                 <v-card-title light>Full Name:</v-card-title>
-                                            </v-col>
-                                            <v-col
-                                                    cols="4"
-                                            >
-                                                <v-text-field
-                                                        light
-                                                        v-model="userData.first"
-                                                        :rules="nameRules"
-                                                        :counter="10"
-                                                        placeholder="First Name*"
-                                                        required
-                                                />
-                                            </v-col>
+
+                                            <v-col >
+                                            <v-text-field
+                                                    light
+                                                    v-model="userData.first"
+                                                    :rules="nameRules"
+                                                    :counter="10"
+                                                    placeholder="First Name*"
+                                                    required
+                                            />
+                                        </v-col>
+                                            </v-row><v-row>
+
 
                                             <v-col
-                                                    cols="4"
+
                                             >
                                                 <v-text-field
                                                         light
@@ -69,9 +69,9 @@
                                             </v-col>
                                         </v-row>
                                     </v-col>
-                                </v-row>
-                            </v-container>
-                            <small style="color: rgba(19,43,64,0.49); padding-left: 30px;">*indicates required field</small>
+
+
+                            <small style="color: rgba(19,43,64,0.49);">*indicates required field</small>
 
                             <div style="float: right">
                                 <v-btn
@@ -91,7 +91,7 @@
                                     mail?
                                 </v-card-title>
 
-                                <v-col cols="12">
+                                <v-col >
                                     <v-text-field
                                             light
                                             required
@@ -104,7 +104,7 @@
                                     />
                                 </v-col>
                             </section>
-                            <small style="color: rgba(19,43,64,0.49); padding-left: 30px;">*indicates required field</small>
+                            <small style="color: rgba(19,43,64,0.49); ">*indicates required field</small>
 
                             <div style="float: right">
                                 <v-btn
@@ -120,16 +120,15 @@
                         </v-stepper-content>
 
                         <v-stepper-content step="3">
-                            <v-container style="height: 280px;">
-                                <v-card-title light style="justify-content: center; padding-top: 10%;">Please insert
-                                    your password!
+
+                                <v-card-title light style="justify-content: center; padding-top: 10%;">Choose your Password
                                 </v-card-title>
                                 <v-row>
 
 
                                     <v-col
-                                            cols="12"
-                                            md="6"
+
+
                                     >
                                         <v-text-field light required name="password" v-model="form.password"
                                                       placeholder="Password*"
@@ -137,8 +136,8 @@
                                     </v-col>
 
                                     <v-col
-                                            cols="12"
-                                            md="6"
+
+
                                     >
                                         <v-text-field light required name="confirmpassword" v-model="confirmpassword"
                                                       type="password" placeholder="Confirm Password*"
@@ -147,8 +146,8 @@
                                     </v-col>
                                 </v-row>
 
-                            </v-container>
-                            <small style="color: rgba(19,43,64,0.49); padding-left: 15px;">*indicates required field</small>
+
+                            <small style="color: rgba(19,43,64,0.49); ">*indicates required field</small>
 
                             <div style="float: right">
                                 <v-btn text v-on:click="cancel" light>Cancel</v-btn>
