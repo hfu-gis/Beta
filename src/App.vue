@@ -26,7 +26,7 @@
 
             <v-app-bar-nav-icon color="#D9A566" @click.stop="drawer = !drawer" v-on:click="updateUser"/>
         </v-app-bar>
-
+<xx></xx>
         <!-------------------------Navigation-Drawer-------------------------------------------------->
         <v-navigation-drawer v-model="drawer" right temporary fixed color="#162a3b">
             <!-- Farbe grey: rgb(55, 57, 59)-->
