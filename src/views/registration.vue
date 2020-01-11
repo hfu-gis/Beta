@@ -86,8 +86,8 @@
                         </v-stepper-content>
 
                         <v-stepper-content step="2">
-                            <section style="height: 280px;">
-                                <v-card-title light style="justify-content: center; padding-top: 10%;">What's your
+                            <section >
+                                <v-card-title light style="justify-content: center;">What's your
                                     mail?
                                 </v-card-title>
 
