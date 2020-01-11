@@ -16,6 +16,7 @@
 
         <div style="height: 100%; width: 100%;">
             <vue-word-cloud
+
                     v-if="renderComponent"
                     style="position:fixed; width: 80%; height: 70%; margin-left: 10%; margin-top: 2%; text-transform: uppercase;"
                     :words="words"
@@ -31,14 +32,12 @@
                     </div>
                 </template>
             </vue-word-cloud>
-
         </div>
 
         <!---------------------------------- NEUEN THREAD ERSTELLEN ---------------------------------->
         <v-dialog v-model="addThread" v-on:click="openAddThread">
             <v-card style="width: 100%; background: linear-gradient(to right, #f9f5ef, #ffdcc8);">
                 <v-card-title>Create new Thread:</v-card-title>
-
                 <v-row cols="12" style="width: 100%; height: 350px;">
                     <v-col cols="4" style="padding-left: 2%">
                         <v-subheader>from: {{myThread.username}}</v-subheader>
