@@ -101,6 +101,15 @@
                     </v-list-item-content>
                 </v-list-item>
 
+                <v-list-item link :to="{ path: '/about'}">
+                    <v-list-item-action>
+                        <v-icon color="#D9A566">mdi-account</v-icon>
+                    </v-list-item-action>
+                    <v-list-item-content>
+                        <v-list-item-title class="accent--text">about us</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+
             </v-list>
         </v-navigation-drawer>
 
@@ -196,10 +205,10 @@
                                 identifiable information are kept in a secure environment.
                             </v-card-text>
 
-                            <v-divider></v-divider>
+                            <v-divider/>
 
                             <v-card-actions>
-                                <v-spacer></v-spacer>
+                                <v-spacer/>
                                 <v-btn
                                         color="primary"
                                         text
@@ -353,6 +362,7 @@
 
 <style>
     {
+
         --main-color1: #BF4974
     ;
         --main-color2: #8C3F63
@@ -383,13 +393,15 @@
 
     #searchbox {
 
-        position: absolute;
+        position: fixed;
         right: 5%;
-        top: 0%;
-        width: 15em;
+        top: 5%;
+        width: 12em;
+        max-width: 45%;
         height: 100%;
-        margin: 0;
-        padding: 0.7em 0.1em 0.1em 0.5em;
+        max-height: 100%;
+        margin-right: 1.3em;
+        padding: 0.5em 0.1em 0.1em 0.5em;
 
     }
 

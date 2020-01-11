@@ -9,6 +9,7 @@ import homepage from "../views/homepage";
 import App from "../App";
 import profilesettings from "../views/profilesettings";
 import searchBlank from "../views/searchBlank";
+import about from "../views/about";
 
 Vue.use(VueRouter);
 
@@ -45,6 +46,10 @@ export default new VueRouter({
         {
             path: '/homepage',
             component: homepage
+        },
+        {
+            path: '/about',
+            component: about
         },
         {
             path: '/searchBlank',
