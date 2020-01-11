@@ -35,19 +35,22 @@
         </div>
 
         <!---------------------------------- NEUEN THREAD ERSTELLEN ---------------------------------->
-        <v-dialog v-model="addThread" v-on:click="openAddThread">
-            <v-card style="width: 100%; background: linear-gradient(to right, #f9f5ef, #ffdcc8);">
+        <v-dialog v-model="addThread" v-on:click="openAddThread" width="600">
+            <v-card style=" background: linear-gradient(to right, #f9f5ef, #ffdcc8);">
                 <v-card-title>Create new Thread:</v-card-title>
-                <v-row cols="12" style="width: 100%; height: 350px;">
-                    <v-col cols="4" style="padding-left: 2%">
+
+                    <v-col  style="padding-left: 2%" md="auto">
                         <v-subheader>from: {{myThread.username}}</v-subheader>
                         <v-row>
-                            <v-text-field v-model="newHashtag" style="width: 70%; margin-left: 20px;"></v-text-field>
+                            <v-col >
+                            <v-text-field v-model="newHashtag"  style="padding-left: 8%"></v-text-field>
+                            </v-col><v-col>
                             <v-btn icon dark style="background: grey;" v-on:click="addHashtagToArray">
                                 <v-icon>mdi-plus</v-icon>
                             </v-btn>
+                        </v-col>
                         </v-row>
-                        <div style="margin-left: 20px;">
+
                             <v-chip-group
                                     column
                                     active-class="primary--text"
@@ -60,11 +63,11 @@
                                     {{ this.myThread.hashtag }}
                                 </v-chip>
                             </v-chip-group>
-                        </div>
+
 
                     </v-col>
-                    <v-divider vertical color="#D9A566" style="margin-left: 30px; margin-right: 30px;"></v-divider>
-                    <v-col cols="7">
+                    <v-divider vertical color="#D9A566" style="margin-left: 30px; margin-right: 30px"></v-divider>
+                    <v-col >
                         <section>
                             <v-text-field
                                     v-model="myThread.title"
@@ -84,7 +87,7 @@
                         </section>
                         <v-btn outlined v-on:click="saveNewThread">Publish</v-btn>
                     </v-col>
-                </v-row>
+
                 <br>
             </v-card>
         </v-dialog>
