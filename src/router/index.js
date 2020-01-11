@@ -54,6 +54,6 @@ export default new VueRouter({
         {
             path: '/searchBlank',
             component: searchBlank
-        }
+        },
     ]
 })
