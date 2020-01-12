@@ -43,7 +43,7 @@ export default {
                   '\n' +'\n' +'Sincerely,\n' + '\n' +
                   'Team Beta'},
         {h1:'what is Bit of advice',text:'Bit of advice is home to thousands of communities, endless conversation, and authentic human connection. Whether you\'re into breaking news, sports, TV fan theories, or a never-ending stream of the internet\'s cutest animals, there\'s a community on Bit of advice for you.'},
-        {h1:'How Does Reddit Work?',text:'Every day, millions of people around the world post, vote, and comment in communities organized around their interests.'},
+        {h1:'How Does Bit of advice Work?',text:'Every day, millions of people around the world post, vote, and comment in communities organized around their interests.'},
 
       ],
     }
