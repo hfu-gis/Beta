@@ -18,7 +18,7 @@
             <vue-word-cloud
 
                     v-if="renderComponent"
-                    style="position:fixed; width: 80%; height: 70%; margin-left: 10%; margin-top: 2%; text-transform: uppercase;"
+                    style="position:fixed; width: 80%; height: 70%; margin-left: 10%; margin-top: 1%; text-transform: uppercase;"
                     :words="words"
                     :rotation="1"
                     :color="([, weight]) => weight > 17 ? '#132B40' : weight > 8 ? '#D9A566' : 'Indigo'"
