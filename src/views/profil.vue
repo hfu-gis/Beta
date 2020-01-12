@@ -129,7 +129,7 @@
                                 style="background: linear-gradient(to right, #f9f5ef, #ffd8b8);"
                         >
                             <v-img
-                                    src="https://randomuser.me/api/portraits/men/11.jpg"
+                                    :src="profileURL"
                                     height="200px"
                             />
 
@@ -206,7 +206,7 @@
 
 
 
-                <v-dialog v-model="dialogPosts" max-width="90%">
+                <v-dialog v-model="dialogPosts" max-width="900">
                     <v-card>
 
                         <v-card
@@ -235,15 +235,15 @@
                                             dark
                                     >
                                         <v-row >
-                                            <v-col md="auto" >
-                                                <section>
+                                            <v-col md="auto">
+
 
                                                     <v-card-subtitle v-text="item.username"
 
                                                     />
-                                                </section>
+
                                             </v-col>
-                                            <v-col  style="padding-left: 5%">
+                                            <v-col>
                                                 <!--<v-divider vertical color="#D9A566"></v-divider>-->
 
                                                 <v-card-title
