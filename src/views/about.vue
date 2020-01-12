@@ -38,10 +38,8 @@ export default {
       ],
       slides: [
         {h1:'about us',text:'Welcome to Bit of advice, your number one source for all things. We\'re dedicated to giving you the very best of advice, with a focus on accuracy, efficient,simplicity.\n' +
-                  '\n' +'\n' +'Founded in 2019 by team Beta, Bit of advice has come a long way from its beginnings in Furtwangen. When we first started out, our passion for idea of our website drove them to do tons of research, so that Bit of advice can offer you the best advice. We now serve customers all over the world, and are thrilled that we\'re able to turn our passion into our own website.\n' +
-                  '\n' +'\n' + 'We hope you enjoy our products as much as we enjoy offering them to you. If you have any questions or comments, please don\'t hesitate to contact us.\n' +
-                  '\n' +'\n' +'Sincerely,\n' + '\n' +
-                  'Team Beta'},
+                  '\n' + 'We hope you enjoy our products as much as we enjoy offering them to you. If you have any questions or comments, please don\'t hesitate to contact us.\n' +
+                  '\n' +'Sincerely,\n' + 'Team Beta'},
         {h1:'what is Bit of advice',text:'Bit of advice is home to thousands of communities, endless conversation, and authentic human connection. Whether you\'re into breaking news, sports, TV fan theories, or a never-ending stream of the internet\'s cutest animals, there\'s a community on Bit of advice for you.'},
         {h1:'How Does Bit of advice Work?',text:'Every day, millions of people around the world post, vote, and comment in communities organized around their interests.'},
 
