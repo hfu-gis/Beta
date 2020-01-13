@@ -1,12 +1,12 @@
 <template>
   <div class="body-1">
 
-    <v-carousel height="51em" hide-delimiter-background show-arrows-on-hover>
+    <v-carousel height="10%" hide-delimiter-background show-arrows-on-hover>
       <v-carousel-item v-for="(slide, i) in slides" :key="i">
         <v-sheet :color="colors[i]" height="100%">
           <v-row class="fill-height" align="center" justify="center">
-            <div class="display-1"><h1 style=" margin:2.5em;font-size: 4.5vw; font-family: Standard-Font" align="left" justify="center"><u>{{ slide.h1}}</u></h1>
-              <p style=" margin:3em;font-size: 3.5vw; font-family: Standard-Font" align="left" justify="center">{{ slide.text}}</p>
+            <div class="display-1"><h1  class="container"><u>{{ slide.h1}}</u></h1>
+              <p class="container_text" >{{ slide.text}}</p>
 
             </div>
           </v-row>
@@ -59,5 +59,20 @@ export default {
 </script>
 
 <style scoped>
-/* CSS für diese Seite hier einfügen */
+ .container{
+   margin:2.5em;
+   font-size: 4.5vw;
+   font-family: Standard-Font;
+   align:left;
+   justify:center;
+ }
+  .container_text{
+    margin:3em;
+    font-size: 3.5vw;
+    font-family: Standard-Font;
+    align:left;
+    justify:center;
+  }
+
+
 </style>
