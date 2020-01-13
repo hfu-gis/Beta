@@ -41,7 +41,7 @@ export default {
                   '\n' + 'We hope you enjoy our products as much as we enjoy offering them to you. If you have any questions or comments, please don\'t hesitate to contact us.\n' +
                   '\n' +'Sincerely, \n' + 'Team Beta'},
         {h1:'what is Bit of advice',text:'Bit of advice is home to thousands of communities, endless conversation, and authentic human connection. Whether you\'re into breaking news, sports, TV fan theories, or a never-ending stream of the internet\'s cutest animals, there\'s a community on Bit of advice for you.'},
-        {h1:'How Does Bit of advice Work?',text:'Every day, millions of people around the world post, vote, and comment in communities organized around their interests.'},
+        {h1:'How does it work?',text:'Every day, millions of people around the world post, vote, and comment in communities organized around their interests.'},
 
       ],
     }
