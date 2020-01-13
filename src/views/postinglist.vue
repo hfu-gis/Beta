@@ -373,20 +373,6 @@
     .img-circle {
         border-radius: 5%;
     }
-    @media only screen and (max-width: 600px) {
-    .Thread {
-       cols:12;
-        background-color: green;
 
-    }}
-
-    /** Größere Monitore **/
-    @media only screen and (min-width: 600px) {
-        .Thread {
-            cols: 6;
-            background-color:red;
-
-        }
-    }
 
 </style>
