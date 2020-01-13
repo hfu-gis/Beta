@@ -44,11 +44,11 @@
                         <v-row>
                             <v-col >
                             <v-text-field v-model="newHashtag"  style="padding-left: 8%"></v-text-field>
-                            </v-col><v-col>
+                            </v-col><v-colnpm >
                             <v-btn icon dark style="background: grey;" v-on:click="addHashtagToArray">
                                 <v-icon>mdi-plus</v-icon>
                             </v-btn>
-                        </v-col>
+                        </v-colnpm>
                         </v-row>
 
                             <v-chip-group
