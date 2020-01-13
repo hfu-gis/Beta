@@ -8,3 +8,5 @@ Geplant sind Kommentar-/ Votefunktionen und verschiedenste Profileigenschaften, 
 vereinfachen sollen.
 
 Stay tuned! ;-)
+
+Hier gehts zum (fast) aktuellen Stand: https://bitofadvice-ff8b5.firebaseapp.com/#/postinglist
