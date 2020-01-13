@@ -126,7 +126,7 @@
                         dark
                 >
                     <v-row cols="12">
-                        <v-col md="auto" cols="3">
+                        <v-col md="auto" >
                             <section>
                                 <v-avatar
                                         size="125"
@@ -143,7 +143,7 @@
                                 />
                             </section>
                         </v-col>
-                        <v-col cols="8" style="padding-left: 5%">
+                        <v-col md="auto" style="padding-left: 5%">
                             <!--<v-divider vertical color="#D9A566"></v-divider>-->
 
                             <v-card-title
