@@ -5,8 +5,8 @@
       <v-carousel-item v-for="(slide, i) in slides" :key="i">
         <v-sheet :color="colors[i]" height="100%">
           <v-row class="fill-height" align="center" justify="center">
-            <div class="display-1"><h1 style="margin-bottom: 1.5em; margin-left: 1em; font-size: 1em; font-family: Standard-Font">{{ slide.h1}}</h1>
-              <p style=" margin: 1.5em;font-size: 0.85em; font-family: Standard-Font" align="left" justify="center">{{ slide.text}}</p>
+            <div class="display-1"><h1 style=" margin:2.5em;font-size: 4.5vw; font-family: Standard-Font" align="left" justify="center"><u>{{ slide.h1}}</u></h1>
+              <p style=" margin:3em;font-size: 3.5vw; font-family: Standard-Font" align="left" justify="center">{{ slide.text}}</p>
 
             </div>
           </v-row>
