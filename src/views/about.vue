@@ -1,20 +1,26 @@
 <template>
-  <div class="body-1">
 
-    <v-carousel height="10%" hide-delimiter-background show-arrows-on-hover>
+  <div>
+    <v-card>
+    <v-carousel class="carousel" hide-delimiter-background show-arrows-on-hover>
       <v-carousel-item v-for="(slide, i) in slides" :key="i">
         <v-sheet :color="colors[i]" height="100%">
-          <v-row class="fill-height" align="center" justify="center">
-            <div class="display-1"><h1  class="container"><u>{{ slide.h1}}</u></h1>
+          <v-row class="fill-height" align="center" justify="center" height="100%">
+            <div class="display-1" ><h1  class="container"><u>{{ slide.h1}}</u></h1>
               <p class="container_text" >{{ slide.text}}</p>
-
             </div>
           </v-row>
         </v-sheet>
       </v-carousel-item>
     </v-carousel>
-
+  </v-card>
   </div>
+
+
+
+ <!--
+   -->
+
 </template>
 
 <script>
@@ -32,9 +38,9 @@ export default {
   data () {
     return {
       colors: [
-        '#8C3F63',
-        '#BF4974',
-        '#8C3F63',
+        'transparent',
+        'transparent',
+        'transparent',
       ],
       slides: [
         {h1:'about us',text:'Welcome to Bit of advice, your number one source for all things. We\'re dedicated to giving you the very best of advice, with a focus on accuracy, efficient,simplicity.\n' +
@@ -59,19 +65,39 @@ export default {
 </script>
 
 <style scoped>
+  template{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+  .carousel{
+    margin: 5%;
+    position:absolute;
+    justify-content: center;
+    align-content: center;
+    width: 90%;
+    height: 200%;
+  }
+
  .container{
-   margin:2.5em;
-   font-size: 4.5vw;
+   margin-left:5%;
+   margin-top: 0;
+   margin-bottom: 3%;
+   font-size: 4vw;
    font-family: Standard-Font;
    align:left;
    justify:center;
+   color:#BF4974 ;
  }
   .container_text{
-    margin:3em;
-    font-size: 3.5vw;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: 3vw;
+    line-height: 100%;
     font-family: Standard-Font;
     align:left;
     justify:center;
+    color:#BF4974 ;
   }
 
 
