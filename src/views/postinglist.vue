@@ -115,18 +115,32 @@
 
 
         <!--Threads-->
-        <div>
+
+
+            <v-row style="padding-bottom: 10%" >
+
             <v-col
+                    class="Thread"
                     v-for="(item, i) in items"
                     :key="i"
+                    cols="12"
+                    xs="12"
+                    sm="12"
+                    lg="6"
+
+
             >
 
                 <v-card
                         color="#8F94A6"
                         dark
+
+
+
+
                 >
-                    <v-row cols="12">
-                        <v-col md="auto" >
+                    <v-row >
+                        <v-col md="auto">
                             <section>
                                 <v-avatar
                                         size="125"
@@ -143,7 +157,7 @@
                                 />
                             </section>
                         </v-col>
-                        <v-col md="auto" style="padding-left: 5%">
+                        <v-col  style="padding-left: 5%">
                             <!--<v-divider vertical color="#D9A566"></v-divider>-->
 
                             <v-card-title
@@ -185,19 +199,27 @@
                         </div>
                     </v-expand-transition>
                 </v-card>
+
             </v-col>
+
             <div style="padding-bottom: 7%"></div>
+                </v-row>
         </div>
-    </div>
+
+
 
 </template>
 
 <script>
+
+
+
     import firebase from 'firebase';
     import db from "../db";
     import {mapState} from 'vuex'
 
     export default {
+
         name: 'postinglist',
 
         // benötigte Komponenten
@@ -213,6 +235,8 @@
 
         // Variablen-Speicher
         data: () => ({
+
+            a:6,
 
             thread: false,
             chip1: true,
@@ -258,6 +282,20 @@
 
         // interne Methoden
         methods: {
+            anzahl(){
+                if(window.innerWidth<=600){
+                    a=12;
+
+                }
+                else{
+                    a=6;
+                }
+
+
+            },
+
+
+
             reload() {
                 var user = firebase.auth().currentUser;
                 if (user) {
@@ -335,4 +373,6 @@
     .img-circle {
         border-radius: 5%;
     }
+
+
 </style>
