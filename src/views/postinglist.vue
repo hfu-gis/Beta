@@ -166,6 +166,10 @@
 
                             />
 
+                            <v-card-subtitle v-text="item.beitragsnummer"
+                                             style="margin-left: 3%;"
+                            />
+
                             <v-chip-group
                                     column
                                     active-class="primary--text"
@@ -358,7 +362,7 @@
                 threadsFromDB.forEach(
                     doc => {
                         this.items.push(doc.data())
-
+                        console.log("lululu: ", doc.data().beitragsnummer)
                         db.collection("Users").doc(doc.data().creatorID)
                             .get()
                             .then((function (doc1) {

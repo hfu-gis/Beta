@@ -16,7 +16,6 @@
 
         <div style="height: 100%; width: 100%;">
             <vue-word-cloud
-
                     v-if="renderComponent"
                     style="position:fixed; width: 80%; height: 70%; margin-left: 10%; margin-top: 1%; text-transform: uppercase;"
                     :words="words"
@@ -39,54 +38,55 @@
             <v-card style=" background: linear-gradient(to right, #f9f5ef, #ffdcc8);">
                 <v-card-title>Create new Thread:</v-card-title>
 
-                    <v-col  style="padding-left: 2%" md="auto">
-                        <v-subheader>from: {{myThread.username}}</v-subheader>
-                        <v-row>
-                            <v-col >
-                            <v-text-field v-model="newHashtag"  style="padding-left: 8%"></v-text-field>
-                            </v-col><v-colnpm >
+                <v-col style="padding-left: 2%" md="auto">
+                    <v-subheader>from: {{myThread.username}}</v-subheader>
+                    <v-row>
+                        <v-col>
+                            <v-text-field v-model="newHashtag" style="padding-left: 8%"></v-text-field>
+                        </v-col>
+                        <v-colnpm>
                             <v-btn icon dark style="background: grey;" v-on:click="addHashtagToArray">
                                 <v-icon>mdi-plus</v-icon>
                             </v-btn>
                         </v-colnpm>
-                        </v-row>
+                    </v-row>
 
-                            <v-chip-group
-                                    column
-                                    active-class="primary--text"
-                                    v-if="this.myThread.hashtag !== ''"
-                            >
-                                <!--<v-chip v-for="tag in myThread.hashtags" :key="tag">
-                                    {{ tag }}
-                                </v-chip>-->
-                                <v-chip>
-                                    {{ this.myThread.hashtag }}
-                                </v-chip>
-                            </v-chip-group>
+                    <v-chip-group
+                            column
+                            active-class="primary--text"
+                            v-if="this.myThread.hashtag !== ''"
+                    >
+                        <!--<v-chip v-for="tag in myThread.hashtags" :key="tag">
+                            {{ tag }}
+                        </v-chip>-->
+                        <v-chip>
+                            {{ this.myThread.hashtag }}
+                        </v-chip>
+                    </v-chip-group>
 
 
-                    </v-col>
-                    <v-divider vertical color="#D9A566" style="margin-left: 30px; margin-right: 30px"></v-divider>
-                    <v-col >
-                        <section>
-                            <v-text-field
-                                    v-model="myThread.title"
-                                    label="Title"
-                                    outlined
-                                    required
-                            >{{myThread.title}}
-                            </v-text-field>
+                </v-col>
+                <v-divider vertical color="#D9A566" style="margin-left: 30px; margin-right: 30px"></v-divider>
+                <v-col>
+                    <section>
+                        <v-text-field
+                                v-model="myThread.title"
+                                label="Title"
+                                outlined
+                                required
+                        >{{myThread.title}}
+                        </v-text-field>
 
-                            <v-textarea
-                                    v-model="myThread.text"
-                                    label="Thread-Text"
-                                    outlined
-                                    required
-                            >{{myThread.text}}
-                            </v-textarea>
-                        </section>
-                        <v-btn outlined v-on:click="saveNewThread">Publish</v-btn>
-                    </v-col>
+                        <v-textarea
+                                v-model="myThread.text"
+                                label="Thread-Text"
+                                outlined
+                                required
+                        >{{myThread.text}}
+                        </v-textarea>
+                    </section>
+                    <v-btn outlined v-on:click="saveNewThread">Publish</v-btn>
+                </v-col>
 
                 <br>
             </v-card>
@@ -210,20 +210,27 @@
 
             saveNewThread() {
                 var user = firebase.auth().currentUser;
+
+                var BeitrNr = 1;
+
                 if (user && this.myThread.hashtag !== '' && this.myThread.text !== '' && this.myThread.title !== '') {
 
                     //-------------Beitragsnummer hinzufügen---------------//
 
                     //aktuelle Nummer abfragen
                     db.collection("beitragsnummer").doc('fHvJoKSXNA42YVwindRE').get().then(doc => {
-                        this.tempBeitragsnummer = doc.data()
-                        var b = this.tempBeitragsnummer.beitragsnummer;
-                        var c = ++b;
-                        this.tempBeitragsnummer.beitragsnummer = c;
+                        this.tempBeitragsnummer.beitragsnummer = doc.data().beitragsnummer
+                        var BeitrIncreast = this.tempBeitragsnummer.beitragsnummer + 1;
+
 
                         //Speichern
+                        this.tempBeitragsnummer.beitragsnummer = BeitrIncreast;
+                        BeitrNr = this.tempBeitragsnummer.beitragsnummer;
+                        console.log("Beitr1: ", BeitrNr);
+
                         let docRef = db.collection("beitragsnummer").doc('fHvJoKSXNA42YVwindRE')
                         docRef.update(this.tempBeitragsnummer);
+
                     }).catch(err => {
                         console.log('Error getting documents', err)
                     })
@@ -250,36 +257,40 @@
                         }
                     }).catch(function (error) {
                         console.log("Error getting document:", error);
-                    });
+                    }).then()
+                    {
 
 
-                    //-------------Neuen Thread speichern---------------//
+                        //-------------Neuen Thread speichern---------------//
 
 
-                    let docRef = db.collection("Threads").doc(this.myThread.title)
-                    //Werte zuweisen
-                    this.myThread.creatorID = user.uid;
-                    this.myThread.datetime = new Date().toDateString();
-                    this.myThread.beitragsnummer = this.tempBeitragsnummer.beitragsnummer;
-                    docRef.set(this.myThread)
+                        let docRef = db.collection("Threads").doc(this.myThread.title)
+                        //Werte zuweisen
+                        this.myThread.creatorID = user.uid;
+                        this.myThread.datetime = new Date().toDateString();
+                        this.myThread.beitragsnummer = BeitrNr;
+                        console.log("Beitr2: ", BeitrNr);
+                        docRef.set(this.myThread)
 
-                    //Felder clearen
-                    //this.myThread.hashtag = [];
-                    this.myThread.hashtag = '';
-                    this.myThread.title = '';
-                    this.myThread.datetime = '';
-                    this.myThread.text = '';
-                    this.myThread.likes = '';
-                    this.myThread.beitragsnummer = 1;
+                        //Felder clearen
+                        //this.myThread.hashtag = [];
+                        this.myThread.hashtag = '';
+                        this.myThread.title = '';
+                        this.myThread.datetime = '';
+                        this.myThread.text = '';
+                        this.myThread.likes = '';
+                        this.myThread.beitragsnummer = 1;
+                        /*
+                                        this.forceRerender();
 
-                    this.forceRerender();
+                                        this.$nextTick(() => {
+                                            this.$nextTick(() => {
+                                                location.reload();
+                                            });
 
-                    this.$nextTick(() => {
-                        this.$nextTick(() => {
-                            location.reload();
-                        });
+                                        });*/
 
-                    });
+                    }
                 } else {
                     this.fehler = true;
                 }
@@ -345,4 +356,19 @@
 
 
 <style scoped>
+
+
+    @media only screen and (max-width: 599px) {
+        body {
+            background: red;
+        }
+    }
+
+    @media only screen and (min-width: 600px) {
+        .Thread {
+            background: green;
+        }
+    }
+
+
 </style>

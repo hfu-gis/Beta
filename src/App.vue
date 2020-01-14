@@ -16,7 +16,8 @@
 
             <div id="searchbox" @keydown.enter="search">
                 <v-text-field v-model="searchText" outlined rounded dense color="#D9A566" label="search"
-                              id="txtsearch"/>
+                              id="txtsearch">
+                </v-text-field>
             </div>
             <!--<v-btn icon class="mx-12" color="#D9A566" v-on:click="search" style="margin-top: 0.6%;" width="40px" height="40px">
                 <v-icon>mdi-magnify</v-icon>
