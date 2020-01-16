@@ -280,15 +280,15 @@
                         this.myThread.text = '';
                         this.myThread.likes = '';
                         this.myThread.beitragsnummer = 1;
-                        /*
-                                        this.forceRerender();
 
-                                        this.$nextTick(() => {
-                                            this.$nextTick(() => {
-                                                location.reload();
-                                            });
+                        this.forceRerender();
 
-                                        });*/
+                        this.$nextTick(() => {
+                            this.$nextTick(() => {
+                                location.reload();
+                            });
+
+                        });
 
                     }
                 } else {
