@@ -235,14 +235,14 @@
                                             dark
                                     >
                                         <v-row >
-                                            <v-col md="auto">
+                                            <!--<v-col md="auto">
 
 
                                                     <v-card-subtitle v-text="item.username"
 
                                                     />
 
-                                            </v-col>
+                                            </v-col>-->
                                             <v-col>
                                                 <!--<v-divider vertical color="#D9A566"></v-divider>-->
 
@@ -256,6 +256,7 @@
                                                         column
                                                         active-class="primary--text"
                                                         dark
+                                                        style="padding-left: 1.5%"
                                                 >
                                                     <!--<v-chip disabled v-for="tag in item.hashtags" :key="tag">-->
                                                     <v-chip disabled>

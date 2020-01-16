@@ -211,7 +211,7 @@
             saveNewThread() {
                 var user = firebase.auth().currentUser;
 
-                var BeitrNr = 1;
+                var BeitrNr = 0;
 
                 if (user && this.myThread.hashtag !== '' && this.myThread.text !== '' && this.myThread.title !== '') {
 
