@@ -271,18 +271,21 @@
 
                                         </v-row>
                                         <v-row>
+                                            <v-card-text v-text="item.text"/>
+                                        </v-row>
+                                        <v-row>
                                             <v-col  style="padding-top: 2%;" >
                                                 <v-btn @click="item.beitragsnummer = !item.beitragsnummer"
                                                        style=" background: #3d4f68; " block>
-                                                    weiterlesen
+                                                    Comment
                                                 </v-btn>
                                             </v-col>
                                         </v-row>
                                         <v-expand-transition>
                                             <div v-show="item.beitragsnummer">
                                                 <v-divider></v-divider>
+    <v-card-text>Comments?</v-card-text>
 
-                                                <v-card-text v-text="item.text"/>
                                             </div>
                                         </v-expand-transition>
                                     </v-card>
