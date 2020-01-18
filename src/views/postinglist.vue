@@ -166,9 +166,9 @@
 
                             />
 
-                            <v-card-subtitle v-text="item.beitragsnummer"
+                            <!--<v-card-subtitle v-text="item.beitragsnummer"
                                              style="margin-left: 3%;"
-                            />
+                            />-->
 
                             <v-chip-group
                                     column
