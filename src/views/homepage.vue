@@ -4,7 +4,7 @@
         <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Teko&display=swap" rel="stylesheet">
 
-        <!--<v-toolbar v-if="this.authenticated" light flat color="rgba(121, 120, 124, 0)" style="justify-content: center;">-->
+        <!--Neuen Beitrag hinzufügen-->
         <v-toolbar light flat color="rgba(121, 120, 124, 0)" style="justify-content: center;">
             <v-spacer/>
             <v-btn text color="grey" v-on:click="openAddThread">
@@ -14,6 +14,7 @@
             <v-spacer/>
         </v-toolbar>
 
+        <!--Anzeige der Wörteransammlung (WordCloud)-->
         <div style="height: 100%; width: 100%;">
             <vue-word-cloud
                     v-if="renderComponent"
@@ -26,6 +27,7 @@
                     :spacing="0.7"
             >
                 <template slot-scope="{text, weight, word}">
+                    <!--Weiterleitung beim Anklicken eines Wortes-->
                     <div :title="weight" style="cursor: pointer;" @click="onWordClick(word)">
                         {{ text }}
                     </div>
@@ -33,7 +35,7 @@
             </vue-word-cloud>
         </div>
 
-        <!---------------------------------- NEUEN THREAD ERSTELLEN ---------------------------------->
+        <!---------------------------------- DIALOG - NEUEN THREAD ERSTELLEN ---------------------------------->
         <v-dialog v-model="addThread" v-on:click="openAddThread" width="600">
             <v-card style=" background: linear-gradient(to right, #f9f5ef, #ffdcc8);">
                 <v-card-title>Create new Thread:</v-card-title>
@@ -51,6 +53,7 @@
                         </v-colnpm>
                     </v-row>
 
+                    <!-- Hashtag(s) werden hier angezeigt-->
                     <v-chip-group
                             column
                             active-class="primary--text"
@@ -63,8 +66,6 @@
                             {{ this.myThread.hashtag }}
                         </v-chip>
                     </v-chip-group>
-
-
                 </v-col>
                 <v-divider vertical color="#D9A566" style="margin-left: 30px; margin-right: 30px"></v-divider>
                 <v-col>
@@ -76,7 +77,6 @@
                                 required
                         >{{myThread.title}}
                         </v-text-field>
-
                         <v-textarea
                                 v-model="myThread.text"
                                 label="Thread-Text"
@@ -87,37 +87,29 @@
                     </section>
                     <v-btn outlined v-on:click="saveNewThread">Publish</v-btn>
                 </v-col>
-
                 <br>
             </v-card>
         </v-dialog>
+
+        <!--Fehleranzeige beim Erstellen eines neuen Beitrags-->
         <v-dialog v-model="fehler" max-width="600">
             <v-card>
                 <v-card
-
                         class="mx-auto"
                         max-width="600"
                         color="#8F94A6"
                         style="background: linear-gradient(to right, #f9f5ef, #ffd8b8);"
                 >
-
-
                     <v-card-title style="padding: 10%">
                         You need to add Hashtags and fill in a Titel and Threadtext. You have to be signed in!
                     </v-card-title>
-
-
                 </v-card>
             </v-card>
         </v-dialog>
     </div>
-
 </template>
 
 <script>
-
-
-    //import wordcloud from 'vue-wordcloud'
     import Registration from "./registration";
     import VueWordCloud from 'vuewordcloud';
     import firebase from 'firebase';
@@ -126,23 +118,29 @@
 
     export default {
 
+        //Seitenname
         name: "homepage",
 
+        //Benötigte Komponenten
         components: {
             Registration,
-            //wordcloud,
             [VueWordCloud.name]: VueWordCloud,
         },
+
+        //bei Initialisierung
         created() {
             this.updateUser();
             this.fillWordCloud();
         },
 
+        //Vorbereitung für die Such-Query
         firestore() {
             mostUsedHashtags: db.collection('Hashtags').orderBy('count');
         },
 
         methods: {
+            //Wie der Name schon sagt: Befüllt die WordCloud mit den aktuellen Hashtags
+            //In Zukunft soll hier eine Query die relevantesten Hashtags filtern
             fillWordCloud() {
                 var tempArray = [];
                 var that = this;
@@ -163,6 +161,8 @@
                     })
             },
 
+            //Beim Erstellen eines Beitrags wird der Hashtag/ werden die Hashtags zum aktuellen Array hinzugefügt
+            //...dieses wird dann später mit "saveNewThread" in der Datenbank abgespeichert
             addHashtagToArray() {
                 if (this.newHashtag != '' && this.newHashtag != ' ') {
                     //this.myThread.hashtags.push(this.newHashtag)
@@ -172,6 +172,7 @@
                 }
             },
 
+            //Aktualisiert die anzuzeigenden Hashtags
             updateTags() {
                 this.$nextTick(() => {
                     this.select.push(...this.search.split(","));
@@ -181,6 +182,7 @@
                 });
             },
 
+            //"Ist ein User angemeldet oder nur als Gast auf der Seite?"
             updateUser() {
                 var user = firebase.auth().currentUser;
                 if (user) {
@@ -190,6 +192,9 @@
                 }
             },
 
+            //Speichern des angekickten Wortes im Vuex-Store
+            //Weiterleitung bei Klick auf ein Wort in der Wordcloud (zur Postinglist)
+            //Format: "word = ["Beispiel", 11]"
             onWordClick: function (word) {
                 this.tempWord = word[0];
                 //console.log(this.searchHashtag)
@@ -197,6 +202,7 @@
                 this.$router.push('/postinglist');
             },
 
+            //Öffnet Dialog zum Erstellen eines neuen Beitrags
             openAddThread() {
                 this.addThread = true;
                 var user = firebase.auth().currentUser;
@@ -207,7 +213,8 @@
                 }
             },
 
-
+            //Gleicht aktuelle Beitragsnummer ab und erhöht sie um eins
+            //Speicher Thread mit aktuellen Eingaben in der Datenbank ab
             saveNewThread() {
                 var user = firebase.auth().currentUser;
 
@@ -235,7 +242,7 @@
                         console.log('Error getting documents', err)
                     })
 
-                    //--------------Hashtag Sppeichern/ Anzahl erhöhen--------------//
+                    //--------------Hashtag Speichern/ Anzahl erhöhen--------------//
 
                     var aktuellerHashtag = this.myThread.hashtag;
                     //Hashtags abspeichern und/ oder Anzahl derer erhöhen:
@@ -263,7 +270,6 @@
 
                         //-------------Neuen Thread speichern---------------//
 
-
                         let docRef = db.collection("Threads").doc(this.myThread.title)
                         //Werte zuweisen
                         this.myThread.creatorID = user.uid;
@@ -273,7 +279,6 @@
                         docRef.set(this.myThread)
 
                         //Felder clearen
-                        //this.myThread.hashtag = [];
                         this.myThread.hashtag = '';
                         this.myThread.title = '';
                         this.myThread.datetime = '';
@@ -281,22 +286,23 @@
                         this.myThread.likes = '';
                         this.myThread.beitragsnummer = 1;
 
+                        //Seite neu rendern/ laden
+                        //Zweck: WordCloud aktualisiert sich und zeigt bestenfalls auch neu hinzugefügten Hashtag an
+                        //(Abhängig von der Schnelligkeit der Anbindung an die Datenbank)
                         this.forceRerender();
-
                         this.$nextTick(() => {
                             this.$nextTick(() => {
                                 location.reload();
                             });
-
                         });
-
                     }
                 } else {
+                    //Anzeigen des Fehlerdialogs
                     this.fehler = true;
                 }
             },
 
-
+            //Reload einer Komponente auf der Seite
             forceRerender() {
                 // Remove my-component from the DOM
                 this.renderComponent = false;
@@ -308,28 +314,32 @@
             },
         },
 
+        //Benötigt für Vuex-Store
         computed: {
-            ...
-                mapState(['searchHashtag', 'doubleLoaded']),
-        }
-        ,
-
-        watch: {}
-        ,
+            ...mapState(['searchHashtag', 'doubleLoaded']),
+        },
 
         data() {
             return {
+                //Vorbereitung für Anzeige der relevantesten Hashtags
                 mostUsedHashtags: [],
+                words: [],
 
+                //reload etc.
                 renderComponent: true,
 
+                //Anzeige des Fehlerdialogs
                 fehler: false,
-                tempWord: '',
 
+                //Temp-Variablen
+                tempWord: '',
                 tempBeitragsnummer: {
                     beitragsnummer: 0,
                 },
+                temp: '',
 
+                //Anzeige des AddThread-Dialogs
+                //Daten des aktuellen Threads
                 myThread: {
                     creatorID: '',
                     datetime: '',
@@ -340,15 +350,11 @@
                     username: '',
                     beitragsnummer: 1,
                 },
-
                 addThread: false,
                 newHashtag: '',
 
+                //angemeldet oder nicht?
                 authenticated: false,
-
-                temp: '',
-
-                words: [],
             }
         }
     }
@@ -356,19 +362,4 @@
 
 
 <style scoped>
-
-
-    @media only screen and (max-width: 599px) {
-        body {
-            background: red;
-        }
-    }
-
-    @media only screen and (min-width: 600px) {
-        .Thread {
-            background: green;
-        }
-    }
-
-
 </style>
