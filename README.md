@@ -1,7 +1,5 @@
 # Beta
 
------------------------------------------------------------------------------------------------
-
 "You need a bit of advice? Just ask!"
 
 BitOfAdvice wird eine Forenseite für technische Fragen.
