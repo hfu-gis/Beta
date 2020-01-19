@@ -12,4 +12,4 @@ Stay tuned! ;-)
 
 -----------------------------------------------------------------------------------------------
 
-Hier gehts zum aktuellen Stand: https://bitofadvice-ff8b5.firebaseapp.com/#/postinglist
+Hier gehts zum aktuellen Stand: https://bitofadvice-ff8b5.firebaseapp.com/#/
