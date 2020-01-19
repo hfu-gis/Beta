@@ -1,4 +1,7 @@
 # Beta
+
+-----------------------------------------------------------------------------------------------
+
 "You need a bit of advice? Just ask!"
 
 BitOfAdvice wird eine Forenseite für technische Fragen.
@@ -9,4 +12,6 @@ vereinfachen sollen.
 
 Stay tuned! ;-)
 
-Hier gehts zum (fast) aktuellen Stand: https://bitofadvice-ff8b5.firebaseapp.com/#/postinglist
+-----------------------------------------------------------------------------------------------
+
+Hier gehts zum aktuellen Stand: https://bitofadvice-ff8b5.firebaseapp.com/#/postinglist
