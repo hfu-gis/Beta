@@ -346,6 +346,13 @@
             this.$router.push({path: '/homepage'})
         }
     }
+
+
+    //-----------------------------------------------//
+    //  Viele Grüße an jeden, der das hier liest :)  //
+    //-----------------------------------------------//
+
+
 </script>
 
 <style>
