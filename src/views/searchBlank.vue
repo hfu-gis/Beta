@@ -1,38 +1,20 @@
 <template>
   <div class="body-1">
-    <!-- HTML-Code aus dem Body-Tag hier einfügen -->
   </div>
 </template>
 
 <script>
 export default {
-  // gebt jeder Page einen eigenen Namen
+  //Seitenname
   name: 'searchBlank',
-
-  // benötigte Komponenten
-  components: {},
-
-  // entspricht den HTML-Attributen
-  props: {},
-
-  // Variablen-Speicher
-  data() {
-    return {}
-  },
-
-  // reagieren auf prop-Veränderung
-  watch: {},
-
-  // interne Methoden
-  methods: [],
 
   // Initialisierung
   created() {
+    //Main-Part dieser Seite: Sonst würde die Änderung der Sucheingabe nicht übernommen/ aktualisiert werden
     this.$router.replace('/postinglist')
   }
 }
 </script>
 
 <style scoped>
-/* CSS für diese Seite hier einfügen */
 </style>

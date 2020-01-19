@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
+//Vuex-Store zum Abspeichern und Übergeben der aktuellen Sucheingabe etc.
 export const store = new Vuex.Store({
     state: {
         searchHashtag: '',
@@ -10,8 +11,6 @@ export const store = new Vuex.Store({
     },
     mutations: {
         changeSearchHashtag: function (state, data) {
-            //Vue.set(state, 'people', data);
-            //state.searchHashtag = { ...state.searchHashtag, newProp: ''}
             state.searchHashtag = data
         },
         setLoadedTrue: function (state) {

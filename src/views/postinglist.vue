@@ -1,6 +1,7 @@
 <template>
     <div class="body-1">
         <v-toolbar dense color="#8C3F63">
+            <!--Anzeige mehrerer Hashtags-->
             <!--<v-container fluid>
                 <v-row>
                         <v-chip
@@ -23,7 +24,6 @@
 
                 </v-row>
             </v-container>-->
-
             <!--
             <v-container fluid style="margin-top: 30px; height: 100px;">
                 <v-layout wrap>
@@ -42,7 +42,7 @@
                 </v-layout>
             </v-container>-->
 
-            <!--<v-chip color="#D9A566" v-if="chip1" close @click:close="chip1 = false">{{this.searchHashtag}}</v-chip>-->
+            <!--Aktuelle Anzeige des gesuchten Hashtags-->
             <v-chip color="#D9A566" v-if="chip1" @click:close="chip1 = false">{{this.searchHashtag}}</v-chip>
 
             <v-spacer></v-spacer>
@@ -63,12 +63,11 @@
                     <v-list-item><a style="color: white">Relevanz</a></v-list-item>
                 </v-list>
             </v-menu>
-
         </v-toolbar>
 
 
-        <!--Post-->
-        <!--TODO brauchen wir das noch?-->
+        <!--DIALOG - Post-->
+        <!--Derzeit nicht benutzt-->
         <!--<v-dialog v-model="thread" width="70%">
 
             <v-card
@@ -114,11 +113,10 @@
         </v-dialog>-->
 
 
-        <!--Threads-->
+        <!--Thread-Anzeige-->
+        <v-row style="padding-bottom: 10%">
 
-
-            <v-row style="padding-bottom: 10%" >
-
+            <!--Durchgehen und Anzeigen aller Beiträge mit dem gesuchten Hashtag-->
             <v-col
                     class="Thread"
                     v-for="(item, i) in items"
@@ -127,19 +125,12 @@
                     xs="12"
                     sm="12"
                     lg="6"
-
-
             >
-
                 <v-card
                         color="#8F94A6"
                         dark
-
-
-
-
                 >
-                    <v-row >
+                    <v-row>
                         <v-col md="auto">
                             <section>
                                 <v-avatar
@@ -147,9 +138,8 @@
                                         tile
                                         style="margin-left: 10%;"
                                 >
+                                    <!--Anzeigen des zum Threadersteller passenden Profilbild-->
                                     <v-img class="img-circle" :src="itemLinks[i]"/>
-
-                                    <!--<v-img class="img-circle" v-on:load="getProfileURL(item.creatorID)" :src="profileURL"/>-->
                                 </v-avatar>
 
                                 <v-card-subtitle v-text="item.username"
@@ -157,19 +147,16 @@
                                 />
                             </section>
                         </v-col>
-                        <v-col  style="padding-left: 5%">
-                            <!--<v-divider vertical color="#D9A566"></v-divider>-->
-
+                        <v-col style="padding-left: 5%">
                             <v-card-title
                                     class="headline"
                                     v-text="item.title"
 
                             />
-
                             <!--<v-card-subtitle v-text="item.beitragsnummer"
                                              style="margin-left: 3%;"
                             />-->
-
+                            <!-- Anzeige aller angehängten Hashtags-->
                             <v-chip-group
                                     column
                                     active-class="primary--text"
@@ -181,19 +168,17 @@
                                 </v-chip>
                             </v-chip-group>
 
+                            <!--geplant: Breadcrums-->
                             <!--<v-breadcrumbs :items="bread_items" divider=">"></v-breadcrumbs>-->
-
-
                         </v-col>
 
                     </v-row>
                     <v-divider color="#D9A566"/>
                     <v-row>
                         <v-card-text v-text="item.text"/>
-
                     </v-row>
                     <v-row>
-                        <v-col  style="padding-top: 2%;">
+                        <v-col style="padding-top: 2%;">
                             <v-btn @click="item.beitragsnummer = !item.beitragsnummer"
                                    style=" background: #3d4f68; " block>
                                 Comment?
@@ -203,24 +188,17 @@
                     <v-expand-transition>
                         <div v-show="item.beitragsnummer">
                             <v-divider></v-divider>
-                        <v-card-text>hier die kommentare</v-card-text>
-
+                            <v-card-text>-- Noch kein Kommentar zu diesem Beitrag --</v-card-text>
                         </div>
                     </v-expand-transition>
                 </v-card>
-
             </v-col>
-
             <div style="padding-bottom: 7%"></div>
-                </v-row>
-        </div>
-
-
-
+        </v-row>
+    </div>
 </template>
 
 <script>
-
 
 
     import firebase from 'firebase';
@@ -228,33 +206,22 @@
     import {mapState} from 'vuex'
 
     export default {
-
+        //Seitenname
         name: 'postinglist',
 
-        // benötigte Komponenten
-        components: {
-        },
-
-        // entspricht den HTML-Attributen
-        props: {},
-
+        //Empfängt aktuell gesuchten Hastag (im Vuex-Store gespeichert)
         computed: {
             ...mapState(['searchHashtag']),
         },
 
         // Variablen-Speicher
         data: () => ({
-
-            a:6,
-
+            //Temp
+            a: 6,
             thread: false,
             chip1: true,
 
-            tempProfileURL: '',
-            profileURL: null,
-
-            items: [],
-
+            //benötigt für kommende Breadcrumbs
             bread_items: [
                 {
                     text: 'Dashboard',
@@ -272,6 +239,8 @@
                     href: 'breadcrumbs_link_2',
                 },
             ],
+
+            //nur zT benötigt
             active_items: {
                 color: '#8F94A6',
                 src: 'https://randomuser.me/api/portraits/men/39.jpg',
@@ -280,8 +249,11 @@
                 text: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
             },
 
-            itemLinks: []
-
+            //Abspeichern der benötigten Threads und Bilder dazu
+            itemLinks: [],
+            tempProfileURL: '',
+            profileURL: null,
+            items: []
         }),
 
         // reagieren auf prop-Veränderung
@@ -291,20 +263,16 @@
 
         // interne Methoden
         methods: {
-            anzahl(){
-                if(window.innerWidth<=600){
-                    a=12;
-
+            //Responsive-Design
+            anzahl() {
+                if (window.innerWidth <= 600) {
+                    a = 12;
+                } else {
+                    a = 6;
                 }
-                else{
-                    a=6;
-                }
-
-
             },
 
-
-
+            //aktualisieren des Benutzers und der passenden Threads zum gesuchten Hashtag
             reload() {
                 var user = firebase.auth().currentUser;
                 if (user) {
@@ -322,6 +290,7 @@
                     })
             },
 
+            //benötigt bei der Anzeige/ Eingabe mehrerer Hashtags in der Toolbar
             updateTags() {
                 this.$nextTick(() => {
                     this.select.push(...this.search.split(","));
@@ -331,38 +300,33 @@
                 });
             },
 
+            //wie der Name schon sagt: aktuelle URL zum Profilbild wird ausgelesen
             getProfileURL(profile_url) {
-
                 console.log('old', profile_url);
-
-
                 db.collection("Users").doc(profile_url)
                     .get()
                     .then((function (doc) {
-
-                            console.log('url: ', doc.data().photoURL)
-                            this.profileURL = doc.data().photoURL;
-
-                            console.log('newUrl', this.profileURL)
-
+                        console.log('url: ', doc.data().photoURL)
+                        this.profileURL = doc.data().photoURL;
+                        console.log('newUrl', this.profileURL)
                     }).bind(this));
 
             }
         },
 
-        //Initialisierung
+        //bei Initialisierung
         created() {
             var user = firebase.auth().currentUser;
             if (user) {
                 this.profileURL = user.photoURL;
             }
 
+            //Query: Nur Threads zum gesuchten Hashtags werden geladen und abgezeigt
             //db.collection("Threads").where("hashtag", "array-contains", this.searchHashtag).get().then(threadsFromDB => {
             db.collection("Threads").where("hashtag", "==", this.searchHashtag).get().then(threadsFromDB => {
                 threadsFromDB.forEach(
                     doc => {
                         this.items.push(doc.data())
-                        console.log("lululu: ", doc.data().beitragsnummer)
                         db.collection("Users").doc(doc.data().creatorID)
                             .get()
                             .then((function (doc1) {
@@ -378,10 +342,8 @@
 </script>
 
 <style scoped>
-    /* CSS für diese Seite hier einfügen */
+    /* Anzeige des Profilbilds */
     .img-circle {
         border-radius: 5%;
     }
-
-
 </style>
