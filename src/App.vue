@@ -5,39 +5,30 @@
         <v-app-bar app color="#132B40" right dark>
 
             <v-row>
-
-            <a>
-                <v-btn :to="{ path: '/'}" text height="60" width="150" color="#132B40">
-                    <img contain src="../img/Logos/BitOfAdvice_logo_2.png" height="50"/>
-                </v-btn>
-            </a>
-
-            <v-spacer/>
-
-            <div id="searchbox" @keydown.enter="search">
-                <v-text-field v-model="searchText" outlined rounded dense color="#D9A566" label="search"
-                              id="txtsearch">
-                </v-text-field>
-            </div>
-            <!--<v-btn icon class="mx-12" color="#D9A566" v-on:click="search" style="margin-top: 0.6%;" width="40px" height="40px">
-                <v-icon>mdi-magnify</v-icon>
-            </v-btn>-->
+                <!--Logo mit Verlinkung auf die Startseite-->
+                <a>
+                    <v-btn :to="{ path: '/'}" text height="60" width="150" color="#132B40">
+                        <img contain src="../img/Logos/BitOfAdvice_logo_2.png" height="50"/>
+                    </v-btn>
+                </a>
+                <v-spacer/>
+                <!--Suchleiste-->
+                <div id="searchbox" @keydown.enter="search">
+                    <v-text-field v-model="searchText" outlined rounded dense color="#D9A566" label="search"
+                                  id="txtsearch">
+                    </v-text-field>
+                </div>
             </v-row>
-
-
             <v-app-bar-nav-icon color="#D9A566" @click.stop="drawer = !drawer" v-on:click="updateUser"/>
         </v-app-bar>
-<xx></xx>
+
         <!-------------------------Navigation-Drawer-------------------------------------------------->
         <v-navigation-drawer v-model="drawer" right temporary fixed color="#162a3b">
-            <!-- Farbe grey: rgb(55, 57, 59)-->
-            <!--<v-navigation-drawer v-model="drawer" right temporary fixed src="../img/Background/ocean.jpg">-->
 
-
-            <!--wenn angemeldet -->
             <v-list-item style="background: #D9A566; height: 64px; width: 100%;">
-                <!--<v-btn text v-if="this.authenticated" @click.stop="dialog = true" style="height: 80%; width: 100%;">-->
-                <v-btn text v-if="this.authenticated" link :to="{ path: '/profile.json'}" style="height: 80%; width: 100%;">
+                <!--wenn angemeldet -->
+                <v-btn text v-if="this.authenticated" link :to="{ path: '/profile.json'}"
+                       style="height: 80%; width: 100%;">
                     <v-list-item-avatar>
                         <v-img :src="photoURL" height="40" width="50"/>
                     </v-list-item-avatar>
@@ -46,17 +37,24 @@
                     </v-list-item-content>
                 </v-btn>
 
-                <v-list-item-title style="text-align: center" v-if="!this.authenticated">Get your Advice!</v-list-item-title>
+                <!--wenn nicht angemeldet -->
+                <v-list-item-title style="text-align: center" v-if="!this.authenticated">Get your Advice!
+                </v-list-item-title>
             </v-list-item>
+
             <v-divider/>
             <br>
+
             <v-row no-gutters style="padding-left: 10%; padding-right: 5%;">
+                <!--ANMELDUNG (wenn nicht angemeldet) -->
                 <v-col v-if="!this.authenticated">
-                    <registration  style="width: 100%" />
+                    <registration style="width: 100%"/>
                 </v-col>
                 <v-col v-if="!this.authenticated">
                     <v-btn depressed color="#D9A566" link :to="{ path: '/login'}" style="width: 100%">Sign In</v-btn>
                 </v-col>
+
+                <!--ABMELDUNG (wenn angemeldet) -->
                 <v-col v-if="this.authenticated">
                     <v-btn depressed color="#D9A566" v-on:click="signOut" style="width: 100%">Sign Out</v-btn>
                 </v-col>
@@ -64,8 +62,8 @@
             <br>
             <v-divider/>
 
+            <!--MENÜPUNKTE-->
             <v-list dense>
-
                 <v-list-item link :to="{ path: '/homepage'}">
                     <v-list-item-action>
                         <v-icon color="#D9A566">mdi-home</v-icon>
@@ -110,15 +108,13 @@
                         <v-list-item-title class="accent--text">about us</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
-
             </v-list>
         </v-navigation-drawer>
 
         <!-------------------------Content------------------------------------------------------------>
         <v-content style="background: linear-gradient(to right, #fffbf4, #ffe6c6);">
             <div id="app">
-                <!--PROFILE-->
-                <!--//TODO Dialog derzeit noch nicht eingebunden-->
+                <!--DIALOG - PROFILE (derzeit nicht eingebunden)-->
                 <v-dialog v-model="dialog" max-width="400">
                     <v-card>
                         <v-card
@@ -142,15 +138,14 @@
                         </v-card>
                     </v-card>
                 </v-dialog>
-                <!--PRIVACY POLICY-->
+
+                <!--DIALOG - PRIVACY POLICY-->
                 <div class="text-center">
                     <v-dialog
                             v-model="dialogprivacy"
                             width="500"
                             persistent
                     >
-
-
                         <v-card>
                             <v-card-title
                                     class="headline grey lighten-2"
@@ -214,7 +209,6 @@
                                         color="primary"
                                         text
                                         @click="dialogprivacy = false"
-
                                 >
                                     I accept
                                 </v-btn>
@@ -223,10 +217,13 @@
                     </v-dialog>
                 </div>
 
+                <!--ROUTER-VIEW (weiterer individueller Content)-->
                 <router-view/>
+
             </div>
         </v-content>
 
+        <!--FOOTER (mit sich aktualisierender Jahresanzeige)-->
         <v-footer
                 fixed
                 class="font-weight-medium"
@@ -244,22 +241,16 @@
 </template>
 
 <script>
-
-
     import db from './db'
     import firebase from 'firebase';
-    import Template from "./views/Template";
     import registration from "./views/registration";
 
-
     export default {
-
-
-        // gebt jeder Page einen eigenen Namen
+        // Pagename
         name: 'LayoutsDemosBaselineFlipped',
-        components: {registration},
-        // benötigte Komponenten
 
+        //benötigte Komponenten
+        components: {registration},
 
         // entspricht den HTML-Attributen
         props: {
@@ -268,10 +259,13 @@
 
         // Variablen-Speicher
         data: () => ({
+            //für Anzeige des aktuellen Profilbilds
             photoURL: '',
 
+            //für Sucheingabe
             searchText: '',
 
+            //für verschiedene Dialogfelder
             valid: true,
             drawer: null,
             dialog: false,
@@ -279,6 +273,7 @@
             dialog3: false,
             dialogprivacy: false,
 
+            //Für Nutzererfassung, -anzeige
             userData: {
                 userName: '',
                 first: '',
@@ -286,22 +281,20 @@
                 mail: '',
                 //password: '',
             },
-
             authenticated: false
         }),
 
-        // reagieren auf prop-Veränderung
-        watch: {},
-
         // interne Methoden
         methods: {
-            search(){
+            //Nach Sucheingabe im Suchfeld
+            search() {
                 this.$store.commit('changeSearchHashtag', this.searchText.toUpperCase())
                 this.updateUser()
                 this.searchText = '';
                 this.$router.push('/searchBlank');
             },
 
+            //nur zT gebraucht
             validate: () => {
                 if (this.$refs.form.validate()) {
                     this.register()
@@ -311,15 +304,13 @@
 
                 }
             },
-
             register: () => {
-
                 let docRef = db.collection('Users').doc(this.userData.firstname)
                 docRef.set(this.userData)
                     .catch(error => console.debug('Error', error))
-
             },
 
+            //Bei Start der Seite und nach Registration/Login
             updateUser() {
                 var user = firebase.auth().currentUser;
                 if (user) {
@@ -331,12 +322,12 @@
                     }).catch(err => {
                         console.log('Error getting documents', err)
                     })
-                }
-                else{
+                } else {
                     this.authenticated = false;
                 }
             },
 
+            //Ausloggen
             signOut() {
                 firebase
                     .auth()
@@ -349,7 +340,6 @@
             }
         },
 
-
         // Initialisierung
         created() {
             this.updateUser()
@@ -359,38 +349,7 @@
 </script>
 
 <style>
-    {
-
-        --main-color1: #BF4974
-    ;
-        --main-color2: #8C3F63
-    ;
-        --main-color3: #8F94A6
-    ;
-        --main-color4: #132B40
-    ;
-        --main-color5: #D9A566
-    ;
-
-        primary: '#132B40'
-    ;
-        secondary: '#8F94A6'
-    ;
-        accent: '#D9A566'
-    ;
-        error: '#FF5252'
-    ;
-        info: ' #8C3F63'
-    ;
-        success: '#BF4974'
-    ;
-        warning: '#FFC107'
-    ;
-    }
-
-
-    #searchbox {
-
+   #searchbox {
         position: fixed;
         right: 5%;
         top: 5%;
@@ -400,14 +359,10 @@
         max-height: 100%;
         margin-right: 1.3em;
         padding: 0.5em 0.1em 0.1em 0.5em;
-
     }
-
     #txtsearch {
         top: 0%;
         left: 0;
         padding: 0;
     }
-
-
 </style>
