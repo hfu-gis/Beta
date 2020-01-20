@@ -4,11 +4,11 @@
     <div style="margin-top: 150px; width: 90%; height: 90%; margin-left: auto; margin-right: auto; margin-bottom: 70px;">
         <div class="text-center">
 
-            <!--  Zeigt das Bild and das in Firebase hinterlegt ist (mit link)-->
+            <!--  Zeigt das Bild an, dass in Firebase hinterlegt ist (mit URL)-->
             <img class="img-circle" :src="profileURL" height="150" width="150"
                  align="center"/>
             <input id="fileUpload" type="file" hidden>
-            <!--  öffnet ein dialog zum Bild ändern-->
+            <!--  öffnet ein Dialog zum Bild ändern-->
             <v-btn fab x-small dark v-on:click="changePhotoURL = true" style="position: relative; margin-top: 4.4%;margin-left: -1.3%">
                 <v-icon color="#D9A566" >mdi-pencil</v-icon>
             </v-btn>
@@ -81,7 +81,7 @@
                 </div>
                 <br>
                 <div class="my-2">
-                    <!-- Ruft Methode updateMessage bei click auf-->
+                    <!-- Ruft Methode updateMessage bei klick auf-->
                     <v-btn width="100em" min-height="8em" class="button" outlined
                            v-on:click="updateMessage">My Suggestions
                     </v-btn>
@@ -95,13 +95,13 @@
                 </div>
                 <br>
                 <div class="my-2">
-                    <!-- Ruft Methode logout bei click auf-->
+                    <!-- Ruft Methode logout bei klick auf-->
                     <v-btn width="100em" min-height="8em" class="button" outlined v-on:click="logout">
                         Logout
                     </v-btn>
                 </div>
 
-                <!-- Dialog zum Username ändern-->
+                <!-- Dialog zum ändern des Usernames-->
                 <v-dialog v-model="dialogName" max-width="400"
                           style="background: linear-gradient(to right, #f9f5ef, #ffd8b8);">
                     <v-card
@@ -117,7 +117,7 @@
 
 
                         <v-col cols="12">
-                            <!-- Ruft Methode updateMessage bei click auf-->
+                            <!-- Ruft Methode updateMessage bei klick auf-->
                             <v-btn color="#132B40" style="color: white " @click.stop="dialogName = false"
 
                                    v-on:click="updateName">Save
@@ -128,7 +128,7 @@
 
                     </v-card>
                 </v-dialog>
-                <!-- Dialog der die Jeweiligen Profildaten angibt wie name Bild usw-->
+                <!-- Dialog der die jeweiligen Profildaten anzeigt wie name Bild usw-->
                 <v-dialog v-model="dialogProfile" max-width="400">
                     <v-card>
                         <v-card
@@ -280,7 +280,7 @@
                                         </v-row>
                                         <v-row>
                                             <v-col  style="padding-top: 2%;" >
-                                                <!-- Sorgt dafür dass nur eine Erweiterung der beiträge erweitert werden und nicht alle gleichzeitig-->
+                                                <!-- Sorgt dafür dass nur eine Erweiterung der beiträge ausgeklappt wird und nicht alle gleichzeitig-->
                                                 <v-btn @click="item.beitragsnummer = !item.beitragsnummer"
                                                        style=" background: #3d4f68; " block>
                                                     Comment
@@ -345,7 +345,7 @@
                     </v-card>
                 </v-dialog>
 
-                <!-- Dialog der seine eingereichte idee mit antwort anzeigt-->
+                <!-- Dialog der seine eingereichte Idee mit Antwort anzeigt-->
                 <v-dialog v-model="dialogSuggestions" max-width="400">
                     <v-card>
                         <v-card
@@ -458,7 +458,7 @@
 
             items: [],
 
-            /** Daten für Idea einreichung*/
+            /** Daten für Idee einreichung*/
 
             mySuggestions: {
                 idea: '',
@@ -535,7 +535,7 @@
             },
 
 
-            /** Diese Methode sorgt dafür das der Aktuelle Profilbild url ausgetauscht wird durch einen der vom benutzer angegeben wurde */
+            /** Diese Methode sorgt dafür das der aktuelle Profilbild url ausgetauscht wird durch einen der vom benutzer angegeben wurde */
             changeURL(){
                 var user = firebase.auth().currentUser;
                 if (user) {
