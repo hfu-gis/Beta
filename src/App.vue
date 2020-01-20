@@ -271,7 +271,7 @@
             dialog: false,
             dialog2: false,
             dialog3: false,
-            dialogprivacy: false,
+            dialogprivacy: true,
 
             //Für Nutzererfassung, -anzeige
             userData: {

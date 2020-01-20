@@ -1,13 +1,16 @@
 <template>
 
     <v-row justify="center">
+        <!-- Dialog zum Registrieren-->
         <v-dialog v-model="registration" persistent max-width="600px" @keydown.esc="registration = false"
                   @keydown.enter="registration = false">
+            <!-- Button der ein Dialog öffnet-->
             <template v-slot:activator="{ on }">
                 <v-btn depressed v-on="on" color="#D9A566">Register</v-btn>
             </template>
             <v-card>
                 <v-stepper v-model="e1" dark style="background: linear-gradient(to right, #f9f5ef, #ffd8b8);">
+                    <!-- Stepper der 3 schritte erstellt-->
                     <v-stepper-header style="background: #132B40">
                         <v-stepper-step editable :complete="e1 > 1" step="1" color="#D9A566">Username</v-stepper-step>
 
@@ -21,6 +24,7 @@
                     </v-stepper-header>
 
                     <v-stepper-items>
+                        <!-- Erster schritt im Dialog mit Name und Username-->
                         <v-stepper-content step="1">
 
 
@@ -72,7 +76,7 @@
 
 
                             <small style="color: rgba(19,43,64,0.49);">*indicates required field</small>
-
+                            <!-- 2. SChritt mit email adresse mit überprüfung auf @zeigchen-->
                             <div style="float: right">
                                 <v-btn
                                         style="float: right"
@@ -105,7 +109,7 @@
                                 </v-col>
                             </section>
                             <small style="color: rgba(19,43,64,0.49); ">*indicates required field</small>
-
+                            <!-- 3. Schritt mit Passwort mit überprüfung auf übereinstimmung der beiden eingaben-->
                             <div style="float: right">
                                 <v-btn
                                         style="float: right"
@@ -148,7 +152,7 @@
 
 
                             <small style="color: rgba(19,43,64,0.49); ">*indicates required field</small>
-
+                            <!-- Submit button der Methode zum hochladen aufruft-->
                             <div style="float: right">
                                 <v-btn text v-on:click="cancel" light>Cancel</v-btn>
                                 <v-btn v-on:click="submit" color="success">Confirm</v-btn>
@@ -156,6 +160,7 @@
                         </v-stepper-content>
                     </v-stepper-items>
                 </v-stepper>
+                <!-- Error alert Message-->
                 <div style="background: darkred; color: white; padding: 2%; text-align: center" v-if="error" class="alert alert-danger">{{error}}</div>
 
             </v-card>
@@ -173,7 +178,7 @@
         //variabler Speicher
         data: () => ({
             e1: 0,
-
+            /** Daten für übertragung an Firebase*/
             form: {
                 name: "",
                 email: "",
@@ -183,7 +188,7 @@
 
             registration: false,
             valid: true,
-
+            /** Variable für überprüfung des Passworts */
             confirmpassword: '',
 
             userData: {
@@ -194,12 +199,12 @@
                 //password: '',
                 photoURL: ''
             },
-
+            /** Reguliert länge des namens*/
             nameRules: [
                 v => !!v || 'Name is required',
                 v => v.length <= 10 || 'Name must be less than 10 characters',
             ],
-
+            /**Reguliert formatierung der email */
             emailRules: [
                 v => !!v || 'E-mail is required',
                 v => /.+@.+/.test(v) || 'E-mail must be valid',
@@ -218,6 +223,7 @@
         // reagieren auf prop-Veränderung
         watch: {},
         computed: {
+            /**  Überprüft übereinstimmung des Passworts*/
             comparepassword() {
                 return this.form.password !== this.confirmpassword ? 'passwords do not match' : ''
             }
@@ -225,6 +231,8 @@
 
         // interne Methoden
         methods: {
+
+            /** hier wird das Popup beim click eines buttons geschlossen*/
             cancel() {
                 this.registration = false;
 
@@ -236,7 +244,7 @@
 
                 this.e1 = 0;
             },
-
+            /** Hier werden die eingetragen daten auf firebase hochgeladen und gespeichert*/
             submit() {
                 firebase
                     .auth()

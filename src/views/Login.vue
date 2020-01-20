@@ -85,6 +85,8 @@
 
 
         methods: {
+
+            /** hier wird überprüft ob die eingegeben daten existieren und dann wird eine fehlermeldung ausgegeben oder man wird eingeloggt über firebase*/
             login: function (e) {
                 firebase
                     .auth()

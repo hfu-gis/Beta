@@ -46,11 +46,11 @@
                         <v-col>
                             <v-text-field v-model="newHashtag" style="padding-left: 8%"></v-text-field>
                         </v-col>
-                        <v-colnpm>
+                        <v-col>
                             <v-btn icon dark style="background: grey;" v-on:click="addHashtagToArray">
                                 <v-icon>mdi-plus</v-icon>
                             </v-btn>
-                        </v-colnpm>
+                        </v-col>
                     </v-row>
 
                     <!-- Hashtag(s) werden hier angezeigt-->
@@ -85,7 +85,7 @@
                         >{{myThread.text}}
                         </v-textarea>
                     </section>
-                    <v-btn outlined v-on:click="saveNewThread">Publish</v-btn>
+                    <v-btn color="#D9A566" v-on:click="saveNewThread">Publish</v-btn>
                 </v-col>
                 <br>
             </v-card>

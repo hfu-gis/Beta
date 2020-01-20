@@ -3,14 +3,18 @@
     <body>
     <div style="margin-top: 150px; width: 90%; height: 90%; margin-left: auto; margin-right: auto; margin-bottom: 70px;">
         <div class="text-center">
+
+
             <img class="img-circle" :src="profileURL" height="150" width="150"
                  align="center"/>
             <input id="fileUpload" type="file" hidden>
-            <!--<v-btn fab x-small dark @click="chooseFiles">-->
+            <!--  öffnet ein dialog zum Bild ändern-->
             <v-btn fab x-small dark v-on:click="changePhotoURL = true" style="position: relative; margin-top: 4.4%;margin-left: -1.3%">
                 <v-icon color="#D9A566" >mdi-pencil</v-icon>
             </v-btn>
 
+
+            <!-- Dialog zum Bild ändern-->
             <v-dialog v-model="changePhotoURL" max-width="700px">
                 <v-card style="background: linear-gradient(to right, #f9f5ef, #ffd8b8);">
                     <v-card-title>Insert new Photo URL:</v-card-title>
@@ -28,11 +32,11 @@
                 </v-card>
             </v-dialog>
 
-
+            <!-- Anzeige des Usernames-->
             <header>
                 <h1 class="h1"><strong class="accent--text">{{message}}</strong>
 
-
+                    <!--Öffnet ein Dialog zum Username ändern -->
                     <v-btn fab x-small dark @click="dialogName = true">
                         <v-icon color="#D9A566">mdi-pencil</v-icon>
                     </v-btn>
@@ -40,6 +44,7 @@
                     <!--Change name--></h1>
             </header>
         </div>
+        <!-- Buttons um verschiedene Dialoge zu öffnen-->
         <v-row align="center">
             <v-col class="text-center" cols="12" sm="3">
                 <div class="my-2">
@@ -93,6 +98,8 @@
                         Logout
                     </v-btn>
                 </div>
+
+                <!-- Dialog zum Username ändern-->
                 <v-dialog v-model="dialogName" max-width="400"
                           style="background: linear-gradient(to right, #f9f5ef, #ffd8b8);">
                     <v-card
@@ -118,7 +125,7 @@
 
                     </v-card>
                 </v-dialog>
-
+                <!-- Dialog der die Jeweiligen Profildaten angibt wie name Bild usw-->
                 <v-dialog v-model="dialogProfile" max-width="400">
                     <v-card>
                         <v-card
@@ -144,7 +151,7 @@
                     </v-card>
                 </v-dialog>
 
-
+                <!-- Dialog der anzeigt das der User ausgeloggt wurde-->
                 <v-dialog v-model="dialoglogout" max-width="260">
                     <v-card>
                         <v-card
@@ -164,6 +171,7 @@
                         </v-card>
                     </v-card>
                 </v-dialog>
+                <!-- Dialog der die Abos anzeigt-->
                 <v-dialog v-model="dialogAbo" max-width="260">
                     <v-card>
                         <v-card
@@ -183,6 +191,7 @@
                         </v-card>
                     </v-card>
                 </v-dialog>
+                <!-- Dialog der die Notifications anzeigt -->
                 <v-dialog v-model="dialogNotifications" max-width="400">
                     <v-card>
                         <v-card
@@ -205,7 +214,7 @@
 
 
 
-
+                <!-- Dialog der die selbst geschriebenen Post anzeigt-->
                 <v-dialog v-model="dialogPosts" max-width="900">
                     <v-card>
 
@@ -284,7 +293,7 @@
                                         <v-expand-transition>
                                             <div v-show="item.beitragsnummer">
                                                 <v-divider></v-divider>
-    <v-card-text>Comments?</v-card-text>
+                                            <v-card-text>Comments?</v-card-text>
 
                                             </div>
                                         </v-expand-transition>
@@ -298,7 +307,7 @@
 
 
 
-
+                <!-- Dialog der einen eine Idea einreichen lässt-->
                 <v-dialog v-model="dialogIdea" max-width="500">
                     <v-card color="#8F94A6">
                         <v-card
@@ -338,7 +347,7 @@
                     </v-card>
                 </v-dialog>
 
-
+                <!-- Dialog der seine eingereichte idee mit antwort anzeigt-->
                 <v-dialog v-model="dialogSuggestions" max-width="400">
                     <v-card>
                         <v-card
@@ -379,6 +388,7 @@
                         </v-card>
                     </v-card>
                 </v-dialog>
+                <!-- Dialog der die Likes auf seinen Posts zeigt-->
                 <v-dialog v-model="dialogStats" max-width="500">
                     <v-card
                             class="mt-4 mx-auto"
@@ -450,6 +460,8 @@
 
             items: [],
 
+            /** Daten für Idea einreichung*/
+
             mySuggestions: {
                 idea: '',
                 text: '',
@@ -464,7 +476,7 @@
                 mail: '',
                 //password: '',
             },
-
+            /** Default falue für anzeigen der Dialoge*/
             message1: '',
             message: 'no user logged in',
             dialoglogout: false,
@@ -476,6 +488,7 @@
             dialogPosts: false,
             dialogProfile: false,
             dialogName: false,
+            /** Daten für Diagramm anzeige*/
             labels: [
                 '1.5',
                 '1.6',
@@ -507,6 +520,7 @@
             chooseFiles() {
                 document.getElementById("fileUpload").click()
             },
+            /**  diese Methode sorgt dafür das man ausgeloggt wird*/
             logout: function (e) {
                 firebase
                     .auth()
@@ -525,6 +539,8 @@
                 e.preventDefault();
             },
 
+
+            /** Diese Methode sorgt dafür das der Aktuelle Profilbild url ausgetauscht wird durch einen der vom benutzer angegeben wurde */
             changeURL(){
                 var user = firebase.auth().currentUser;
                 if (user) {
@@ -539,7 +555,7 @@
                 this.profileURL = this.newPhotoURL;
                 this.updateUser();
             },
-
+            /** Mit dieser Methode wird eine Nachhricht in firebase hochgeladen und gespeichert die dann vom Entwicklerteam beantwortet werden kann*/
             createSuggestion() {
                 if (this.mySuggestions.idea != '' && this.mySuggestions.text != '') {
                     var user = firebase.auth().currentUser;
@@ -558,7 +574,7 @@
                 }
             },
 
-
+            /** Diese Methode Updated den Username sodass die eingabe nun der username ist */
             updateName() {
                 firebase.auth().currentUser.updateProfile({
                     displayName: this.message
@@ -576,7 +592,7 @@
                     //docRef.update()
                 }
             },
-
+            /** Hier wird der aktuell eingeloggte User geupdated und die Daten runtergeladen*/
             updateUser() {
                 var user = firebase.auth().currentUser;
                 if (user) {
@@ -587,22 +603,7 @@
                     })
                 }
             },
-
-            signOut() {
-                firebase
-                    .auth()
-                    .signOut()
-                    .then(() => {
-                        if (this.message != "no user logged in") {
-
-                            this.dialoglogout = true
-                            this.message = 'no user logged in'
-                        }
-                        /*this.$router.replace({
-                            name: "home"
-                        });*/
-                    });
-            },
+            /** Hier wird der Vorschlage wenn einer eingereicht wurde von firebase aufgerufen und angezeigt*/
 
             updateMessage() {
                 this.dialogSuggestions = true;
@@ -618,7 +619,7 @@
                     console.log(this.mySuggestions.creatorID);
                 }
             },
-
+            /**  Hier werden die eigenen Erstellten Beiträge von firebase geladen und angezeigt*/
             updateMyPosts(){
                 var user = firebase.auth().currentUser;
                 db.collection("Threads").where("creatorID", "==", user.uid).get().then(threadsFromDB => {

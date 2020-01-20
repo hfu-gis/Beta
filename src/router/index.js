@@ -7,7 +7,7 @@ import postinglist from "../views/postinglist";
 import registration from "../views/registration";
 import homepage from "../views/homepage";
 import App from "../App";
-import profilesettings from "../views/profilesettings";
+
 import searchBlank from "../views/searchBlank";
 import about from "../views/about";
 
@@ -31,10 +31,7 @@ export default new VueRouter({
             path: '/profile.json',
             component: profil
         },
-        {
-            path: '/profilesettings',
-            component: profilesettings
-        },
+
         {
             path: '/postinglist',
             component: postinglist
