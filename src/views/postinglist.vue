@@ -114,7 +114,7 @@
 
 
         <!--Thread-Anzeige-->
-        <v-row style="padding-bottom: 10%">
+        <v-row style="padding-bottom: 10%; padding-left: 2%; padding-right: 2%; padding-top: 1%;">
 
             <!--Durchgehen und Anzeigen aller Beiträge mit dem gesuchten Hashtag-->
             <v-col
@@ -151,7 +151,6 @@
                             <v-card-title
                                     class="headline"
                                     v-text="item.title"
-
                             />
                             <!--<v-card-subtitle v-text="item.beitragsnummer"
                                              style="margin-left: 3%;"
@@ -175,7 +174,7 @@
                     </v-row>
                     <v-divider color="#D9A566"/>
                     <v-row>
-                        <v-card-text v-text="item.text"/>
+                        <v-card-text style="padding-left: 5%" v-text="item.text"/>
                     </v-row>
                     <v-row>
                         <v-col style="padding-top: 2%;">
@@ -199,7 +198,6 @@
 </template>
 
 <script>
-
 
     import firebase from 'firebase';
     import db from "../db";
