@@ -6,6 +6,7 @@
     </head>
 
     <body>
+    <!-- Ruft login auch bei Enter auf -->
     <v-container style="margin-top: 250px;" @keydown.enter="login">
         <v-layout>
             <v-row justify="center" align="center">
@@ -16,9 +17,11 @@
                                 <header><h1><strong>Login</strong></h1></header>
                                 <br>
                                 <v-form ref="form">
+                                    <!-- Eingabefelder für E-mail und Passwort-->
                                     <v-text-field label="E-Mail" type="email" v-model="email" required></v-text-field>
                                     <v-text-field label="Password" type="password" v-model="password"></v-text-field>
                                     <v-row no-gutters>
+                                        <!-- Button der Methode Login aufruft -->
                                         <v-btn color="#D9A566" v-on:click="login">Sign in</v-btn>
                                         <registration/>
                                         <v-spacer/>
@@ -33,33 +36,6 @@
             </v-row>
         </v-layout>
     </v-container>
-
-    <!--
-    <v-alert
-            v-model="alertFalse"
-            color="pink"
-            dark
-            border="top"
-            icon="mdi-alert"
-            transition="scale-transition"
-            style="width: 40%; margin: auto;"
-            align="center"
-    >
-        Anmeldung nicht möglich, bitte erneut versuchen!
-    </v-alert>
-    <v-alert
-            v-model="alertRight"
-            color="green"
-            dark
-            border="top"
-            icon="mdi-check"
-            transition="scale-transition"
-            style="width: 40%; margin: auto;"
-            align="center"
-    >
-        Anmeldung erfolgreich!
-    </v-alert>-->
-
     </body>
     </html>
 </template>
@@ -76,8 +52,7 @@
         props: {},
 
         data: () => ({
-            alertFalse: false,
-            alertRight: false,
+
 
             email: '',
             password: ''
@@ -126,30 +101,7 @@
         font-size: 3em;
     }
 
-    body {
-        width: 100%;
-        height: 100%;
-        margin: 0;
 
-    }
-
-    a {
-        color: #fff;
-        font-weight: bolder;
-    }
-
-    a:visited {
-        color: #fff;
-    }
-
-    input[type="text"], input[type="password"] {
-        width: 300px;
-        height: 50px;
-        font-size: 18px;
-        margin-bottom: 20px;
-        padding-left: 5px;
-
-    }
 
 
 </style>
