@@ -10,7 +10,7 @@
             </template>
             <v-card>
                 <v-stepper v-model="e1" dark style="background: linear-gradient(to right, #f9f5ef, #ffd8b8);">
-                    <!-- Stepper der 3 schritte erstellt-->
+                    <!-- Stepper der 3 Schritte erstellt-->
                     <v-stepper-header style="background: #132B40">
                         <v-stepper-step editable :complete="e1 > 1" step="1" color="#D9A566">Username</v-stepper-step>
 
@@ -76,7 +76,7 @@
 
 
                             <small style="color: rgba(19,43,64,0.49);">*indicates required field</small>
-                            <!-- 2. SChritt mit email adresse mit überprüfung auf @zeigchen-->
+                            <!-- 2. Schritt mit email Adresse mit überprüfung auf @zeichen-->
                             <div style="float: right">
                                 <v-btn
                                         style="float: right"
@@ -109,7 +109,7 @@
                                 </v-col>
                             </section>
                             <small style="color: rgba(19,43,64,0.49); ">*indicates required field</small>
-                            <!-- 3. Schritt mit Passwort mit überprüfung auf übereinstimmung der beiden eingaben-->
+                            <!-- 3. Schritt mit Passwort mit Überprüfung auf übereinstimmung der beiden eingaben-->
                             <div style="float: right">
                                 <v-btn
                                         style="float: right"
@@ -190,7 +190,7 @@
             valid: true,
             /** Variable für überprüfung des Passworts */
             confirmpassword: '',
-
+            /** Daten für übertragung an Firebase*/
             userData: {
                 userName: '',
                 first: '',
@@ -199,12 +199,12 @@
                 //password: '',
                 photoURL: ''
             },
-            /** Reguliert länge des namens*/
+            /** Reguliert länge des Namens*/
             nameRules: [
                 v => !!v || 'Name is required',
                 v => v.length <= 10 || 'Name must be less than 10 characters',
             ],
-            /**Reguliert formatierung der email */
+            /**Reguliert formatierung der E-mail */
             emailRules: [
                 v => !!v || 'E-mail is required',
                 v => /.+@.+/.test(v) || 'E-mail must be valid',
