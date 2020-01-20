@@ -4,7 +4,7 @@
     <div style="margin-top: 150px; width: 90%; height: 90%; margin-left: auto; margin-right: auto; margin-bottom: 70px;">
         <div class="text-center">
 
-
+            <!--  Zeigt das Bild and das in Firebase hinterlegt ist (mit link)-->
             <img class="img-circle" :src="profileURL" height="150" width="150"
                  align="center"/>
             <input id="fileUpload" type="file" hidden>
@@ -81,6 +81,7 @@
                 </div>
                 <br>
                 <div class="my-2">
+                    <!-- Ruft Methode updateMessage bei click auf-->
                     <v-btn width="100em" min-height="8em" class="button" outlined
                            v-on:click="updateMessage">My Suggestions
                     </v-btn>
@@ -94,6 +95,7 @@
                 </div>
                 <br>
                 <div class="my-2">
+                    <!-- Ruft Methode logout bei click auf-->
                     <v-btn width="100em" min-height="8em" class="button" outlined v-on:click="logout">
                         Logout
                     </v-btn>
@@ -115,8 +117,9 @@
 
 
                         <v-col cols="12">
-
+                            <!-- Ruft Methode updateMessage bei click auf-->
                             <v-btn color="#132B40" style="color: white " @click.stop="dialogName = false"
+
                                    v-on:click="updateName">Save
                             </v-btn>
 
@@ -244,16 +247,9 @@
                                             dark
                                     >
                                         <v-row >
-                                            <!--<v-col md="auto">
 
-
-                                                    <v-card-subtitle v-text="item.username"
-
-                                                    />
-
-                                            </v-col>-->
                                             <v-col>
-                                                <!--<v-divider vertical color="#D9A566"></v-divider>-->
+
 
                                                 <v-card-title
                                                         class="headline"
@@ -284,6 +280,7 @@
                                         </v-row>
                                         <v-row>
                                             <v-col  style="padding-top: 2%;" >
+                                                <!-- Sorgt dafür dass nur eine Erweiterung der beiträge erweitert werden und nicht alle gleichzeitig-->
                                                 <v-btn @click="item.beitragsnummer = !item.beitragsnummer"
                                                        style=" background: #3d4f68; " block>
                                                     Comment
@@ -338,6 +335,7 @@
                                             v-model="mySuggestions.text" placeholder="type here"/>
                             </v-col>
                             <v-col cols="12">
+                                <!-- Ruft Methode createSuggestion bei click auf-->
                                 <v-btn solo depressed flat @click="createSuggestion" type="submit" color="#132B40"
                                        style="color: white">Send
                                 </v-btn>
@@ -477,7 +475,6 @@
                 //password: '',
             },
             /** Default falue für anzeigen der Dialoge*/
-            message1: '',
             message: 'no user logged in',
             dialoglogout: false,
             dialogAbo: false,
@@ -517,9 +514,7 @@
 
         // interne Methoden
         methods: {
-            chooseFiles() {
-                document.getElementById("fileUpload").click()
-            },
+
             /**  diese Methode sorgt dafür das man ausgeloggt wird*/
             logout: function (e) {
                 firebase
